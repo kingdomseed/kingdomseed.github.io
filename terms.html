@@ -1,1 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | BinaryLoom AI Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 850: '#1e293b', 900: '#0f172a', 950: '#020617' },
+                        brand: { 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-slate-100 antialiased selection:bg-brand-500 selection:text-white min-h-screen">
+
+    <!-- Header / Nav -->
+    <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="https://binaryloom.io" class="font-bold text-xl tracking-tight text-white flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 shadow-[0_0_10px_rgba(99,102,241,0.8)]"></span>
+                    BINARYLOOM
+                </a>
+                <div class="flex space-x-6 text-sm font-medium text-slate-400">
+                    <a href="https://chat.binaryloom.io" class="hover:text-brand-400 transition-colors">Chat App</a>
+                    <a href="privacy.html" class="hover:text-brand-400 transition-colors">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold text-white mb-4">Terms of Service</h1>
+            <p class="text-slate-400">Last Updated: November 26, 2025</p>
+            <p class="text-slate-400 mt-2">Effective Date: November 26, 2025</p>
+        </div>
+
+        <!-- Critical Notice -->
+        <div class="glass-panel p-6 rounded-xl border-l-4 border-l-red-500 mb-10">
+            <h2 class="text-red-400 font-semibold mb-2 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                Experimental Service Notice
+            </h2>
+            <p class="text-slate-300 text-sm leading-relaxed">
+                BinaryLoom Chat is an <strong>experimental AI service in beta</strong>. By using this service, you acknowledge that it may contain bugs, produce errors, or experience downtime. The service is provided "AS IS" without warranties. Please read these terms carefully.
+            </p>
+        </div>
+
+        <div class="space-y-10 text-slate-300 leading-relaxed">
+
+            <!-- Section 1 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">By accessing or using BinaryLoom Chat at <strong class="text-white">chat.binaryloom.io</strong> ("the Service"), you agree to be bound by these Terms of Service and our <a href="privacy.html" class="text-brand-400 hover:underline">Privacy Policy</a>.</p>
+                    <p class="text-sm text-slate-400">If you do not agree to these terms, you may not use the Service. We reserve the right to modify these terms at any time. Continued use after changes constitutes acceptance.</p>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">2. Service Description</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">BinaryLoom Chat is an AI-powered chat application that provides:</p>
+                    <ul class="space-y-2 text-sm mb-4">
+                        <li>- Access to multiple AI models (GPT-5.1, Claude, Mistral, and others)</li>
+                        <li>- File upload and processing capabilities</li>
+                        <li>- Speech-to-text and text-to-speech features</li>
+                        <li>- Custom AI agent creation</li>
+                        <li>- Document analysis and OCR</li>
+                    </ul>
+                    <p class="text-sm text-slate-400">The Service uses third-party AI providers (OpenAI, Anthropic, Mistral) to generate responses. We do not control these providers' outputs.</p>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">3. Eligibility</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p>To use the Service, you must:</p>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li>- Be at least <strong class="text-white">16 years of age</strong></li>
+                        <li>- Have the legal capacity to enter into binding agreements</li>
+                        <li>- Not be prohibited from using the Service under applicable laws</li>
+                        <li>- Create only one account per person</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">4. Account Responsibilities</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">You are responsible for:</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>- Maintaining the confidentiality of your account credentials</li>
+                        <li>- All activities that occur under your account</li>
+                        <li>- Immediately notifying us of any unauthorized access</li>
+                        <li>- Ensuring your contact information is accurate and current</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-slate-400">We reserve the right to suspend or terminate accounts that violate these terms or for any other reason at our discretion.</p>
+                </div>
+            </section>
+
+            <!-- Section 5 - Critical -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">5. AI-Generated Content Disclaimers</h2>
+
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-l-yellow-500 mb-6">
+                    <h3 class="text-yellow-400 font-semibold mb-3">IMPORTANT: READ CAREFULLY</h3>
+                    <div class="space-y-4 text-sm">
+                        <p><strong class="text-white">AI Interaction:</strong> You are interacting with artificial intelligence systems powered by large language models (LLMs). Responses are generated by AI and may not always be accurate, complete, or suitable for your specific situation.</p>
+
+                        <p><strong class="text-white">No Warranties:</strong> AI-generated content is provided "AS IS" without any warranties, express or implied, including but not limited to warranties of accuracy, completeness, merchantability, or fitness for a particular purpose.</p>
+
+                        <p><strong class="text-white">Not Professional Advice:</strong> AI-generated responses do <strong>NOT</strong> constitute professional advice (legal, medical, financial, or otherwise). Always consult qualified professionals before acting on any AI-generated information.</p>
+
+                        <p><strong class="text-white">Potential Errors:</strong> AI systems may produce errors, hallucinations, biased outputs, or inappropriate content. We cannot guarantee the accuracy of any AI-generated content.</p>
+
+                        <p><strong class="text-white">Your Responsibility:</strong> You are solely responsible for reviewing, verifying, and validating all AI-generated content before use. Any reliance on AI-generated information is strictly at your own risk.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">6. Acceptable Use Policy</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">You agree NOT to use the Service to:</p>
+                    <ul class="space-y-2 text-sm">
+                        <li class="text-red-400">- Generate illegal, harmful, threatening, abusive, or harassing content</li>
+                        <li class="text-red-400">- Create content that promotes discrimination, violence, or hatred</li>
+                        <li class="text-red-400">- Generate spam, phishing content, or malware</li>
+                        <li class="text-red-400">- Attempt to bypass safety measures or content filters</li>
+                        <li class="text-red-400">- Reverse engineer, decompile, or attempt to extract AI model weights</li>
+                        <li class="text-red-400">- Use automated systems to access the Service without permission</li>
+                        <li class="text-red-400">- Impersonate others or misrepresent your identity</li>
+                        <li class="text-red-400">- Violate any applicable laws or regulations</li>
+                        <li class="text-red-400">- Infringe on intellectual property rights of others</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-slate-400">Violation of this policy may result in immediate account termination without notice.</p>
+                </div>
+            </section>
+
+            <!-- Section 7 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">7. Intellectual Property</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <h3 class="text-lg font-semibold text-white mb-3">7.1 Our Property</h3>
+                    <p class="text-sm mb-4">The Service, including its design, features, and branding, is owned by Jason Holt Digital. You may not copy, modify, or distribute any part of the Service without permission.</p>
+
+                    <h3 class="text-lg font-semibold text-white mb-3">7.2 Your Content</h3>
+                    <p class="text-sm mb-4">You retain ownership of content you create and submit. By using the Service, you grant us a limited license to process your content solely for providing the Service.</p>
+
+                    <h3 class="text-lg font-semibold text-white mb-3">7.3 AI-Generated Content</h3>
+                    <p class="text-sm">AI-generated content ownership may be subject to the terms of underlying AI providers. We make no guarantees regarding intellectual property rights in AI-generated outputs. You are responsible for ensuring any AI-generated content you use does not infringe on third-party rights.</p>
+                </div>
+            </section>
+
+            <!-- Section 8 - Critical -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">8. Limitation of Liability</h2>
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-l-red-500">
+                    <p class="text-sm uppercase tracking-wide text-red-400 mb-4 font-semibold">TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+
+                    <div class="space-y-4 text-sm">
+                        <p><strong class="text-white">1.</strong> THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT ANY WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED.</p>
+
+                        <p><strong class="text-white">2.</strong> WE SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, EXEMPLARY, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE.</p>
+
+                        <p><strong class="text-white">3.</strong> THIS INCLUDES BUT IS NOT LIMITED TO DAMAGES FOR LOSS OF PROFITS, GOODWILL, DATA, OR OTHER INTANGIBLE LOSSES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+
+                        <p><strong class="text-white">4.</strong> OUR TOTAL AGGREGATE LIABILITY SHALL NOT EXCEED THE GREATER OF: (A) THE AMOUNT YOU PAID TO USE THE SERVICE IN THE PAST 12 MONTHS, OR (B) ONE HUNDRED EUROS (EUR 100).</p>
+
+                        <p><strong class="text-white">5.</strong> SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF CERTAIN WARRANTIES OR LIMITATION OF LIABILITY. IN SUCH JURISDICTIONS, OUR LIABILITY WILL BE LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">9. Disclaimer of Warranties</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4 font-semibold text-white">WE EXPRESSLY DISCLAIM ALL WARRANTIES, INCLUDING:</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>- Any warranty that the Service will be uninterrupted, secure, or error-free</li>
+                        <li>- Any warranty regarding the accuracy or reliability of AI-generated content</li>
+                        <li>- Any warranty that the Service will meet your specific requirements</li>
+                        <li>- Any warranty regarding the availability of the Service at any given time</li>
+                        <li>- Any implied warranty of merchantability or fitness for a particular purpose</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 10 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">10. Indemnification</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p>You agree to indemnify, defend, and hold harmless Jason Holt Digital, its affiliates, and personnel from any claims, damages, losses, liabilities, and expenses (including reasonable legal fees) arising from:</p>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li>- Your use or misuse of the Service</li>
+                        <li>- Your violation of these Terms</li>
+                        <li>- Your violation of any third-party rights</li>
+                        <li>- Content you submit to the Service</li>
+                        <li>- Any reliance on AI-generated content</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 11 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">11. Third-Party Services</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">The Service relies on third-party AI providers including:</p>
+                    <ul class="space-y-2 text-sm mb-4">
+                        <li>- OpenAI (GPT models)</li>
+                        <li>- Anthropic (Claude models)</li>
+                        <li>- Mistral AI</li>
+                        <li>- Cohere (embeddings and reranking)</li>
+                    </ul>
+                    <p class="text-sm text-slate-400">Your use of these providers' outputs is also subject to their respective terms of service. We are not responsible for third-party provider availability, performance, or content policies.</p>
+                </div>
+            </section>
+
+            <!-- Section 12 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">12. Data and Backups</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4"><strong class="text-white">Your Responsibility:</strong> You are responsible for maintaining backups of any important data you submit to the Service.</p>
+                    <p class="text-sm text-slate-400">While we implement reasonable data protection measures, we do not guarantee that your data will never be lost or corrupted. We recommend regularly exporting any important conversations or content.</p>
+                </div>
+            </section>
+
+            <!-- Section 13 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">13. Service Modifications and Termination</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">We reserve the right to:</p>
+                    <ul class="space-y-2 text-sm">
+                        <li>- Modify, suspend, or discontinue the Service at any time without notice</li>
+                        <li>- Change features, pricing, or availability</li>
+                        <li>- Terminate your account for any reason</li>
+                        <li>- Remove content that violates these terms</li>
+                    </ul>
+                    <p class="mt-4 text-sm text-slate-400">Upon termination, your right to use the Service ceases immediately. Sections regarding liability, indemnification, and dispute resolution survive termination.</p>
+                </div>
+            </section>
+
+            <!-- Section 14 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">14. Governing Law and Disputes</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">These Terms shall be governed by and construed in accordance with the laws of <strong class="text-white">Germany</strong>, without regard to conflict of law principles.</p>
+                    <p class="mb-4 text-sm">Any disputes arising from these Terms or the Service shall be resolved through:</p>
+                    <ol class="space-y-2 text-sm list-decimal list-inside">
+                        <li><strong class="text-white">Informal Resolution:</strong> Contact us first at privacy@jasonholtdigital.com to attempt resolution</li>
+                        <li><strong class="text-white">Mediation:</strong> If informal resolution fails, parties agree to attempt mediation</li>
+                        <li><strong class="text-white">Courts:</strong> If mediation fails, disputes shall be subject to the exclusive jurisdiction of the courts of Frankfurt am Main, Germany</li>
+                    </ol>
+                    <p class="mt-4 text-sm text-slate-400">For EU consumers, nothing in these terms affects your statutory rights under consumer protection laws in your country of residence.</p>
+                </div>
+            </section>
+
+            <!-- Section 15 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">15. General Provisions</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <div class="space-y-4 text-sm">
+                        <p><strong class="text-white">Entire Agreement:</strong> These Terms, together with our Privacy Policy, constitute the entire agreement between you and us.</p>
+
+                        <p><strong class="text-white">Severability:</strong> If any provision is found unenforceable, the remaining provisions remain in effect.</p>
+
+                        <p><strong class="text-white">No Waiver:</strong> Our failure to enforce any right does not waive that right.</p>
+
+                        <p><strong class="text-white">Assignment:</strong> You may not assign your rights under these Terms. We may assign our rights without restriction.</p>
+
+                        <p><strong class="text-white">Force Majeure:</strong> We are not liable for failures due to circumstances beyond our reasonable control (natural disasters, war, pandemics, infrastructure failures, etc.).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 16 -->
+            <section>
+                <h2 class="text-2xl font-bold text-white mb-4">16. Contact Information</h2>
+                <div class="glass-panel p-6 rounded-xl">
+                    <p class="mb-4">For questions about these Terms of Service:</p>
+                    <div class="p-4 bg-slate-800/50 rounded-lg">
+                        <p class="text-sm"><strong class="text-white">Operator:</strong> Jason Holt Digital</p>
+                        <p class="text-sm"><strong class="text-white">Location:</strong> Frankfurt am Main, Germany</p>
+                        <p class="text-sm"><strong class="text-white">Email:</strong> <a href="mailto:privacy@jasonholtdigital.com" class="text-brand-400 hover:underline">privacy@jasonholtdigital.com</a></p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Acceptance Notice -->
+        <div class="mt-12 glass-panel p-6 rounded-xl border border-brand-500/30 text-center">
+            <p class="text-slate-300">By using BinaryLoom Chat, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our <a href="privacy.html" class="text-brand-400 hover:underline">Privacy Policy</a>.</p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+            <p>&copy; 2025 BinaryLoom / Jason Holt Digital. All rights reserved.</p>
+            <div class="mt-2 space-x-4">
+                <a href="privacy.html" class="hover:text-brand-400 transition-colors">Privacy Policy</a>
+                <a href="https://chat.binaryloom.io" class="hover:text-brand-400 transition-colors">Chat App</a>
+                <a href="https://jasonholtdigital.com" class="hover:text-brand-400 transition-colors">Main Site</a>
+            </div>
+        </footer>
+
+    </main>
+</body>
+</html>
