@@ -177,6 +177,40 @@
                     <p class="text-sm">When you send messages or upload files, this content is transmitted to third-party AI providers for processing. These providers may temporarily store your data according to their policies.</p>
                 </div>
 
+                <div class="glass-panel p-6 rounded-xl border-l-4 border-l-blue-500 mb-6">
+                    <h3 class="text-blue-400 font-semibold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        Azure AI Foundry: Your Data is Protected
+                    </h3>
+                    <p class="text-sm mb-4">All AI models in BinaryLoom Chat are accessed through <strong class="text-white">Microsoft Azure AI Foundry</strong>, not consumer AI services. This is an important distinction:</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex gap-3">
+                            <span class="text-green-400 mt-0.5">✓</span>
+                            <p><strong class="text-white">No Model Training:</strong> Your prompts and completions are NOT used to train, retrain, or improve Microsoft or OpenAI foundation models (GPT-4o, GPT-5, Claude, etc.).</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-green-400 mt-0.5">✓</span>
+                            <p><strong class="text-white">Data Stays Private:</strong> Your data is not available to other customers, not available to OpenAI, and is not used to improve Microsoft or third-party products or services.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-yellow-400 mt-0.5">⚠</span>
+                            <p><strong class="text-white">Abuse Monitoring (30-day retention):</strong> By default, Azure stores prompts and completions securely for up to 30 days to detect and mitigate abuse. This data is used for security purposes only, not training. Managed enterprise customers can <a href="https://learn.microsoft.com/en-us/legal/cognitive-services/openai/limited-access" class="text-brand-400 hover:underline" target="_blank">apply for modified abuse monitoring</a> (note: this exemption is typically only available to customers with a Microsoft account team).</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <span class="text-blue-400 mt-0.5">ℹ</span>
+                            <p><strong class="text-white">Different from Consumer ChatGPT:</strong> Azure AI Foundry does NOT interact with OpenAI's consumer services (ChatGPT, OpenAI API). Consumer ChatGPT may use your data for training unless you opt out—Azure OpenAI is explicitly excluded from this.</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-slate-700/50">
+                        <p class="text-xs text-slate-500 mb-2">Official Microsoft Documentation:</p>
+                        <ul class="text-xs space-y-1">
+                            <li><a href="https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy" class="text-brand-400 hover:underline" target="_blank">Azure OpenAI Data Privacy Policy</a></li>
+                            <li><a href="https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/abuse-monitoring" class="text-brand-400 hover:underline" target="_blank">Abuse Monitoring Details</a></li>
+                            <li><a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/faq" class="text-brand-400 hover:underline" target="_blank">Azure OpenAI FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <h3 class="text-lg font-semibold text-white mt-6 mb-3">4.1 AI Model Providers</h3>
                 <div class="space-y-4">
                     <div class="glass-panel p-4 rounded-xl">
