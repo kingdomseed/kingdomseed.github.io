@@ -94,7 +94,17 @@
                 <div class="glass-panel p-6 rounded-xl space-y-4">
                     <div>
                         <strong class="text-white block mb-1">Account Information</strong>
-                        <p class="text-sm">Email address, password (encrypted), display name. If you use social login (GitHub, Google), we receive your name, email, and profile picture from those services.</p>
+                        <p class="text-sm">Email address, password (encrypted), display name. If you use social login (Google, GitHub, or Discord), we receive only your basic profile information from those services as described below.</p>
+                    </div>
+                    <div>
+                        <strong class="text-white block mb-1">OAuth Authentication Data</strong>
+                        <p class="text-sm mb-2">When you sign in with a third-party provider, we access only the minimum data required for authentication:</p>
+                        <ul class="text-sm space-y-1 ml-4">
+                            <li><strong class="text-slate-200">Google:</strong> Name, email address, profile picture (scopes: openid, email, profile)</li>
+                            <li><strong class="text-slate-200">GitHub:</strong> Username, email address, profile picture (scope: read:user, user:email)</li>
+                            <li><strong class="text-slate-200">Discord:</strong> Username, email address, avatar (scopes: identify, email)</li>
+                        </ul>
+                        <p class="text-sm mt-2 text-slate-400">We do not access your contacts, files, or any other data from these services. OAuth tokens are used solely for authentication and are not stored long-term.</p>
                     </div>
                     <div>
                         <strong class="text-white block mb-1">Chat Conversations</strong>
