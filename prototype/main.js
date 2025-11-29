@@ -8,6 +8,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =========================================
+// Expose functions to global scope for onclick handlers
+// =========================================
+window.toggleJobDetails = toggleJobDetails;
+window.downloadResume = downloadResume;
+
+// =========================================
+// Job Details Toggle (Smooth Animation)
+// =========================================
+function toggleJobDetails(button) {
+    const details = button.nextElementSibling;
+    const icon = button.querySelector('svg');
+    const text = button.querySelector('.expand-text');
+    
+    if (details.classList.contains('collapsed')) {
+        // Expand
+        details.style.maxHeight = details.scrollHeight + 'px';
+        details.classList.remove('collapsed');
+        icon.classList.add('rotate-180');
+        icon.classList.remove('animate-pulse-gentle');
+        text.textContent = 'Hide details';
+        
+        // Remove max-height after animation to allow content reflow
+        setTimeout(() => {
+            details.style.maxHeight = 'none';
+        }, 300);
+    } else {
+        // Collapse - first set explicit height, then animate to 0
+        details.style.maxHeight = details.scrollHeight + 'px';
+        // Force reflow
+        details.offsetHeight;
+        details.style.maxHeight = '0';
+        details.classList.add('collapsed');
+        icon.classList.remove('rotate-180');
+        icon.classList.add('animate-pulse-gentle');
+        text.textContent = 'Show details';
+    }
+}
+
+// =========================================
 // Theme Management
 // =========================================
 function initTheme() {
