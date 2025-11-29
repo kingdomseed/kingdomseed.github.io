@@ -177,76 +177,153 @@
         </section>
 
         <!-- Skills & Balance Chart -->
-        <section id="skills" class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-8">
+        <section id="skills" class="space-y-12">
+            <!-- Top Row: Intro + Radar Chart -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 class="text-3xl font-bold text-white mb-4">The Hybrid Advantage</h2>
-                    <p class="text-slate-300 text-lg leading-relaxed">
-                        I'm not just a coder. I bridge the gap between <strong class="text-brand-400">engineering</strong>, <strong class="text-brand-400">design</strong>, and <strong class="text-brand-400">user psychology</strong>.
+                    <p class="text-slate-300 text-lg leading-relaxed mb-4">
+                        I bridge the gap between <strong class="text-brand-400">engineering</strong>, <strong class="text-brand-400">design</strong>, and <strong class="text-brand-400">educational UX</strong>—a perspective shaped by years of teaching computer science and visual design.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed">
+                        The same principles that earned me a <strong class="text-slate-300">Microsoft Innovative Educator Expert</strong> designation and a <strong class="text-slate-300">Top Hat Award for Inspiring Innovation</strong> now drive how I build digital products: intuitive, accessible, and designed with the user's learning curve in mind.
                     </p>
                 </div>
+
+                <div class="glass-panel p-6 rounded-2xl shadow-xl">
+                    <div class="chart-container">
+                        <canvas id="skillsRadar"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-500 mt-6 tracking-wide uppercase font-semibold">Cross-functional expertise visualization</p>
+                </div>
+            </div>
+
+            <!-- Skill Boxes Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
+                    <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        Frontend Frameworks
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Next.js (Production)</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">React</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Astro</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">TypeScript</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Flutter/Dart</span>
+                    </div>
+                </div>
                 
-                <div class="space-y-4">
-                    <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
-                        <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                            Frontend Frameworks
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Next.js (Production)</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">React</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Astro</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">TypeScript</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Flutter/Dart</span>
-                        </div>
+                <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
+                    <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                        Design & UI
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Adobe Certified</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Figma</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Prototyping</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Responsive Design</span>
                     </div>
-                    
-                    <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
-                        <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
-                            Design & UI
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Adobe Certified</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Figma</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Prototyping</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Responsive Design</span>
-                        </div>
-                    </div>
+                </div>
 
-                    <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
-                        <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                            Performance & Analytics
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Next.js Image Opt.</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Firebase Analytics</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Sentry</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Web Vitals</span>
-                        </div>
+                <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
+                    <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Performance & Analytics
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Next.js Image Opt.</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Firebase Analytics</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Sentry</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Web Vitals</span>
                     </div>
+                </div>
 
-                    <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
-                        <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
-                            Cloud & Infrastructure
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Azure (VM, AI Foundry)</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">MongoDB Atlas</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Docker Compose</span>
-                            <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Nginx/SSL</span>
-                        </div>
+                <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
+                    <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                        Cloud & Infrastructure
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Azure (VM, AI Foundry)</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">MongoDB Atlas</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Docker Compose</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Nginx/SSL</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
+                    <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        AI Tools & Agentic Skills
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Claude Code</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Cursor</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Prompt Eng.</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Context Eng.</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Agentic Workflows</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-xl transition-colors hover:bg-slate-800/40">
+                    <h3 class="text-brand-400 font-semibold mb-3 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        Product & Growth
+                    </h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Beta Testing</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Community Building</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">User Analytics</span>
+                        <span class="px-3 py-1 bg-slate-800/80 rounded-full text-xs text-slate-200 border border-slate-700/50">Product Lifecycle</span>
                     </div>
                 </div>
             </div>
 
-            <div class="glass-panel p-6 rounded-2xl shadow-xl">
-                <div class="chart-container">
-                    <canvas id="skillsRadar"></canvas>
+            <!-- Skills Grid (Colored Dots Matrix) -->
+            <div class="glass-panel p-8 rounded-2xl">
+                <h3 class="text-lg font-semibold text-white mb-6 uppercase tracking-wider text-sm opacity-70">Technical Skills Matrix</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-6 gap-y-3">
+                    <!-- Frontend (Blue) -->
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span><span class="text-sm text-slate-300">Next.js</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span><span class="text-sm text-slate-300">React</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span><span class="text-sm text-slate-300">Astro</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span><span class="text-sm text-slate-300">TypeScript</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span><span class="text-sm text-slate-300">Tailwind CSS</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span><span class="text-sm text-slate-300">Flutter/Dart</span></div>
+                    <!-- Design (Purple) -->
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-400"></span><span class="text-sm text-slate-300">Figma</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-400"></span><span class="text-sm text-slate-300">Adobe Suite</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-400"></span><span class="text-sm text-slate-300">Prototyping</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-400"></span><span class="text-sm text-slate-300">Responsive Design</span></div>
+                    <!-- AI Tools (Cyan) -->
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400"></span><span class="text-sm text-slate-300">Claude Code</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400"></span><span class="text-sm text-slate-300">Cursor</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400"></span><span class="text-sm text-slate-300">GitHub Copilot</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400"></span><span class="text-sm text-slate-300">Prompt Eng.</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400"></span><span class="text-sm text-slate-300">Context Eng.</span></div>
+                    <!-- Cloud/Data (Orange) -->
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-400"></span><span class="text-sm text-slate-300">Azure</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-400"></span><span class="text-sm text-slate-300">MongoDB Atlas</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-400"></span><span class="text-sm text-slate-300">Firebase</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-400"></span><span class="text-sm text-slate-300">Docker</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-400"></span><span class="text-sm text-slate-300">Nginx</span></div>
+                    <!-- Practices (Green) -->
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-400"></span><span class="text-sm text-slate-300">Agile/Scrum</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-400"></span><span class="text-sm text-slate-300">Git/GitHub</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-400"></span><span class="text-sm text-slate-300">CI/CD</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-400"></span><span class="text-sm text-slate-300">Web Vitals</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-400"></span><span class="text-sm text-slate-300">Sentry</span></div>
                 </div>
-                <p class="text-center text-xs text-slate-500 mt-6 tracking-wide uppercase font-semibold">Cross-functional expertise visualization</p>
+                <!-- Legend -->
+                <div class="flex flex-wrap gap-6 mt-6 pt-4 border-t border-slate-700/50">
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-400"></span><span class="text-xs text-slate-500 uppercase tracking-wide">Frontend</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-400"></span><span class="text-xs text-slate-500 uppercase tracking-wide">Design</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400"></span><span class="text-xs text-slate-500 uppercase tracking-wide">AI Tools</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-400"></span><span class="text-xs text-slate-500 uppercase tracking-wide">Cloud/Data</span></div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-400"></span><span class="text-xs text-slate-500 uppercase tracking-wide">Practices</span></div>
+                </div>
             </div>
         </section>
 
@@ -898,10 +975,10 @@
         new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: ['Frontend Eng.', 'Product Design', 'Learning Psych.', 'Backend/Cloud', 'Mentorship'],
+                labels: ['Frontend', 'Visual Design', 'Design Thinking', 'Edu UX', 'Agentic Workflows'],
                 datasets: [{
                     label: 'Skill Proficiency',
-                    data: [75, 85, 95, 75, 90],
+                    data: [85, 80, 90, 75, 80],
                     fill: true,
                     backgroundColor: 'rgba(99, 102, 241, 0.2)',
                     borderColor: '#818cf8',
