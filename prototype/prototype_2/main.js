@@ -107,3 +107,25 @@ async function downloadResume() {
     }
 }
 
+// --- Collapsible Experience Details ---
+/**
+ * Toggles the visibility of job details with smooth animation
+ * @param {HTMLElement} button - The button element that was clicked
+ */
+function toggleJobDetails(button) {
+    const details = button.nextElementSibling;
+    const expandText = button.querySelector('.expand-text');
+    const icon = button.querySelector('svg');
+    
+    if (details.style.maxHeight && details.style.maxHeight !== '0px') {
+        // Collapse
+        details.style.maxHeight = '0';
+        icon.classList.remove('rotate-180');
+        if (expandText) expandText.textContent = 'Show details';
+    } else {
+        // Expand
+        details.style.maxHeight = details.scrollHeight + 'px';
+        icon.classList.add('rotate-180');
+        if (expandText) expandText.textContent = 'Hide details';
+    }
+}

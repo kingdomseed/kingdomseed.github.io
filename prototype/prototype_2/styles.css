@@ -66,3 +66,27 @@
 .border-glow {
     box-shadow: 0 0 15px rgba(204, 255, 0, 0.1);
 }
+
+/* Marquee Animation for Tech Scroller */
+@keyframes scroll-x {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: scroll-x 30s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* Collapsible Experience Details */
+.job-details {
+    transition: max-height 0.3s ease-out;
+}
