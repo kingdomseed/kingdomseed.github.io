@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generating OG Image...</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        #preview {
+            border: 2px solid #334155;
+            border-radius: 8px;
+            max-width: 90vw;
+        }
+    </style>
+</head>
+<body>
+    <h1>OG Image Generator</h1>
+    <canvas id="canvas" width="1200" height="630"></canvas>
+    <p id="status">Loading headshot...</p>
+    <div id="preview-container" style="margin-top: 20px; display: none;">
+        <p>Preview:</p>
+        <img id="preview" alt="Generated OG Image">
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const status = document.getElementById('status');
+        const W = 1200;
+        const H = 630;
+
+        // Load headshot and generate
+        const headshot = new Image();
+        headshot.crossOrigin = 'anonymous';
+        headshot.onload = () => {
+            generateImage(headshot);
+        };
+        headshot.onerror = () => {
+            status.textContent = 'Error loading headshot. Make sure Headshot.jpeg is in the same folder.';
+        };
+        headshot.src = 'Headshot.jpeg';
+
+        function generateImage(photo) {
+            status.textContent = 'Generating image...';
+
+            // === BACKGROUND: Gradient matching site ===
+            const bgGradient = ctx.createLinearGradient(0, 0, W, H);
+            bgGradient.addColorStop(0, '#0f172a');    // slate-900
+            bgGradient.addColorStop(0.5, '#1e1b4b'); // indigo-950
+            bgGradient.addColorStop(1, '#0f172a');   // slate-900
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, W, H);
+
+            // === COLORWAVE: Animated gradient waves ===
+            // Wave 1 - Purple/Indigo
+            ctx.beginPath();
+            ctx.moveTo(0, H * 0.6);
+            for (let x = 0; x <= W; x += 10) {
+                const y = H * 0.6 + Math.sin(x * 0.008) * 60 + Math.sin(x * 0.003) * 40;
+                ctx.lineTo(x, y);
+            }
+            ctx.lineTo(W, H);
+            ctx.lineTo(0, H);
+            ctx.closePath();
+            const wave1 = ctx.createLinearGradient(0, H * 0.5, W, H);
+            wave1.addColorStop(0, 'rgba(99, 102, 241, 0.3)');   // brand-500
+            wave1.addColorStop(0.5, 'rgba(139, 92, 246, 0.2)'); // violet-500
+            wave1.addColorStop(1, 'rgba(99, 102, 241, 0.3)');
+            ctx.fillStyle = wave1;
+            ctx.fill();
+
+            // Wave 2 - Brighter accent
+            ctx.beginPath();
+            ctx.moveTo(0, H * 0.7);
+            for (let x = 0; x <= W; x += 10) {
+                const y = H * 0.7 + Math.sin(x * 0.006 + 1) * 50 + Math.sin(x * 0.002) * 30;
+                ctx.lineTo(x, y);
+            }
+            ctx.lineTo(W, H);
+            ctx.lineTo(0, H);
+            ctx.closePath();
+            const wave2 = ctx.createLinearGradient(0, H * 0.6, W, H);
+            wave2.addColorStop(0, 'rgba(129, 140, 248, 0.2)');  // brand-400
+            wave2.addColorStop(0.5, 'rgba(167, 139, 250, 0.15)');
+            wave2.addColorStop(1, 'rgba(129, 140, 248, 0.2)');
+            ctx.fillStyle = wave2;
+            ctx.fill();
+
+            // Wave 3 - Top accent
+            ctx.beginPath();
+            ctx.moveTo(0, H * 0.25);
+            for (let x = 0; x <= W; x += 10) {
+                const y = H * 0.25 + Math.sin(x * 0.005 + 2) * 40 + Math.sin(x * 0.002) * 25;
+                ctx.lineTo(x, y);
+            }
+            ctx.lineTo(W, 0);
+            ctx.lineTo(0, 0);
+            ctx.closePath();
+            const wave3 = ctx.createLinearGradient(0, 0, W, H * 0.4);
+            wave3.addColorStop(0, 'rgba(99, 102, 241, 0.15)');
+            wave3.addColorStop(1, 'rgba(139, 92, 246, 0.1)');
+            ctx.fillStyle = wave3;
+            ctx.fill();
+
+            // === GLOW EFFECTS ===
+            // Center glow behind photo
+            const centerGlow = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, 200);
+            centerGlow.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
+            centerGlow.addColorStop(0.5, 'rgba(99, 102, 241, 0.1)');
+            centerGlow.addColorStop(1, 'rgba(99, 102, 241, 0)');
+            ctx.fillStyle = centerGlow;
+            ctx.fillRect(0, 0, W, H);
+
+            // === CIRCULAR HEADSHOT ===
+            const photoSize = 180;
+            const photoX = W / 2;
+            const photoY = H / 2 - 30;
+
+            // Glow ring
+            ctx.beginPath();
+            ctx.arc(photoX, photoY, photoSize / 2 + 8, 0, Math.PI * 2);
+            const ringGlow = ctx.createRadialGradient(photoX, photoY, photoSize/2, photoX, photoY, photoSize/2 + 20);
+            ringGlow.addColorStop(0, 'rgba(99, 102, 241, 0.8)');
+            ringGlow.addColorStop(1, 'rgba(99, 102, 241, 0)');
+            ctx.fillStyle = ringGlow;
+            ctx.fill();
+
+            // Border ring
+            ctx.beginPath();
+            ctx.arc(photoX, photoY, photoSize / 2 + 4, 0, Math.PI * 2);
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            // Clip and draw photo
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(photoX, photoY, photoSize / 2, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.clip();
+
+            // Draw photo centered and covering the circle
+            const scale = Math.max(photoSize / photo.width, photoSize / photo.height);
+            const scaledW = photo.width * scale;
+            const scaledH = photo.height * scale;
+            ctx.drawImage(
+                photo,
+                photoX - scaledW / 2,
+                photoY - scaledH / 2,
+                scaledW,
+                scaledH
+            );
+            ctx.restore();
+
+            // === TEXT ===
+            // Name
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 48px system-ui, -apple-system, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.fillText('Jason Holt', W / 2, photoY + photoSize / 2 + 24);
+
+            // Title
+            ctx.fillStyle = '#94a3b8'; // slate-400
+            ctx.font = '24px system-ui, -apple-system, sans-serif';
+            ctx.fillText('Front End Developer & Learning Product Specialist', W / 2, photoY + photoSize / 2 + 80);
+
+            // Website URL
+            ctx.fillStyle = '#818cf8'; // brand-400
+            ctx.font = '18px system-ui, -apple-system, sans-serif';
+            ctx.fillText('jasonholt.dev', W / 2, H - 30);
+
+            // === DOWNLOAD ===
+            status.textContent = 'Downloading...';
+            
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'og-image.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                // Show preview
+                document.getElementById('preview').src = canvas.toDataURL('image/png');
+                document.getElementById('preview-container').style.display = 'block';
+                status.textContent = '✅ og-image.png downloaded! Move it to your project root folder.';
+            }, 'image/png');
+        }
+    </script>
+</body>
+</html>
