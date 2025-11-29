@@ -70,10 +70,10 @@
         
         /* Glassmorphism Utilities */
         .glass-panel {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(148, 163, 184, 0.1);
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
         }
         
         /* Animated Gradient Text */
@@ -166,6 +166,9 @@
     </script>
 </head>
 <body class="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-slate-100 antialiased selection:bg-brand-500 selection:text-white pb-24 min-h-screen">
+
+    <!-- Interactive Dot Matrix Background -->
+    <canvas id="dotMatrix" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1; pointer-events: none;"></canvas>
 
     <!-- Header / Nav -->
     <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/50">
@@ -1427,6 +1430,502 @@
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
             });
         });
+
+        // =========================================
+        // INTERACTIVE DOT MATRIX BACKGROUND
+        // =========================================
+        (function() {
+            'use strict';
+            
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            // Configuration
+            const config = {
+                dotSpacing: 50,           // Base spacing between dots
+                depthLayers: 1,           // Number of z-depth layers (reduced for performance)
+                maxOpacity: 0.25,         // Front layer max opacity (brighter)
+                minOpacity: 0.05,         // Back layer min opacity
+                maxSize: 2.5,             // Front layer dot size
+                minSize: 1,               // Back layer dot size
+                pulseSpeed: 0.0008,       // How fast dots pulse
+                pulseIntensity: 0.08,     // How much opacity varies
+                glowRadius: 0,            // Glow blur radius (0 = disabled for performance)
+                mouseRadius: 150,         // Mouse interaction radius
+                mouseStrength: 20,        // How far dots move toward mouse
+                springStiffness: 0.03,    // How fast dots return (0-1)
+                springDamping: 0.85,      // Friction on return (0-1)
+                waveInterval: 8000,       // Ms between ambient waves
+                waveSpeed: 0.003,         // How fast wave propagates
+                waveStrength: 12,         // How far wave moves dots
+                waveDuration: 3000,       // How long wave lasts
+                color: { r: 155, g: 170, b: 255 }, // Dot color (soft blue/brand tint)
+                mobileMultiplier: 2.0,    // Increase spacing on mobile
+                showFPS: false,           // Show FPS counter for debugging
+                skillDotChance: 0.04,     // Chance a dot becomes a skill dot (4%)
+                skillDotSize: 4,          // Size of skill dots
+                skillDotOpacity: 0.6,     // Opacity of skill dots
+                skillHoverRadius: 20      // Hover detection radius for skill dots
+            };
+            
+            // Skill categories with colors (matching the skills matrix)
+            // yRange: [min, max] as percentage of page (0 = top, 1 = bottom)
+            const skillCategories = [
+                { 
+                    name: 'Frontend', 
+                    color: { r: 96, g: 165, b: 250 },  // blue-400
+                    skills: ['React', 'Next.js', 'TypeScript', 'Astro', 'Flutter'],
+                    yRange: [0, 0.35]  // Top third - primary skill
+                },
+                { 
+                    name: 'Design', 
+                    color: { r: 192, g: 132, b: 252 }, // purple-400
+                    skills: ['Figma', 'Miro', 'Prototyping', 'Adobe Suite', 'UI/UX'],
+                    yRange: [0.1, 0.5]  // Upper-mid - closely related to frontend
+                },
+                { 
+                    name: 'AI Tools', 
+                    color: { r: 251, g: 146, b: 60 },  // orange-400
+                    skills: ['Claude Code', 'Cursor', 'Prompt Eng.', 'Agentic Workflows'],
+                    yRange: [0.2, 0.6]  // Mid-upper - current focus area
+                },
+                { 
+                    name: 'Product', 
+                    color: { r: 74, g: 222, b: 128 },  // green-400
+                    skills: ['Linear', 'Analytics', 'Beta Testing', 'User Research'],
+                    yRange: [0.4, 0.8]  // Mid-lower
+                },
+                { 
+                    name: 'Cloud', 
+                    color: { r: 34, g: 211, b: 238 },  // cyan-400
+                    skills: ['Azure', 'MongoDB', 'Docker', 'Firebase', 'Nginx'],
+                    yRange: [0.5, 0.9]  // Lower-mid
+                },
+                { 
+                    name: 'Edu UX', 
+                    color: { r: 244, g: 114, b: 182 }, // pink-400
+                    skills: ['Learning Psychology', 'Instructional Design', 'Accessibility'],
+                    yRange: [0.6, 1.0]  // Bottom - specialized skill
+                }
+            ];
+            
+            // Skill tooltip element
+            const skillTooltip = document.createElement('div');
+            skillTooltip.id = 'skillDotTooltip';
+            skillTooltip.style.cssText = `
+                position: fixed;
+                z-index: 100;
+                pointer-events: none;
+                opacity: 0;
+                transition: opacity 0.15s ease-out;
+                font-family: 'Inter', sans-serif;
+            `;
+            skillTooltip.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div id="skillTooltipLine" style="width: 20px; height: 2px; background: white;"></div>
+                    <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 6px; padding: 6px 10px; backdrop-filter: blur(8px);">
+                        <span id="skillTooltipText" style="font-size: 12px; font-weight: 500; color: white;"></span>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(skillTooltip);
+            
+            // FPS counter
+            let fpsFrames = 0;
+            let fpsTime = 0;
+            let currentFPS = 0;
+            
+            function updateFPS(timestamp) {
+                fpsFrames++;
+                if (timestamp - fpsTime >= 1000) {
+                    currentFPS = fpsFrames;
+                    fpsFrames = 0;
+                    fpsTime = timestamp;
+                    if (config.showFPS) {
+                        console.log(`Dot Matrix FPS: ${currentFPS} | Dots: ${dots.length}`);
+                    }
+                }
+            }
+            
+            // State
+            const canvas = document.getElementById('dotMatrix');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d', { willReadFrequently: false });
+            let dots = [];
+            let mouse = { x: -1000, y: -1000 };
+            let waves = [];
+            let animationId = null;
+            let lastTime = 0;
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            // Track skill dots separately for hover detection
+            let skillDots = [];
+            let hoveredSkillDot = null;
+            
+            // Dot class
+            class Dot {
+                constructor(x, y, layer, isSkillDot = false) {
+                    this.baseX = x;
+                    this.baseY = y;
+                    this.x = x;
+                    this.y = y;
+                    this.vx = 0;
+                    this.vy = 0;
+                    this.layer = layer;
+                    this.isSkillDot = isSkillDot;
+                    
+                    // Skill dot properties
+                    if (isSkillDot) {
+                        // Select category based on Y position (priority distribution)
+                        const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+                        const yPercent = y / pageHeight;
+                        
+                        // Find categories that match this Y range
+                        const matchingCategories = skillCategories.filter(cat => 
+                            yPercent >= cat.yRange[0] && yPercent <= cat.yRange[1]
+                        );
+                        
+                        // Pick from matching categories, or random if none match
+                        const category = matchingCategories.length > 0 
+                            ? matchingCategories[Math.floor(Math.random() * matchingCategories.length)]
+                            : skillCategories[Math.floor(Math.random() * skillCategories.length)];
+                        
+                        this.skillCategory = category.name;
+                        this.skillColor = category.color;
+                        this.skillName = category.skills[Math.floor(Math.random() * category.skills.length)];
+                        this.baseOpacity = config.skillDotOpacity;
+                        this.baseSize = config.skillDotSize;
+                    } else {
+                        // Depth-based properties (handle single layer case)
+                        const depthRatio = config.depthLayers > 1 ? layer / (config.depthLayers - 1) : 0;
+                        this.baseOpacity = config.maxOpacity - (depthRatio * (config.maxOpacity - config.minOpacity));
+                        this.baseSize = config.maxSize - (depthRatio * (config.maxSize - config.minSize));
+                    }
+                    
+                    // Unique pulse offset
+                    this.pulseOffset = Math.random() * Math.PI * 2;
+                    this.pulseSpeed = config.pulseSpeed * (0.8 + Math.random() * 0.4);
+                }
+                
+                update(time, deltaTime) {
+                    // Skill dots are NEVER affected by mouse gravity - they stay fixed
+                    // This prevents the mismatch between hover detection (base position)
+                    // and gravity (current position) that causes flickering
+                    if (!this.isSkillDot) {
+                        const dx = mouse.x - this.x;
+                        const dy = mouse.y - this.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < config.mouseRadius && distance > 0) {
+                            const force = (1 - distance / config.mouseRadius) * config.mouseStrength;
+                            const depthFactor = 1 - (this.layer / config.depthLayers) * 0.5;
+                            this.vx += (dx / distance) * force * depthFactor * 0.1;
+                            this.vy += (dy / distance) * force * depthFactor * 0.1;
+                        }
+                    }
+                    
+                    // Wave effects (skill dots CAN be affected by waves - they're infrequent)
+                    for (const wave of waves) {
+                        const wdx = this.baseX - wave.x;
+                        const wdy = this.baseY - wave.y;
+                        const waveDistance = Math.sqrt(wdx * wdx + wdy * wdy);
+                        const waveRadius = wave.progress * wave.maxRadius;
+                        const waveWidth = 150;
+                        
+                        if (Math.abs(waveDistance - waveRadius) < waveWidth) {
+                            const waveEffect = 1 - Math.abs(waveDistance - waveRadius) / waveWidth;
+                            const angle = Math.atan2(wdy, wdx);
+                            const strength = waveEffect * config.waveStrength * wave.strength;
+                            const depthFactor = 1 - (this.layer / config.depthLayers) * 0.6;
+                            this.vx += Math.cos(angle) * strength * depthFactor * 0.05;
+                            this.vy += Math.sin(angle) * strength * depthFactor * 0.05;
+                        }
+                    }
+                    
+                    // Spring back to original position
+                    const returnDx = this.baseX - this.x;
+                    const returnDy = this.baseY - this.y;
+                    this.vx += returnDx * config.springStiffness;
+                    this.vy += returnDy * config.springStiffness;
+                    
+                    // Apply damping
+                    this.vx *= config.springDamping;
+                    this.vy *= config.springDamping;
+                    
+                    // Update position
+                    this.x += this.vx;
+                    this.y += this.vy;
+                }
+                
+                draw(ctx, time) {
+                    // Pulsing opacity
+                    const pulse = Math.sin(time * this.pulseSpeed + this.pulseOffset);
+                    let opacity = this.baseOpacity + pulse * config.pulseIntensity;
+                    let size = this.baseSize + pulse * 0.2;
+                    
+                    // Determine color
+                    let color = config.color;
+                    if (this.isSkillDot) {
+                        color = this.skillColor;
+                        // Skill dots pulse more dramatically
+                        opacity = this.baseOpacity + pulse * 0.15;
+                        size = this.baseSize + pulse * 0.5;
+                        
+                        // Highlight if hovered
+                        if (hoveredSkillDot === this) {
+                            opacity = 0.9;
+                            size = this.baseSize * 1.5;
+                        }
+                    }
+                    
+                    // Set glow only if enabled (expensive!)
+                    if (config.glowRadius > 0) {
+                        ctx.shadowBlur = config.glowRadius * (1 + pulse * 0.3);
+                        ctx.shadowColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity * 0.5})`;
+                    }
+                    
+                    // Draw dot
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, Math.max(0.5, size), 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${color.r}, ${color.g}, ${color.b}, ${Math.max(0, opacity)})`;
+                    ctx.fill();
+                }
+            }
+            
+            // Wave class
+            class Wave {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.progress = 0;
+                    this.maxRadius = Math.max(canvas.width, canvas.height) * 1.5;
+                    this.strength = 1;
+                    this.startTime = performance.now();
+                }
+                
+                update() {
+                    const elapsed = performance.now() - this.startTime;
+                    this.progress = Math.min(1, elapsed * config.waveSpeed);
+                    this.strength = 1 - (elapsed / config.waveDuration);
+                    return this.strength > 0;
+                }
+            }
+            
+            // Initialize canvas (full document height for scrolling)
+            function initCanvas() {
+                const dpr = window.devicePixelRatio || 1;
+                const width = window.innerWidth;
+                // Use full document height so dots scroll with page
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight,
+                    window.innerHeight
+                );
+                canvas.style.height = height + 'px';
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform before scaling
+                ctx.scale(dpr, dpr);
+            }
+            
+            // Generate dots (full document height)
+            function generateDots() {
+                dots = [];
+                skillDots = [];
+                const spacing = config.dotSpacing * (isMobile ? config.mobileMultiplier : 1);
+                const pageWidth = window.innerWidth;
+                const pageHeight = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight,
+                    window.innerHeight
+                );
+                
+                const cols = Math.ceil(pageWidth / spacing) + 2;
+                const rows = Math.ceil(pageHeight / spacing) + 2;
+                
+                // For edge bias, use horizontal distance from center only
+                const centerX = pageWidth / 2;
+                
+                for (let layer = config.depthLayers - 1; layer >= 0; layer--) {
+                    const layerOffset = layer * (spacing * 0.15);
+                    for (let i = -1; i < cols; i++) {
+                        for (let j = -1; j < rows; j++) {
+                            const x = i * spacing + layerOffset + (Math.random() - 0.5) * 10;
+                            const y = j * spacing + layerOffset + (Math.random() - 0.5) * 10;
+                            
+                            // Skill dots more likely at horizontal edges (left/right)
+                            // Center of screen (x) has fewer skill dots
+                            const distFromCenterX = Math.abs(x - centerX) / centerX;
+                            const edgeBias = 0.2 + distFromCenterX * 1.0;
+                            const adjustedChance = config.skillDotChance * edgeBias;
+                            
+                            const isSkillDot = Math.random() < adjustedChance;
+                            const dot = new Dot(x, y, layer, isSkillDot);
+                            dots.push(dot);
+                            
+                            if (isSkillDot) {
+                                skillDots.push(dot);
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Create ambient wave (within visible area + buffer)
+            function createWave() {
+                const x = Math.random() * window.innerWidth;
+                // Create waves near the current scroll position for better effect
+                const scrollY = window.scrollY;
+                const y = scrollY + Math.random() * window.innerHeight;
+                waves.push(new Wave(x, y));
+            }
+            
+            // Animation loop
+            function animate(currentTime) {
+                updateFPS(currentTime);
+                
+                const deltaTime = currentTime - lastTime;
+                lastTime = currentTime;
+                
+                // Clear canvas (full document height)
+                const pageHeight = Math.max(
+                    document.body.scrollHeight,
+                    document.documentElement.scrollHeight,
+                    window.innerHeight
+                );
+                ctx.clearRect(0, 0, window.innerWidth, pageHeight);
+                
+                // Update waves
+                waves = waves.filter(wave => wave.update());
+                
+                // Check for skill dot hover (use BASE position to avoid flicker)
+                hoveredSkillDot = null;
+                for (const dot of skillDots) {
+                    const dx = mouse.x - dot.baseX;
+                    const dy = mouse.y - dot.baseY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < config.skillHoverRadius) {
+                        hoveredSkillDot = dot;
+                        break;
+                    }
+                }
+                
+                // Update tooltip (convert document coords to viewport coords)
+                if (hoveredSkillDot) {
+                    const color = hoveredSkillDot.skillColor;
+                    skillTooltip.style.opacity = '1';
+                    // Subtract scrollY since tooltip is position:fixed (viewport coords)
+                    skillTooltip.style.left = (hoveredSkillDot.x + 15) + 'px';
+                    skillTooltip.style.top = (hoveredSkillDot.y - window.scrollY - 10) + 'px';
+                    document.getElementById('skillTooltipLine').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                    document.getElementById('skillTooltipText').textContent = hoveredSkillDot.skillName;
+                    document.getElementById('skillTooltipText').style.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                } else {
+                    skillTooltip.style.opacity = '0';
+                }
+                
+                // Update and draw dots
+                if (!prefersReducedMotion) {
+                    for (const dot of dots) {
+                        dot.update(currentTime, deltaTime);
+                    }
+                }
+                
+                // Batch draw all dots (no glow for performance)
+                for (const dot of dots) {
+                    dot.draw(ctx, currentTime);
+                }
+                
+                animationId = requestAnimationFrame(animate);
+            }
+            
+            // Event handlers
+            function handleMouseMove(e) {
+                // Account for scroll position since canvas is absolute, not fixed
+                mouse.x = e.clientX;
+                mouse.y = e.clientY + window.scrollY;
+            }
+            
+            function handleMouseLeave() {
+                mouse.x = -1000;
+                mouse.y = -1000;
+            }
+            
+            function handleResize() {
+                initCanvas();
+                generateDots();
+            }
+            
+            // Device orientation for mobile
+            function handleOrientation(e) {
+                if (!e.gamma || !e.beta) return;
+                const x = window.innerWidth / 2 + (e.gamma / 45) * (window.innerWidth / 2);
+                // Add scrollY for document-space coordinates
+                const viewportY = window.innerHeight / 2 + ((e.beta - 45) / 45) * (window.innerHeight / 2);
+                mouse.x = Math.max(0, Math.min(window.innerWidth, x));
+                mouse.y = Math.max(0, Math.min(window.innerHeight, viewportY)) + window.scrollY;
+            }
+            
+            // Initialize
+            function init() {
+                initCanvas();
+                generateDots();
+                
+                // Event listeners
+                if (!isMobile) {
+                    document.addEventListener('mousemove', handleMouseMove, { passive: true });
+                    document.addEventListener('mouseleave', handleMouseLeave);
+                } else {
+                    // Request device orientation permission on iOS
+                    if (typeof DeviceOrientationEvent !== 'undefined' && 
+                        typeof DeviceOrientationEvent.requestPermission === 'function') {
+                        // Will need user gesture to enable
+                        document.body.addEventListener('click', function enableOrientation() {
+                            DeviceOrientationEvent.requestPermission()
+                                .then(permission => {
+                                    if (permission === 'granted') {
+                                        window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+                                    }
+                                });
+                            document.body.removeEventListener('click', enableOrientation);
+                        }, { once: true });
+                    } else {
+                        window.addEventListener('deviceorientation', handleOrientation, { passive: true });
+                    }
+                }
+                
+                window.addEventListener('resize', handleResize, { passive: true });
+                
+                // Start ambient waves (only if motion is allowed)
+                if (!prefersReducedMotion) {
+                    setInterval(createWave, config.waveInterval);
+                    // Initial wave after short delay
+                    setTimeout(createWave, 2000);
+                }
+                
+                // Start animation
+                animationId = requestAnimationFrame(animate);
+            }
+            
+            // Start when page is fully loaded (ensures correct page height)
+            if (document.readyState === 'complete') {
+                init();
+            } else {
+                window.addEventListener('load', init);
+            }
+            
+            // Cleanup on page hide (battery saving)
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden && animationId) {
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                } else if (!document.hidden && !animationId) {
+                    lastTime = performance.now();
+                    animationId = requestAnimationFrame(animate);
+                }
+            });
+        })();
     </script>
 </body>
 </html>
