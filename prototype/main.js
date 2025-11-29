@@ -1,12 +1,15 @@
-// Main JavaScript file for JH Resume
+// Main JavaScript file for JH Resume - Prototype
 
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     initMobileMenu();
     initContactForm();
+    initSmoothScroll();
 });
 
+// =========================================
 // Theme Management
+// =========================================
 function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
@@ -50,7 +53,9 @@ function initTheme() {
     }
 }
 
+// =========================================
 // Mobile Menu
+// =========================================
 function initMobileMenu() {
     const btn = document.getElementById('mobile-menu-button');
     const menu = document.getElementById('mobile-menu');
@@ -62,15 +67,98 @@ function initMobileMenu() {
     }
 }
 
+// =========================================
+// Smooth Scroll Navigation
+// =========================================
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            
+            if(targetElement){
+                // Calculate position with header offset (80px)
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        });
+    });
+}
+
+// =========================================
+// PDF Resume Download
+// =========================================
+function downloadResume() {
+    const resumeTemplate = document.getElementById('resumeTemplate');
+    
+    if (!resumeTemplate) {
+        console.error('Resume template not found');
+        alert('Unable to generate PDF. Please try again later.');
+        return;
+    }
+    
+    const element = resumeTemplate.firstElementChild;
+    const opt = {
+        margin: 0,
+        filename: 'Jason_Holt_Resume.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+        enableLinks: true  // Preserve clickable links in PDF
+    };
+    
+    // Show loading state on all download buttons
+    const buttons = document.querySelectorAll('button[onclick="downloadResume()"]');
+    buttons.forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = '0.5';
+        btn.style.cursor = 'wait';
+    });
+    
+    // Generate PDF using html2pdf library
+    html2pdf().set(opt).from(element).save().then(() => {
+        // Reset button states on success
+        buttons.forEach(btn => {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        });
+    }).catch((error) => {
+        console.error('PDF generation failed:', error);
+        alert('Failed to generate PDF. Please try again.');
+        // Reset button states on error
+        buttons.forEach(btn => {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        });
+    });
+}
+
+// =========================================
 // Contact Form Validation
+// =========================================
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
     form.addEventListener('submit', (e) => {
-        // We do NOT want to prevent default immediately if we want standard submission.
-        // BUT we want to validate first.
-        
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
         const messageInput = document.getElementById('message');
@@ -100,14 +188,11 @@ function initContactForm() {
         }
 
         if (!isValid) {
-            // If NOT valid, prevent submission
             e.preventDefault();
         } else {
-            // If valid, we let it submit to Formspark
-            // Optional: Add loading state visual
+            // Show loading state on submit button
             const btn = form.querySelector('button[type="submit"]');
             btn.innerText = 'Sending...';
-            // Don't disable or it might not submit depending on browser behavior with disabled buttons during submit
         }
     });
 }

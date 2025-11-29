@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Styles */
+/* =========================================
+   Custom Styles for JH Resume - Prototype
+   ========================================= */
+
 :root {
     /* Light Mode Accent - Darker Lime for contrast */
     --color-accent: #4D7C0F; /* lime-700 */
@@ -15,17 +18,31 @@
     --color-accent-hover: #84CC16; /* lime-500 */
 }
 
+/* =========================================
+   Base Transitions
+   ========================================= */
 body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* =========================================
+   Glass Panel Effect
+   ========================================= */
 .glass-panel {
     background: rgba(31, 41, 55, 0.7);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Scrollbar for Webkit */
+/* Light mode glass panel */
+:root:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   Scrollbar Styling (Webkit)
+   ========================================= */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -43,7 +60,24 @@ body {
     background: #4B5563; 
 }
 
-/* Animation Utilities */
+/* Light mode scrollbar */
+:root:not(.dark) ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+}
+
+:root:not(.dark) ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* =========================================
+   Animation Utilities
+   ========================================= */
+
+/* Slow bounce for floating badges */
 @keyframes bounce-slow {
     0%, 100% {
         transform: translateY(-5%);
@@ -57,4 +91,83 @@ body {
 
 .animate-bounce-slow {
     animation: bounce-slow 3s infinite;
+}
+
+/* Slow pulse for availability badge */
+@keyframes pulse-slow {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* Gradient animation for accent elements */
+@keyframes gradient-x {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+}
+
+/* =========================================
+   Focus States for Accessibility
+   ========================================= */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   Link and Button Hover Effects
+   ========================================= */
+.hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   Selection Styling
+   ========================================= */
+::selection {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.dark ::selection {
+    background-color: var(--color-accent);
+    color: #111827;
+}
+
+/* =========================================
+   Print Styles
+   ========================================= */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
 }
