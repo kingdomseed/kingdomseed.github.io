@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Holt | Flutter Engineer</title>
+    <meta name="description" content="Portfolio of Jason Holt, a Flutter Engineer and Product Designer specializing in cross-platform mobile applications.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dominant: '#18181b', // zinc-900
+                        supporting: '#09090b', // zinc-950
+                        accent: {
+                            DEFAULT: '#ccff00', // neon green / lime-400
+                            dim: '#a3cc00',
+                            glow: 'rgba(204, 255, 0, 0.5)'
+                        },
+                        surface: '#27272a', // zinc-800
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    spacing: {
+                        '128': '32rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-dominant text-gray-300 font-sans antialiased selection:bg-accent selection:text-dominant overflow-x-hidden">
+
+    <!-- Background Grid Effect -->
+    <div class="fixed inset-0 z-[-1] opacity-10 pointer-events-none" 
+         style="background-image: linear-gradient(#3f3f46 1px, transparent 1px), linear-gradient(to right, #3f3f46 1px, transparent 1px); background-size: 40px 40px;">
+    </div>
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 top-0 bg-dominant/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-mono text-xl font-bold tracking-tighter text-white hover:text-accent transition-colors">
+                        <span class="text-accent">&lt;</span>JH <span class="text-accent">/&gt;</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-10 items-center">
+                    <a href="#work" class="text-sm font-mono hover:text-accent transition-colors">01. WORK</a>
+                    <a href="#stack" class="text-sm font-mono hover:text-accent transition-colors">02. STACK</a>
+                    <a href="#about" class="text-sm font-mono hover:text-accent transition-colors">03. ABOUT</a>
+                    <button onclick="downloadResume()" class="text-sm font-mono hover:text-accent transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                        RESUME
+                    </button>
+                    <a href="#contact" class="px-4 py-2 text-sm font-mono font-bold text-dominant bg-accent hover:bg-white transition-colors rounded-sm">
+                        HIRE ME
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-accent focus:outline-none" aria-label="Toggle menu">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-supporting border-b border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#work" class="block px-3 py-3 text-base font-mono hover:text-accent">01. WORK</a>
+                <a href="#stack" class="block px-3 py-3 text-base font-mono hover:text-accent">02. STACK</a>
+                <a href="#about" class="block px-3 py-3 text-base font-mono hover:text-accent">03. ABOUT</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-mono text-accent font-bold">HIRE ME</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center pt-20 relative overflow-hidden">
+            <!-- Decorative Glow -->
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -z-10"></div>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Content (60%) -->
+                <div class="lg:col-span-7 space-y-8 reveal-on-scroll">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-accent text-xs font-mono tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+                        AVAILABLE FOR CONTRACT
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-7xl font-bold text-white tracking-tight leading-tight">
+                        Building <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-white">native-quality</span> experiences everywhere.
+                    </h1>
+                    
+                    <p class="text-xl text-gray-400 max-w-2xl leading-relaxed">
+                        I'm <span class="text-white font-semibold">Jason Holt</span>, a Flutter Engineer & Product Designer. I bridge the gap between design systems and performant cross-platform code.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#work" class="px-8 py-4 bg-accent text-dominant font-bold rounded-sm hover:bg-white transition-all transform hover:-translate-y-1">
+                            View Projects
+                        </a>
+                        <a href="https://github.com/kingdomseed" target="_blank" class="px-8 py-4 bg-transparent border border-white/20 text-white font-bold rounded-sm hover:border-accent hover:text-accent transition-all">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Visual (40%) - Code Window -->
+                <div class="lg:col-span-5 relative reveal-on-scroll delay-200 hidden lg:block">
+                    <div class="relative rounded-lg bg-supporting border border-white/10 shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <!-- Window Header -->
+                        <div class="bg-white/5 px-4 py-3 flex items-center gap-2 border-b border-white/5">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <div class="ml-4 text-xs text-gray-500 font-mono">main.dart</div>
+                        </div>
+                        <!-- Code Content -->
+                        <div class="p-6 font-mono text-sm leading-relaxed overflow-hidden">
+                            <div class="text-gray-500">// Initializing app...</div>
+                            <div class="mt-2">
+                                <span class="text-purple-400">class</span> <span class="text-yellow-300">PortfolioApp</span> <span class="text-purple-400">extends</span> <span class="text-yellow-300">StatelessWidget</span> {
+                            </div>
+                            <div class="pl-4">
+                                <span class="text-purple-400">@override</span>
+                            </div>
+                            <div class="pl-4">
+                                <span class="text-purple-400">Widget</span> <span class="text-blue-400">build</span>(<span class="text-yellow-300">BuildContext</span> context) {
+                            </div>
+                            <div class="pl-8">
+                                <span class="text-purple-400">return</span> <span class="text-yellow-300">MaterialApp</span>(
+                            </div>
+                            <div class="pl-12">
+                                <span class="text-blue-300">title:</span> <span class="text-green-300">'Jason Holt'</span>,
+                            </div>
+                            <div class="pl-12">
+                                <span class="text-blue-300">theme:</span> <span class="text-yellow-300">ThemeData</span>(
+                            </div>
+                            <div class="pl-16">
+                                <span class="text-blue-300">primaryColor:</span> <span class="text-yellow-300">Colors</span>.zinc,
+                            </div>
+                            <div class="pl-16">
+                                <span class="text-blue-300">accentColor:</span> <span class="text-yellow-300">Colors</span>.limeAccent,
+                            </div>
+                            <div class="pl-12">
+                                ),
+                            </div>
+                            <div class="pl-12">
+                                <span class="text-blue-300">home:</span> <span class="text-yellow-300">Scaffold</span>(
+                            </div>
+                            <div class="pl-16">
+                                <span class="text-blue-300">body:</span> <span id="typewriter" class="text-accent" data-text="const AmazingExperience();"></span><span class="animate-blink">|</span>
+                            </div>
+                            <div class="pl-12">
+                                ),
+                            </div>
+                            <div class="pl-8">
+                                );
+                            </div>
+                            <div class="pl-4">
+                                }
+                            </div>
+                            <div>}</div>
+                        </div>
+                    </div>
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 bg-surface border border-white/10 p-4 rounded shadow-xl animate-float">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-blue-500/20 p-2 rounded">
+                                <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 uppercase font-bold">Framework</div>
+                                <div class="text-white font-bold">Flutter 3.x</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Marquee -->
+        <section id="stack" class="py-12 border-y border-white/5 bg-supporting/50">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <p class="text-center text-sm font-mono text-gray-500 mb-8">TECHNOLOGIES & TOOLS</p>
+                <div class="flex flex-wrap justify-center gap-8 lg:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                    <!-- Flutter -->
+                    <div class="flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/></svg>
+                        <span class="font-bold text-white">Flutter</span>
+                    </div>
+                    <!-- Dart -->
+                    <div class="flex items-center gap-2">
+                        <svg class="w-6 h-6 text-blue-300" fill="currentColor" viewBox="0 0 24 24"><path d="M4.175 22.5L9.8 12.3l9.9-10.6h-9.2L.6 12.3l3.575 10.2zm14.6-10.2L13.2 22.5h9.2l1.6-10.2h-5.225z"/></svg>
+                        <span class="font-bold text-white">Dart</span>
+                    </div>
+                    <!-- Firebase -->
+                    <div class="flex items-center gap-2">
+                        <svg class="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 24 24"><path d="M3.89 15.672L6.255.461A.54.54 0 017.09.22L10.02 2.9l-6.13 12.772zm16.618-3.635L17.04 2.094a.54.54 0 00-.953 0l-2.56 5.25 6.98 4.693zm-8.695 6.72l-1.66-3.42-2.966-6.06-3.63 7.56a.54.54 0 00.205.66l8.05 4.52 8.05-4.52a.54.54 0 00.206-.66l-.92-1.91-7.335 3.83z"/></svg>
+                        <span class="font-bold text-white">Firebase</span>
+                    </div>
+                    <!-- Shorebird -->
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-white">Shorebird</span>
+                    </div>
+                    <!-- Riverpod -->
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-white">Riverpod</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selected Work -->
+        <section id="work" class="py-32">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex items-end justify-between mb-16">
+                    <div>
+                        <h2 class="text-3xl font-bold text-white mb-2">Selected Work</h2>
+                        <p class="text-gray-400">Commercial applications and open source contributions.</p>
+                    </div>
+                    <div class="hidden md:block w-32 h-1 bg-white/10"></div>
+                </div>
+
+                <!-- Grid Layout: 1 Large, 2 Small -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Large Card (Mythic GME) -->
+                    <article class="lg:col-span-2 group relative bg-surface rounded-lg overflow-hidden border border-white/5 hover:border-accent/50 transition-colors reveal-on-scroll">
+                        <div class="grid lg:grid-cols-2 gap-0">
+                            <div class="p-8 lg:p-12 flex flex-col justify-center">
+                                <div class="text-accent font-mono text-sm mb-4">COMMERCIAL APP</div>
+                                <h3 class="text-3xl font-bold text-white mb-4">Mythic GME 2e</h3>
+                                <p class="text-gray-400 mb-6 leading-relaxed">
+                                    A digital Game Master Emulator for solo roleplaying. Built with Flutter for iOS, Android, and Desktop. Achieved 4.8/5 stars and 85% user retention.
+                                </p>
+                                <ul class="flex flex-wrap gap-2 mb-8">
+                                    <li class="px-3 py-1 bg-black/30 text-xs font-mono text-gray-300 rounded">Flutter</li>
+                                    <li class="px-3 py-1 bg-black/30 text-xs font-mono text-gray-300 rounded">Riverpod</li>
+                                    <li class="px-3 py-1 bg-black/30 text-xs font-mono text-gray-300 rounded">Clean Arch</li>
+                                </ul>
+                                <div>
+                                    <a href="#" class="inline-flex items-center text-white font-bold hover:text-accent transition-colors">
+                                        View Case Study <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bg-black/50 h-64 lg:h-auto relative overflow-hidden">
+                                <!-- Abstract UI Representation -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="w-48 h-80 bg-dominant border border-white/10 rounded-xl shadow-2xl transform rotate-12 group-hover:rotate-6 transition-transform duration-500 p-2">
+                                        <div class="w-full h-full bg-surface rounded overflow-hidden relative">
+                                            <div class="h-4 bg-accent/20 w-full mb-2"></div>
+                                            <div class="h-2 bg-white/10 w-3/4 mx-auto mb-4"></div>
+                                            <div class="grid grid-cols-2 gap-2 p-2">
+                                                <div class="h-20 bg-white/5 rounded"></div>
+                                                <div class="h-20 bg-white/5 rounded"></div>
+                                                <div class="h-20 bg-white/5 rounded"></div>
+                                                <div class="h-20 bg-white/5 rounded"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Small Card 1 (Shorebird) -->
+                    <article class="bg-surface p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-colors reveal-on-scroll">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-black/30 rounded-lg">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                            </div>
+                            <a href="#" class="text-gray-500 hover:text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Shorebird Contribution</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Contributed to the code push solution for Flutter, enabling over-the-air updates for mobile apps.
+                        </p>
+                        <div class="text-accent text-xs font-mono">OPEN SOURCE</div>
+                    </article>
+
+                    <!-- Small Card 2 (icloud_storage_plus) -->
+                    <article class="bg-surface p-8 rounded-lg border border-white/5 hover:border-accent/50 transition-colors reveal-on-scroll">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="p-3 bg-black/30 rounded-lg">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+                            </div>
+                            <a href="#" class="text-gray-500 hover:text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">icloud_storage_plus</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Maintained and improved the package for iCloud storage integration in Flutter apps.
+                        </p>
+                        <div class="text-accent text-xs font-mono">PACKAGE MAINTAINER</div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="about" class="py-32 bg-supporting/30">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-4">
+                        <h2 class="text-3xl font-bold text-white mb-6">Experience</h2>
+                        <p class="text-gray-400 mb-8">
+                            Over a decade of engineering experience, with a specialized focus on mobile architecture and product design.
+                        </p>
+                        <a href="#" class="text-accent font-bold hover:underline">Download Full Resume &rarr;</a>
+                    </div>
+                    <div class="lg:col-span-8 space-y-12">
+                        
+                        <!-- Item 1 -->
+                        <div class="relative pl-8 border-l border-white/10 reveal-on-scroll">
+                            <div class="absolute -left-1.5 top-2 w-3 h-3 rounded-full bg-accent"></div>
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Independent Software Developer</h3>
+                                <span class="text-sm font-mono text-gray-500">Aug 2024 - Present</span>
+                            </div>
+                            <div class="text-gray-400 mb-4">Jason Holt Digital | Frankfurt, Germany</div>
+                            <p class="text-gray-400 leading-relaxed mb-4">
+                                Architected and launched "Mythic GME 2e", a commercial Flutter application across iOS, Android, Windows, macOS, and Linux.
+                            </p>
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-gray-400 text-sm">
+                                <li>Managed complete product lifecycle from concept to deployment, achieving <strong>4.8/5 stars</strong>.</li>
+                                <li>Orchestrated community-driven development with <strong>200+ active beta testers</strong>.</li>
+                                <li>Implemented MVVM architecture with Riverpod for state management.</li>
+                                <li>Transitioned legacy .NET MAUI application to modern Flutter architecture.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative pl-8 border-l border-white/10 reveal-on-scroll">
+                            <div class="absolute -left-1.5 top-2 w-3 h-3 rounded-full bg-surface border border-gray-500"></div>
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">CS Department Chair & Tech Coach</h3>
+                                <span class="text-sm font-mono text-gray-500">July 2021 - June 2024</span>
+                            </div>
+                            <div class="text-gray-400 mb-4">Uplift Education | Dallas, TX</div>
+                            <p class="text-gray-400 leading-relaxed mb-4">
+                                Led IB Computer Science program and instructional technology initiatives across multiple campuses.
+                            </p>
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-gray-400 text-sm">
+                                <li>Secured <strong>$200,000+ in grants</strong> for VR/XR learning labs (Unity x Meta).</li>
+                                <li>Led students in developing custom VR educational experiences using Unity/C#.</li>
+                                <li>Facilitated professional development workshops on emerging tech for 50+ faculty.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative pl-8 border-l border-white/10 reveal-on-scroll">
+                            <div class="absolute -left-1.5 top-2 w-3 h-3 rounded-full bg-surface border border-gray-500"></div>
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                                <h3 class="text-xl font-bold text-white">Computer Science Teacher</h3>
+                                <span class="text-sm font-mono text-gray-500">June 2017 - June 2019</span>
+                            </div>
+                            <div class="text-gray-400 mb-4">Crowley High School | Crowley, TX</div>
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-gray-400 text-sm">
+                                <li>Developed Game Programming & Design curriculum using Unity3D and C#.</li>
+                                <li>Taught AP Computer Science A and Mobile App Development.</li>
+                                <li>Coached UIL competitive programming teams for state competitions.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section id="education" class="py-32 border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Education -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                            <span class="w-8 h-1 bg-accent"></span> Education
+                        </h2>
+                        <div class="space-y-8">
+                            <div class="reveal-on-scroll">
+                                <h3 class="text-lg font-bold text-white">M.Sc. Computational Linguistics</h3>
+                                <div class="text-accent text-sm font-mono mb-2">University of Stuttgart • In Progress</div>
+                                <p class="text-gray-400 text-sm">Focus on NLP and AI integration.</p>
+                            </div>
+                            <div class="reveal-on-scroll">
+                                <h3 class="text-lg font-bold text-white">B.A. Linguistics (Cum Laude)</h3>
+                                <div class="text-accent text-sm font-mono mb-2">UT Arlington • 2012</div>
+                                <p class="text-gray-400 text-sm">Minor in French. Specialization in ESL.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div>
+                        <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                            <span class="w-8 h-1 bg-accent"></span> Certifications
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-surface p-4 rounded border border-white/5 hover:border-accent/50 transition-colors reveal-on-scroll">
+                                <div class="text-white font-bold">AWS Cloud Practitioner</div>
+                                <div class="text-xs text-gray-500 font-mono mt-1">Amazon Web Services</div>
+                            </div>
+                            <div class="bg-surface p-4 rounded border border-white/5 hover:border-accent/50 transition-colors reveal-on-scroll">
+                                <div class="text-white font-bold">Pro Scrum Master I</div>
+                                <div class="text-xs text-gray-500 font-mono mt-1">Scrum.org</div>
+                            </div>
+                            <div class="bg-surface p-4 rounded border border-white/5 hover:border-accent/50 transition-colors reveal-on-scroll">
+                                <div class="text-white font-bold">Unity Programmer</div>
+                                <div class="text-xs text-gray-500 font-mono mt-1">Unity Technologies</div>
+                            </div>
+                            <div class="bg-surface p-4 rounded border border-white/5 hover:border-accent/50 transition-colors reveal-on-scroll">
+                                <div class="text-white font-bold">App Dev w/ Swift</div>
+                                <div class="text-xs text-gray-500 font-mono mt-1">Apple Inc.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact / Footer -->
+        <footer id="contact" class="py-20 border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">Ready to build something <span class="text-accent">remarkable</span>?</h2>
+                <p class="text-gray-400 mb-12 max-w-xl mx-auto">
+                    I'm currently available for contract work and consulting. Let's discuss how I can help your team ship better apps, faster.
+                </p>
+                <a href="mailto:holt.jason@icloud.com" class="inline-block px-8 py-4 bg-white text-dominant font-bold rounded-sm hover:bg-accent transition-colors">
+                    Get in Touch
+                </a>
+                
+                <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                    <p>&copy; 2025 Jason Holt. All rights reserved.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                        <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+                        <a href="#" class="hover:text-white transition-colors">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Hidden Resume Template for PDF Generation -->
+    <div id="resumeTemplate" style="position: absolute; left: -9999px; top: 0;">
+        <div style="font-family: 'Inter', Arial, sans-serif; font-size: 10pt; line-height: 1.4; color: #1e293b; background: white;">
+            
+            <!-- PAGE 1 -->
+            <div style="width: 8.5in; height: 11in; padding: 0.5in 0.6in; box-sizing: border-box; position: relative; overflow: hidden;">
+                <!-- Header -->
+                <div style="border-bottom: 3px solid #18181b; padding-bottom: 12px; margin-bottom: 14px; display: flex; align-items: flex-start; gap: 16px;">
+                    <div style="flex: 1;">
+                        <h1 style="font-family: 'Inter', sans-serif; font-size: 26pt; font-weight: 800; color: #18181b; margin: 0; line-height: 1.1;">JASON HOLT</h1>
+                        <p style="font-size: 12pt; color: #4d7c0f; font-weight: 600; margin: 2px 0 8px 0;">Flutter Engineer & Product Designer</p>
+                        <div style="font-size: 8.5pt; color: #64748b; display: flex; gap: 12px; flex-wrap: wrap;">
+                            <span>📍 Frankfurt, Germany</span>
+                            <a href="mailto:holt.jason@icloud.com" style="color: #64748b; text-decoration: none;">✉️ holt.jason@icloud.com</a>
+                            <a href="https://github.com/kingdomseed" style="color: #64748b; text-decoration: none;">💻 github.com/kingdomseed</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div style="margin-bottom: 14px;">
+                    <h2 style="font-family: 'Inter', sans-serif; font-size: 11pt; font-weight: 700; color: #18181b; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Professional Summary</h2>
+                    <p style="margin: 0; color: #334155; font-size: 10pt;">
+                        Flutter Engineer with a focus on high-performance cross-platform applications. 
+                        Shipped commercial apps achieving 4.8/5 stars and 85% retention. 
+                        Expertise in Dart, Riverpod, and Clean Architecture. 
+                        Contributor to the Flutter ecosystem (Shorebird, icloud_storage_plus).
+                        Based in Frankfurt, Germany.
+                    </p>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div style="display: flex; gap: 20px;">
+                    <!-- Left Column -->
+                    <div style="flex: 1.7;">
+                        <!-- Experience -->
+                        <h2 style="font-family: 'Inter', sans-serif; font-size: 11pt; font-weight: 700; color: #18181b; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Professional Experience</h2>
+                        
+                        <!-- Role 1 -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h3 style="font-size: 10.5pt; font-weight: 700; color: #0f172a; margin: 0;">Independent Software Developer</h3>
+                                <span style="font-size: 8.5pt; color: #64748b; white-space: nowrap;">Aug 2023 – Present</span>
+                            </div>
+                            <p style="font-size: 9pt; color: #4d7c0f; margin: 1px 0 4px 0; font-weight: 500;">Freelance | Frankfurt, Germany</p>
+                            <ul style="margin: 0; padding-left: 16px; color: #334155; font-size: 9.5pt;">
+                                <li style="margin-bottom: 2px;"><strong>Flutter Development:</strong> Architected and shipped "Mythic GME 2e" for iOS, Android, and Desktop.</li>
+                                <li style="margin-bottom: 2px;"><strong>Performance:</strong> Achieved 4.8/5 stars and 85% user retention through iterative UX improvements.</li>
+                                <li style="margin-bottom: 2px;"><strong>Legacy Migration:</strong> Transitioned legacy .NET MAUI applications to modern Flutter architecture.</li>
+                                <li><strong>Open Source:</strong> Contributed to Shorebird (Code Push) and maintained icloud_storage_plus package.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 2 -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h3 style="font-size: 10.5pt; font-weight: 700; color: #0f172a; margin: 0;">Front End Lead</h3>
+                                <span style="font-size: 8.5pt; color: #64748b; white-space: nowrap;">July 2012 – June 2023</span>
+                            </div>
+                            <p style="font-size: 9pt; color: #4d7c0f; margin: 1px 0 4px 0; font-weight: 500;">Various Companies</p>
+                            <ul style="margin: 0; padding-left: 16px; color: #334155; font-size: 9.5pt;">
+                                <li style="margin-bottom: 2px;">Led frontend teams in building scalable web applications using React and Next.js.</li>
+                                <li style="margin-bottom: 2px;">Championed design system adoption and accessibility standards.</li>
+                                <li>Mentored junior developers and established code quality guidelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div style="flex: 1; border-left: 1px solid #e2e8f0; padding-left: 16px;">
+                        <!-- Technical Skills -->
+                        <h2 style="font-family: 'Inter', sans-serif; font-size: 11pt; font-weight: 700; color: #18181b; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Technical Skills</h2>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">Mobile & Core</h4>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">Flutter, Dart, Riverpod, Bloc, Clean Architecture, Method Channels</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">Web & Cloud</h4>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">React, Next.js, TypeScript, Firebase, Azure, Docker</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">Tools</h4>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">Git, CI/CD (Codemagic/GitHub Actions), Figma, Shorebird</p>
+                        </div>
+
+                        <!-- Education -->
+                        <h2 style="font-family: 'Inter', sans-serif; font-size: 11pt; font-weight: 700; color: #18181b; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Education</h2>
+                        
+                        <div style="margin-bottom: 8px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0;">M.Sc. Comp. Linguistics</h4>
+                            <p style="font-size: 8.5pt; color: #64748b; margin: 1px 0;">Univ. of Stuttgart • In Progress</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 8px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0;">B.A. Linguistics</h4>
+                            <p style="font-size: 8.5pt; color: #64748b; margin: 1px 0;">UT Arlington • 2012</p>
+                        </div>
+
+                        <!-- Certifications -->
+                        <h2 style="font-family: 'Inter', sans-serif; font-size: 11pt; font-weight: 700; color: #18181b; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Certifications</h2>
+                        <p style="font-size: 9pt; color: #334155; margin: 0; line-height: 1.5;">AWS Cloud Practitioner • PSM I • Unity Programmer • App Dev w/ Swift</p>
+                    </div>
+                </div>
+                
+                <!-- Page 1 Footer -->
+                <div style="position: absolute; bottom: 0.4in; left: 0.6in; right: 0.6in; text-align: center; font-size: 8pt; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 6px;">
+                    Page 1 of 1
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
