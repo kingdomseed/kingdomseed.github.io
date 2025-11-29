@@ -1778,45 +1778,55 @@
             };
             
             // Skill categories with colors (matching the skills matrix)
-            // yRange: [min, max] as percentage of page (0 = top, 1 = bottom)
+            // weight: higher = more likely to appear (used for top-biasing Frontend)
+            // All categories can appear anywhere, but weights shift based on Y position
             const skillCategories = [
                 { 
                     name: 'Frontend', 
                     color: { r: 96, g: 165, b: 250 },  // blue-400
                     skills: ['React', 'Next.js', 'TypeScript', 'Astro', 'Flutter'],
-                    yRange: [0, 0.35]  // Top third - primary skill
+                    topWeight: 3,    // More common at top
+                    bottomWeight: 1
                 },
                 { 
                     name: 'Design', 
                     color: { r: 192, g: 132, b: 252 }, // purple-400
                     skills: ['Figma', 'Miro', 'Prototyping', 'Adobe Suite', 'UI/UX'],
-                    yRange: [0.1, 0.5]  // Upper-mid - closely related to frontend
+                    topWeight: 2.5,
+                    bottomWeight: 1
                 },
                 { 
                     name: 'AI Tools', 
                     color: { r: 251, g: 146, b: 60 },  // orange-400
                     skills: ['Claude Code', 'Cursor', 'Prompt Eng.', 'Agentic Workflows'],
-                    yRange: [0.2, 0.6]  // Mid-upper - current focus area
+                    topWeight: 2,
+                    bottomWeight: 1.5
                 },
                 { 
                     name: 'Product', 
                     color: { r: 74, g: 222, b: 128 },  // green-400
                     skills: ['Linear', 'Analytics', 'Beta Testing', 'User Research'],
-                    yRange: [0.4, 0.8]  // Mid-lower
+                    topWeight: 1,
+                    bottomWeight: 2
                 },
                 { 
                     name: 'Cloud', 
                     color: { r: 34, g: 211, b: 238 },  // cyan-400
                     skills: ['Azure', 'MongoDB', 'Docker', 'Firebase', 'Nginx'],
-                    yRange: [0.5, 0.9]  // Lower-mid
+                    topWeight: 1,
+                    bottomWeight: 2.5
                 },
                 { 
                     name: 'Edu UX', 
                     color: { r: 244, g: 114, b: 182 }, // pink-400
                     skills: ['Learning Psychology', 'Instructional Design', 'Accessibility'],
-                    yRange: [0.6, 1.0]  // Bottom - specialized skill
+                    topWeight: 1,
+                    bottomWeight: 3
                 }
             ];
+            
+            // Track used skills to prevent repetition
+            let usedSkills = new Set();
             
             // Skill tooltip element
             const skillTooltip = document.createElement('div');
@@ -1886,23 +1896,54 @@
                     
                     // Skill dot properties
                     if (isSkillDot) {
-                        // Select category based on Y position (priority distribution)
+                        // Select category based on Y position using weighted random
                         const pageHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
                         const yPercent = y / pageHeight;
                         
-                        // Find categories that match this Y range
-                        const matchingCategories = skillCategories.filter(cat => 
-                            yPercent >= cat.yRange[0] && yPercent <= cat.yRange[1]
-                        );
+                        // Calculate weights for each category based on Y position
+                        // yPercent = 0 (top) uses topWeight, yPercent = 1 (bottom) uses bottomWeight
+                        const weights = skillCategories.map(cat => {
+                            return cat.topWeight * (1 - yPercent) + cat.bottomWeight * yPercent;
+                        });
+                        const totalWeight = weights.reduce((sum, w) => sum + w, 0);
                         
-                        // Pick from matching categories, or random if none match
-                        const category = matchingCategories.length > 0 
-                            ? matchingCategories[Math.floor(Math.random() * matchingCategories.length)]
-                            : skillCategories[Math.floor(Math.random() * skillCategories.length)];
+                        // Weighted random selection
+                        let random = Math.random() * totalWeight;
+                        let category = skillCategories[0];
+                        for (let i = 0; i < skillCategories.length; i++) {
+                            random -= weights[i];
+                            if (random <= 0) {
+                                category = skillCategories[i];
+                                break;
+                            }
+                        }
+                        
+                        // Pick a skill that hasn't been used yet (if possible)
+                        let availableSkills = category.skills.filter(s => !usedSkills.has(s));
+                        
+                        // If all skills in this category are used, try other categories
+                        if (availableSkills.length === 0) {
+                            for (const cat of skillCategories) {
+                                availableSkills = cat.skills.filter(s => !usedSkills.has(s));
+                                if (availableSkills.length > 0) {
+                                    category = cat;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        // If ALL skills are used, reset and allow repeats
+                        if (availableSkills.length === 0) {
+                            usedSkills.clear();
+                            availableSkills = category.skills;
+                        }
+                        
+                        const skillName = availableSkills[Math.floor(Math.random() * availableSkills.length)];
+                        usedSkills.add(skillName);
                         
                         this.skillCategory = category.name;
                         this.skillColor = category.color;
-                        this.skillName = category.skills[Math.floor(Math.random() * category.skills.length)];
+                        this.skillName = skillName;
                         this.baseOpacity = config.skillDotOpacity;
                         this.baseSize = config.skillDotSize;
                     } else {
@@ -2042,6 +2083,7 @@
             function generateDots() {
                 dots = [];
                 skillDots = [];
+                usedSkills.clear(); // Reset skill tracking to prevent stale data
                 const spacing = config.dotSpacing * (isMobile ? config.mobileMultiplier : 1);
                 const pageWidth = window.innerWidth;
                 const pageHeight = Math.max(
@@ -2123,13 +2165,32 @@
                 // Update tooltip (convert document coords to viewport coords)
                 if (hoveredSkillDot) {
                     const color = hoveredSkillDot.skillColor;
+                    const tooltipLine = document.getElementById('skillTooltipLine');
+                    const tooltipText = document.getElementById('skillTooltipText');
+                    const tooltipContainer = skillTooltip.firstElementChild;
+                    
                     skillTooltip.style.opacity = '1';
+                    
+                    // Check if dot is near right edge (within 180px of viewport edge)
+                    const isRightEdge = hoveredSkillDot.x > window.innerWidth - 180;
+                    
+                    if (isRightEdge) {
+                        // Flip tooltip to left side of dot
+                        tooltipContainer.style.flexDirection = 'row-reverse';
+                        skillTooltip.style.left = 'auto';
+                        skillTooltip.style.right = (window.innerWidth - hoveredSkillDot.x + 15) + 'px';
+                    } else {
+                        // Normal: tooltip on right side of dot
+                        tooltipContainer.style.flexDirection = 'row';
+                        skillTooltip.style.right = 'auto';
+                        skillTooltip.style.left = (hoveredSkillDot.x + 15) + 'px';
+                    }
+                    
                     // Subtract scrollY since tooltip is position:fixed (viewport coords)
-                    skillTooltip.style.left = (hoveredSkillDot.x + 15) + 'px';
                     skillTooltip.style.top = (hoveredSkillDot.y - window.scrollY - 10) + 'px';
-                    document.getElementById('skillTooltipLine').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`;
-                    document.getElementById('skillTooltipText').textContent = hoveredSkillDot.skillName;
-                    document.getElementById('skillTooltipText').style.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                    tooltipLine.style.background = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                    tooltipText.textContent = hoveredSkillDot.skillName;
+                    tooltipText.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
                 } else {
                     skillTooltip.style.opacity = '0';
                 }
