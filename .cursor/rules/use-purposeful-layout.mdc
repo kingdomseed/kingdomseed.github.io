@@ -1,0 +1,21 @@
+---
+alwaysApply: true
+---
+# Use Purposeful Layout
+
+Layout creates visual hierarchy and guides attention. Avoid symmetric, centered-everything defaults.
+
+Never use: every element centered, equal-sized sections, 50/50 splits, uniform card grids, no white space strategy, elements touching edges
+
+Here are examples of purposeful layout approaches:
+
+- Dominant hero: One large element (60-70% viewport) + smaller supporting elements asymmetrically placed
+- Editorial: Wide margins (15-20% each side), generous line height, intentional paragraph breaks
+- Magazine: Multi-column with varying widths (2:1 ratio, not 1:1), content breaking across columns
+- Dashboard: Information density zones - critical data large/sparse, secondary data compact/grouped
+
+Asymmetry principle: 60/40 splits are more interesting than 50/50. Left-heavy or right-heavy, not balanced.
+
+Use white space decisively: Dense clusters separated by generous gaps (3x+ spacing between sections vs within). White space = emphasis.
+
+Create clear visual hierarchy through size dominance: Primary content 3x+ larger than secondary, not 1.5x larger.

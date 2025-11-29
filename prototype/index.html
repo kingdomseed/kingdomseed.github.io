@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jason Holt | Independent Software Developer</title>
+    <meta name="description" content="Portfolio of Jason Holt, an Independent Software Developer & Product Designer specialized in Flutter, EdTech, and AI Integration.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Play CDN (for prototyping without build step) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dominant: {
+                            DEFAULT: '#111827', // gray-900
+                            light: '#F9FAFB',   // gray-50
+                        },
+                        supporting: {
+                            DEFAULT: '#1F2937', // gray-800
+                            light: '#FFFFFF',   // white
+                        },
+                        accent: {
+                            DEFAULT: 'var(--color-accent)', // Use CSS variable
+                            hover: 'var(--color-accent-hover)', // Use CSS variable
+                            dark: '#4D7C0F',    // lime-700
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-dominant-light dark:bg-dominant text-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans antialiased selection:bg-accent selection:text-dominant">
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 top-0 bg-dominant-light/90 dark:bg-dominant/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-mono text-2xl font-bold tracking-tighter hover:text-accent transition-colors">
+                        &lt;JH /&gt;
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#experience" class="text-sm font-medium hover:text-accent transition-colors">EXPERIENCE</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-accent transition-colors">PROJECTS</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-accent transition-colors">SKILLS</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-accent transition-colors">CONTACT</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#experience" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-accent">EXPERIENCE</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-accent">PROJECTS</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-accent">SKILLS</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-accent">CONTACT</a>
+            </div>
+        </div>
+    </header>
+
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-[calc(100vh-5rem)] flex items-center relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Left Content (60%) -->
+                    <div class="lg:col-span-7 space-y-8">
+                        <div class="inline-block px-3 py-1 text-sm font-mono text-accent border border-accent/30 rounded-full bg-accent/5">
+                            Available for new projects
+                        </div>
+                        
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none">
+                            JASON <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-600 dark:from-gray-500 dark:to-gray-700">HOLT</span>
+                        </h1>
+                        
+                        <div class="space-y-4 border-l-4 border-accent pl-6">
+                            <h2 class="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-200">
+                                Front End Developer & <br>Learning Product Specialist
+                            </h2>
+                            <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
+                                Front End Lead with 11 years of experience architecting educational user experiences. Specializing in <strong>React</strong>, <strong>Next.js</strong>, and <strong>TypeScript</strong> to build products that teach and inspire.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <a href="#projects" class="px-8 py-4 bg-accent text-dominant-light dark:text-dominant font-bold rounded hover:bg-accent-hover transition-all transform hover:-translate-y-1 shadow-lg shadow-accent/20">
+                                View Projects
+                            </a>
+                            <a href="#contact" class="px-8 py-4 border border-gray-300 dark:border-gray-700 font-medium rounded hover:border-accent hover:text-accent transition-all">
+                                Contact Me
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Visual (40%) -->
+                    <div class="lg:col-span-5 hidden lg:block relative">
+                        <div class="relative w-full aspect-square">
+                            <!-- Abstract Tech Visual -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl rotate-3 border border-gray-700 shadow-2xl overflow-hidden">
+                                <div class="p-6 font-mono text-sm text-gray-400">
+                                    <div class="flex gap-2 mb-4">
+                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    </div>
+                                    <div class="space-y-2 opacity-80">
+                                        <p><span class="text-purple-400">const</span> <span class="text-yellow-300">FrontendPro</span> = ({ <span class="text-blue-300">vision</span> }) => {</p>
+                                        <p class="pl-4"><span class="text-purple-400">const</span> stack = [</p>
+                                        <p class="pl-8"><span class="text-green-400">'React'</span>, <span class="text-green-400">'Next.js'</span>,</p>
+                                        <p class="pl-8"><span class="text-green-400">'TypeScript'</span>, <span class="text-green-400">'Tailwind'</span></p>
+                                        <p class="pl-4">];</p>
+                                        <br>
+                                        <p class="pl-4"><span class="text-purple-400">return</span> (</p>
+                                        <p class="pl-8">&lt;<span class="text-yellow-300">Experience</span></p>
+                                        <p class="pl-12"><span class="text-blue-300">years</span>={11}</p>
+                                        <p class="pl-12"><span class="text-blue-300">focus</span>=<span class="text-green-400">"EdTech"</span></p>
+                                        <p class="pl-8">/&gt;</p>
+                                        <p class="pl-4">);</p>
+                                        <p>};</p>
+                                    </div>
+                                </div>
+                                <!-- Decorative grid overlay -->
+                                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEgMWgydjJIMUMxeiIgZmlsbD0iIzMzMyIgZmlsbC1vcGFjaXR5PSIwLjEiLz48L3N2Zz4=')] opacity-20"></div>
+                            </div>
+                            
+                            <!-- Floating Badge 1 -->
+                            <div class="absolute -bottom-4 -left-4 bg-dominant-light dark:bg-supporting p-4 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 flex items-center gap-3 animate-bounce-slow">
+                                <div class="bg-blue-500/20 p-2 rounded-full text-blue-500">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">Expertise</div>
+                                    <div class="font-bold">Front-End Engineering</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section id="experience" class="py-24 bg-white dark:bg-supporting transition-colors">
+           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold mb-16 border-b-2 border-accent inline-block pb-2">Experience</h2>
+                
+                <div class="space-y-12">
+                    <!-- Role 1 -->
+                    <div class="group relative bg-dominant-light dark:bg-dominant p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-accent transition-all duration-300 hover:shadow-xl">
+                        <div class="absolute -left-3 top-8 w-6 h-6 bg-accent rounded-full border-4 border-white dark:border-supporting hidden md:block"></div>
+                        <div class="md:pl-8 border-l-2 border-gray-200 dark:border-gray-700 md:border-none">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-accent transition-colors">Independent Software Developer</h3>
+                                    <p class="text-lg text-gray-600 dark:text-gray-400 font-medium">Jason Holt Digital LLC</p>
+                                </div>
+                                <span class="px-4 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-mono text-gray-600 dark:text-gray-300 mt-2 md:mt-0">
+                                    Aug 2024 - Present
+                                </span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                                Architecting and shipping full-stack web and mobile applications. Specializing in Next.js for commercial platforms and Flutter for cross-platform tools.
+                            </p>
+                            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Built & deployed <strong>Binary Loom</strong> AI platform (Next.js/Azure) with RAG pipeline.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Launched official <strong>Mythic GME 2e</strong> app across Web, iOS, and Android (4.8/5 stars).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Managed complete product lifecycle from UI/UX design to automated CI/CD deployment.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 2 -->
+                    <div class="group relative bg-dominant-light dark:bg-dominant p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-accent transition-all duration-300 hover:shadow-xl">
+                        <div class="absolute -left-3 top-8 w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded-full border-4 border-white dark:border-supporting hidden md:block group-hover:bg-accent transition-colors"></div>
+                        <div class="md:pl-8 border-l-2 border-gray-200 dark:border-gray-700 md:border-none">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-accent transition-colors">Instructional Tech Coach & Dept. Chair</h3>
+                                    <p class="text-lg text-gray-600 dark:text-gray-400 font-medium">Uplift Atlas Preparatory</p>
+                                </div>
+                                <span class="px-4 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-mono text-gray-600 dark:text-gray-300 mt-2 md:mt-0">
+                                    July 2021 - June 2024
+                                </span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                                Led the Computer Science department and integrated emerging web & VR technologies into the curriculum.
+                            </p>
+                            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Authored & taught comprehensive <strong>Web Design curriculum</strong> (HTML, CSS, JS).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Secured <strong>$200,000+</strong> in grants for educational technology initiatives.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Implemented school-wide learning platforms and trained faculty on digital tools.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 3 -->
+                     <div class="group relative bg-dominant-light dark:bg-dominant p-8 rounded-2xl border border-gray-200 dark:border-gray-700 hover:border-accent transition-all duration-300 hover:shadow-xl">
+                        <div class="absolute -left-3 top-8 w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded-full border-4 border-white dark:border-supporting hidden md:block group-hover:bg-accent transition-colors"></div>
+                        <div class="md:pl-8 border-l-2 border-gray-200 dark:border-gray-700 md:border-none">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-accent transition-colors">Instructional Technology Specialist</h3>
+                                    <p class="text-lg text-gray-600 dark:text-gray-400 font-medium">Newman International Academy</p>
+                                </div>
+                                <span class="px-4 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-mono text-gray-600 dark:text-gray-300 mt-2 md:mt-0">
+                                    July 2013 - July 2017
+                                </span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                                Managed technology infrastructure and led faculty training on digital integration.
+                            </p>
+                             <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Managed Active Directory systems and provided technical support for 50+ faculty.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-5 h-5 text-accent mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span>Researched & implemented $300k+ in educational technology purchases.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+           </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold mb-16 border-b-2 border-accent inline-block pb-2">Featured Projects</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project 1: Portfolio Site -->
+                    <div class="bg-dominant-light dark:bg-dominant rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl hover:border-accent hover:shadow-2xl hover:shadow-accent/10 transition-all group flex flex-col">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
+                             <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900"></div>
+                             <svg class="w-16 h-16 text-blue-400/80 transform group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /></svg>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Photography & Booking</h3>
+                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-bold rounded">Next.js</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-1">
+                                Production platform with custom booking logic and dynamic gallery management. Built for performance and SEO.
+                            </p>
+                            <a href="https://www.jasonholtphotography.com" target="_blank" class="inline-flex items-center text-accent font-bold text-sm hover:underline">
+                                Visit Site <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: AI Chat -->
+                    <div class="bg-dominant-light dark:bg-dominant rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl hover:border-accent hover:shadow-2xl hover:shadow-accent/10 transition-all group flex flex-col">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
+                             <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 to-slate-900"></div>
+                             <svg class="w-16 h-16 text-purple-400/80 transform group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">AI Chat Platform</h3>
+                                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 text-xs font-bold rounded">Azure / AI</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-1">
+                                Enterprise-grade AI chat platform featuring RAG pipeline, semantic search, and multi-LLM support on Azure.
+                            </p>
+                            <a href="https://binaryloom.io/chat" target="_blank" class="inline-flex items-center text-accent font-bold text-sm hover:underline">
+                                Visit Platform <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Mythic GME -->
+                    <div class="bg-dominant-light dark:bg-dominant rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl hover:border-accent hover:shadow-2xl hover:shadow-accent/10 transition-all group flex flex-col">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
+                             <div class="absolute inset-0 bg-gradient-to-br from-green-900/40 to-slate-900"></div>
+                             <svg class="w-16 h-16 text-green-400/80 transform group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Mythic GME 2e</h3>
+                                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 text-xs font-bold rounded">Cross-Platform</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-1">
+                                Official digital companion app. Complex state management and MVVM architecture deployed to Web, iOS, and Android.
+                            </p>
+                            <a href="#" class="inline-flex items-center text-accent font-bold text-sm hover:underline">
+                                View Details <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Product Site -->
+                    <div class="bg-dominant-light dark:bg-dominant rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl hover:border-accent hover:shadow-2xl hover:shadow-accent/10 transition-all group flex flex-col">
+                        <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
+                             <div class="absolute inset-0 bg-gradient-to-br from-orange-900/40 to-slate-900"></div>
+                             <!-- SVG Icon: Rocket/Launch -->
+                             <svg class="w-16 h-16 text-orange-400/80 transform group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Digital Product Site</h3>
+                                <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-300 text-xs font-bold rounded">Astro</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-1">
+                                Primary frontend portfolio and commercial apps showcase. High-performance static site architecture.
+                            </p>
+                            <a href="https://www.jasonholtdigital.com" target="_blank" class="inline-flex items-center text-accent font-bold text-sm hover:underline">
+                                Visit Site <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 bg-white dark:bg-supporting transition-colors">
+             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold mb-16 border-b-2 border-accent inline-block pb-2">Technical Arsenal</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Category 1 -->
+                    <div class="space-y-6">
+                        <div class="h-1 w-12 bg-accent rounded"></div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Frontend Architecture</h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>React / Next.js</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>TypeScript / JavaScript</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Tailwind CSS / HTML5</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>UX Design / Figma</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>State Management</li>
+                        </ul>
+                    </div>
+
+                    <!-- Category 2 -->
+                    <div class="space-y-6">
+                        <div class="h-1 w-12 bg-blue-500 rounded"></div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Backend & Cloud</h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Firebase</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>AWS (EC2, S3)</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Azure Container Apps</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>REST APIs</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Sentry / Analytics</li>
+                        </ul>
+                    </div>
+
+                    <!-- Category 3 -->
+                    <div class="space-y-6">
+                        <div class="h-1 w-12 bg-purple-500 rounded"></div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">AI & Tools</h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>LLM Integration</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Cursor / Windsurf</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Git / GitHub Actions</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Docker</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Figma / Adobe XD</li>
+                        </ul>
+                    </div>
+
+                    <!-- Category 4 -->
+                    <div class="space-y-6">
+                        <div class="h-1 w-12 bg-pink-500 rounded"></div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">Core Competencies</h3>
+                        <ul class="space-y-3 text-gray-600 dark:text-gray-400">
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Product Lifecycle</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>EdTech Architecture</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Agile / Scrum</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Community Management</li>
+                            <li class="flex items-center"><span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>Grant Writing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Credentials Section -->
+        <section id="credentials" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold mb-16 border-b-2 border-accent inline-block pb-2">Education & Credentials</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Column 1: Education History (Top Left) -->
+                    <div class="space-y-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                            <span class="w-2 h-8 bg-blue-500 rounded-full mr-3"></span>
+                            Education
+                        </h3>
+                        
+                        <!-- Masters -->
+                        <div class="bg-dominant-light dark:bg-dominant p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 shrink-0 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 font-bold text-sm border border-blue-500/20">M.Sc.</div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900 dark:text-white">Univ. of Stuttgart</h4>
+                                    <p class="text-gray-600 dark:text-gray-400 text-xs font-mono mt-1">Expected 2027</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Computational Linguistics<br>Focus: NLP & AI Integration</p>
+                        </div>
+
+                        <!-- Bachelors -->
+                        <div class="bg-dominant-light dark:bg-dominant p-6 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 shrink-0 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 font-bold text-sm border border-blue-500/20">B.A.</div>
+                                <div>
+                                    <h4 class="text-lg font-bold text-gray-900 dark:text-white">UT Arlington</h4>
+                                    <p class="text-gray-600 dark:text-gray-400 text-xs font-mono mt-1">Cum Laude</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Linguistics & French<br>Specialization in ESL</p>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Professional Development (Top Right) -->
+                    <div class="space-y-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                            <span class="w-2 h-8 bg-purple-500 rounded-full mr-3"></span>
+                            Prof. Development
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <!-- Course 1 -->
+                            <div class="bg-dominant-light dark:bg-dominant p-5 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg hover:border-purple-500/50 transition-colors">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white">Android Nanodegree</h4>
+                                <p class="text-purple-500 text-xs font-bold uppercase mb-2">Udacity • Google Scholarship</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Comprehensive mobile development program focused on Android architecture.</p>
+                            </div>
+
+                            <!-- Course 2 -->
+                            <div class="bg-dominant-light dark:bg-dominant p-5 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg hover:border-purple-500/50 transition-colors">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white">UX Design Academy</h4>
+                                <p class="text-purple-500 text-xs font-bold uppercase mb-2">DesignLab</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Intensive user experience design foundations and research methodologies.</p>
+                            </div>
+
+                            <!-- Course 3 -->
+                            <div class="bg-dominant-light dark:bg-dominant p-5 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg hover:border-purple-500/50 transition-colors">
+                                <h4 class="text-lg font-bold text-gray-900 dark:text-white">Leadership Training</h4>
+                                <p class="text-purple-500 text-xs font-bold uppercase mb-2">FTTA (2 Years)</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Post-graduate program in leadership, mentorship, and public speaking.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Professional Certifications (Bottom Full Width) -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+                            <span class="w-2 h-8 bg-accent rounded-full mr-3"></span>
+                            Certifications
+                        </h3>
+                        
+                        <div class="bg-dominant-light dark:bg-dominant p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <!-- Tech Certs -->
+                                <div class="space-y-4">
+                                    <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-gray-200 dark:border-gray-700 pb-2">Cloud & DevOps</h5>
+                                    <div class="flex items-center gap-3 p-2 rounded hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
+                                        <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                                        <div class="text-sm"><span class="font-bold text-gray-900 dark:text-white block">AWS Cloud</span> <span class="text-gray-500 text-xs">Practitioner</span></div>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-2 rounded hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
+                                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        <div class="text-sm"><span class="font-bold text-gray-900 dark:text-white block">Cisco</span> <span class="text-gray-500 text-xs">CCST Networking</span></div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-gray-200 dark:border-gray-700 pb-2">Development</h5>
+                                    <div class="flex items-center gap-3 p-2 rounded hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
+                                        <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                        <div class="text-sm"><span class="font-bold text-gray-900 dark:text-white block">Scrum.org</span> <span class="text-gray-500 text-xs">PSM I</span></div>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-2 rounded hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
+                                        <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+                                        <div class="text-sm"><span class="font-bold text-gray-900 dark:text-white block">Unity</span> <span class="text-gray-500 text-xs">Certified Programmer</span></div>
+                                    </div>
+                                     <div class="flex items-center gap-3 p-2 rounded hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
+                                        <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+                                        <div class="text-sm"><span class="font-bold text-gray-900 dark:text-white block">Apple</span> <span class="text-gray-500 text-xs">Swift Certified User</span></div>
+                                    </div>
+                                </div>
+
+                                <!-- Design Certs -->
+                                <div class="space-y-4">
+                                    <h5 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-gray-200 dark:border-gray-700 pb-2">Creative</h5>
+                                    <div class="flex items-center gap-3 p-2 rounded hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
+                                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                        <div class="text-sm"><span class="font-bold text-gray-900 dark:text-white block">Adobe Certified Pro</span> <span class="text-gray-500 text-xs">Visual Design</span></div>
+                                    </div>
+                                    <div class="flex items-center gap-3 p-2 rounded hover:bg-white dark:hover:bg-gray-800/50 transition-colors">
+                                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                        <div class="text-sm"><span class="font-bold text-gray-900 dark:text-white block">Adobe Certified Pro</span> <span class="text-gray-500 text-xs">Video Design</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24">
+             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <!-- Contact Info -->
+                    <div>
+                        <h2 class="text-4xl font-bold mb-8 border-b-2 border-accent inline-block pb-2">Get In Touch</h2>
+                        <p class="text-lg text-gray-600 dark:text-gray-400 mb-12">
+                            Currently available for freelance projects and full-time opportunities in Frankfurt or remote. Let's discuss how we can build something amazing together.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-dominant-light dark:bg-gray-800 rounded-lg flex items-center justify-center text-accent mr-4">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-wider font-bold">Email</div>
+                                    <a href="mailto:jason@example.com" class="text-lg font-medium text-gray-900 dark:text-white hover:text-accent transition-colors">jason@example.com</a>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-dominant-light dark:bg-gray-800 rounded-lg flex items-center justify-center text-accent mr-4">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-500 uppercase tracking-wider font-bold">Location</div>
+                                    <div class="text-lg font-medium text-gray-900 dark:text-white">Frankfurt am Main, Germany</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form id="contact-form" class="bg-dominant-light dark:bg-dominant p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-xl">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all" placeholder="Your Name">
+                                <p class="mt-1 text-sm text-red-500 hidden" id="name-error">Name is required</p>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all" placeholder="your@email.com">
+                                <p class="mt-1 text-sm text-red-500 hidden" id="email-error">Please enter a valid email</p>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all" placeholder="Tell me about your project..."></textarea>
+                                <p class="mt-1 text-sm text-red-500 hidden" id="message-error">Message cannot be empty</p>
+                            </div>
+                            <button type="submit" class="w-full py-4 bg-accent text-dominant-light dark:text-dominant font-bold rounded-lg hover:bg-accent-hover transition-colors shadow-lg transform hover:-translate-y-1">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="bg-dominant-light dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="font-mono text-xl font-bold tracking-tighter">&lt;JH /&gt;</span>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    &copy; 2025 Jason Holt Digital LLC. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>

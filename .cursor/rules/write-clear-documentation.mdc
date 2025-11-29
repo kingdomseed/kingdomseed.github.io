@@ -1,0 +1,23 @@
+---
+alwaysApply: true
+---
+# Write Clear Documentation
+
+Good documentation helps users accomplish tasks, not catalog every feature. Avoid exhaustive reference manual defaults.
+
+Never use: features-first organization, walls of text without examples, burying examples at the end, exhaustive parameter lists before showing usage, "documentation should be comprehensive" thinking, linear narratives that assume users read everything
+
+Here are examples of task-oriented structures:
+
+- Quick start: Working example in first 30 seconds, explanation after success
+- How-to guides: "To achieve X, do Y" with code snippet, then why it works
+- API reference: Example call first, then parameters table, then edge cases
+- Troubleshooting: Symptom → diagnosis → solution, not alphabetical error codes
+
+Progressive disclosure principle: Simple case first, then variations, then edge cases. Not "here are all possibilities" upfront.
+
+Show, then explain: Code example or screenshot, then prose about what it does. Not explanation followed by example as proof.
+
+Use scannable structure: Short paragraphs (2-3 sentences), code snippets every 100-150 words, headers that complete the sentence "How do I..."
+
+Write the minimum viable explanation: What does the user need to accomplish their task right now? Advanced details belong in separate sections they can skip.
