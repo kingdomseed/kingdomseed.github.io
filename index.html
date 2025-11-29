@@ -170,7 +170,7 @@
 <body class="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-slate-100 antialiased selection:bg-brand-500 selection:text-white pb-24 min-h-screen">
 
     <!-- Interactive Dot Matrix Background -->
-    <canvas id="dotMatrix" style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1; pointer-events: none;"></canvas>
+    <canvas id="dotMatrix" style="position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none;"></canvas>
 
     <!-- Header / Nav -->
     <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/50">
@@ -1840,13 +1840,41 @@
                 font-family: 'Inter', sans-serif;
             `;
             skillTooltip.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 8px;">
-                    <div id="skillTooltipLine" style="width: 20px; height: 2px; background: white;"></div>
-                    <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 6px; padding: 6px 10px; backdrop-filter: blur(8px);">
-                        <span id="skillTooltipText" style="font-size: 12px; font-weight: 500; color: white;"></span>
-                    </div>
+                <div style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(148, 163, 184, 0.3); border-radius: 6px; padding: 6px 10px; backdrop-filter: blur(8px);">
+                    <span id="skillTooltipText" style="font-size: 12px; font-weight: 500; color: white;"></span>
                 </div>
             `;
+            
+            // Separate SVG for the leader line (positioned absolutely over the page)
+            const leaderLine = document.createElement('div');
+            leaderLine.id = 'skillLeaderLine';
+            leaderLine.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                pointer-events: none;
+                z-index: 99;
+                overflow: visible;
+            `;
+            leaderLine.innerHTML = `
+                <svg id="leaderLineSvg" style="position: absolute; top: 0; left: 0; overflow: visible;">
+                    <polyline id="leaderLinePath" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+            document.body.appendChild(leaderLine);
+            
+            // Set SVG size to exact pixel dimensions
+            function updateLeaderLineSvgSize() {
+                const svg = document.getElementById('leaderLineSvg');
+                if (svg) {
+                    svg.setAttribute('width', window.innerWidth);
+                    svg.setAttribute('height', window.innerHeight);
+                }
+            }
+            updateLeaderLineSvgSize();
+            window.addEventListener('resize', updateLeaderLineSvgSize);
             document.body.appendChild(skillTooltip);
             
             // FPS counter
@@ -2072,6 +2100,7 @@
                     document.documentElement.scrollHeight,
                     window.innerHeight
                 );
+                canvas.style.width = width + 'px';
                 canvas.style.height = height + 'px';
                 canvas.width = width * dpr;
                 canvas.height = height * dpr;
@@ -2163,36 +2192,61 @@
                 }
                 
                 // Update tooltip (convert document coords to viewport coords)
+                const leaderLinePath = document.getElementById('leaderLinePath');
+                const leaderLineContainer = document.getElementById('skillLeaderLine');
+                
                 if (hoveredSkillDot) {
                     const color = hoveredSkillDot.skillColor;
-                    const tooltipLine = document.getElementById('skillTooltipLine');
                     const tooltipText = document.getElementById('skillTooltipText');
-                    const tooltipContainer = skillTooltip.firstElementChild;
                     
                     skillTooltip.style.opacity = '1';
+                    leaderLineContainer.style.opacity = '1';
                     
-                    // Check if dot is near right edge (within 180px of viewport edge)
-                    const isRightEdge = hoveredSkillDot.x > window.innerWidth - 180;
+                    // Exact dot position in viewport coordinates
+                    // Use baseX/baseY (stable position) not x/y (which could drift)
+                    // canvasRect already accounts for scroll (since canvas is position:absolute)
+                    const canvasRect = canvas.getBoundingClientRect();
+                    const dotX = canvasRect.left + hoveredSkillDot.baseX;
+                    const dotY = canvasRect.top + hoveredSkillDot.baseY;
                     
+                    // Determine direction
+                    const isRightEdge = dotX > window.innerWidth - 180;
+                    const isUpperHalf = dotY < window.innerHeight / 2;
+                    
+                    // Line dimensions
+                    const diagX = 18;  // Horizontal distance of diagonal
+                    const diagY = 12;  // Vertical distance of diagonal
+                    const horizLen = 25; // Horizontal segment length
+                    
+                    // Calculate elbow and end points based on direction
+                    const dirX = isRightEdge ? -1 : 1;  // Left or right
+                    const dirY = isUpperHalf ? 1 : -1;   // Down or up
+                    
+                    const elbowX = dotX + (diagX * dirX);
+                    const elbowY = dotY + (diagY * dirY);
+                    const endX = elbowX + (horizLen * dirX);
+                    const endY = elbowY;
+                    
+                    // Draw the leader line: dot → elbow → end
+                    const points = `${dotX},${dotY} ${elbowX},${elbowY} ${endX},${endY}`;
+                    leaderLinePath.setAttribute('points', points);
+                    leaderLinePath.setAttribute('stroke', `rgb(${color.r}, ${color.g}, ${color.b})`);
+                    
+                    // Position tooltip at end of line
                     if (isRightEdge) {
-                        // Flip tooltip to left side of dot
-                        tooltipContainer.style.flexDirection = 'row-reverse';
                         skillTooltip.style.left = 'auto';
-                        skillTooltip.style.right = (window.innerWidth - hoveredSkillDot.x + 15) + 'px';
+                        skillTooltip.style.right = (window.innerWidth - endX + 6) + 'px';
                     } else {
-                        // Normal: tooltip on right side of dot
-                        tooltipContainer.style.flexDirection = 'row';
                         skillTooltip.style.right = 'auto';
-                        skillTooltip.style.left = (hoveredSkillDot.x + 15) + 'px';
+                        skillTooltip.style.left = (endX + 6) + 'px';
                     }
+                    skillTooltip.style.top = (endY - 14) + 'px'; // Center vertically on line end
                     
-                    // Subtract scrollY since tooltip is position:fixed (viewport coords)
-                    skillTooltip.style.top = (hoveredSkillDot.y - window.scrollY - 10) + 'px';
-                    tooltipLine.style.background = `rgb(${color.r}, ${color.g}, ${color.b})`;
                     tooltipText.textContent = hoveredSkillDot.skillName;
                     tooltipText.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
                 } else {
                     skillTooltip.style.opacity = '0';
+                    leaderLineContainer.style.opacity = '0';
                 }
                 
                 // Update and draw dots
