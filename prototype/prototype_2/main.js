@@ -43,6 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('opacity-100', 'translate-y-0');
                 entry.target.classList.remove('opacity-0', 'translate-y-10');
+                
+                // Check for count-up elements inside this revealed element
+                const countEl = entry.target.querySelector('[data-count]');
+                if (countEl && !countEl.dataset.animated) {
+                    countEl.dataset.animated = 'true';
+                    animateCountUp(countEl);
+                }
+                
                 observer.unobserve(entry.target);
             }
         });
@@ -53,6 +61,85 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
+
+// Count-up animation function
+function animateCountUp(element) {
+    const target = parseFloat(element.dataset.count);
+    const suffix = element.dataset.suffix || '';
+    const decimals = element.dataset.decimals ? parseInt(element.dataset.decimals) : 0;
+    const duration = 2000;
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Easing function (ease-out cubic)
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        const current = easeOut * target;
+        
+        if (decimals > 0) {
+            element.textContent = current.toFixed(decimals) + suffix;
+        } else {
+            element.textContent = Math.floor(current) + suffix;
+        }
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            element.textContent = (decimals > 0 ? target.toFixed(decimals) : target) + suffix;
+        }
+    }
+    requestAnimationFrame(update);
+}
+
+// --- Infinite Marquee ---
+function initMarquee() {
+    const track = document.querySelector('.marquee-track');
+    if (!track) return;
+    
+    const content = track.querySelector('.marquee-content');
+    if (!content) return;
+    
+    // Clone content until we have enough to fill the screen + extra
+    const contentWidth = content.offsetWidth;
+    const screenWidth = window.innerWidth;
+    const clonesNeeded = Math.ceil((screenWidth * 2) / contentWidth) + 1;
+    
+    // Remove any existing clones first
+    track.querySelectorAll('.marquee-content[aria-hidden]').forEach(el => el.remove());
+    
+    // Add clones
+    for (let i = 0; i < clonesNeeded; i++) {
+        const clone = content.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+    }
+    
+    // Animate using JS for seamless loop
+    let position = 0;
+    const speed = 0.5; // pixels per frame
+    
+    function animate() {
+        position -= speed;
+        
+        // Reset position when first content block is fully off-screen
+        if (Math.abs(position) >= contentWidth) {
+            position += contentWidth;
+        }
+        
+        track.style.transform = `translateX(${position}px)`;
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+}
+
+// Initialize marquee after DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMarquee);
+} else {
+    initMarquee();
+}
 
 // --- PDF Generation ---
 /**
