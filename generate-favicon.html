@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generating Favicons...</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            background: #0f172a;
+            color: white;
+            padding: 40px;
+        }
+        h1 { margin-bottom: 20px; }
+        .preview {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .preview-item {
+            text-align: center;
+        }
+        .preview-item canvas {
+            border: 1px solid #334155;
+            border-radius: 4px;
+        }
+        .preview-item p {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 16px;
+            background: #1e293b;
+            border-radius: 8px;
+        }
+        .download-btn {
+            display: inline-block;
+            margin: 8px 8px 8px 0;
+            padding: 8px 16px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .download-btn:hover {
+            background: #818cf8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Favicon Generator</h1>
+    <p>Generating favicons from your headshot...</p>
+    
+    <div class="preview" id="previews"></div>
+    <div id="status">Loading headshot...</div>
+    <div id="downloads"></div>
+
+    <script>
+        const sizes = [
+            { name: 'favicon-16x16.png', size: 16 },
+            { name: 'favicon-32x32.png', size: 32 },
+            { name: 'apple-touch-icon.png', size: 180 },
+            { name: 'favicon-192x192.png', size: 192 },
+            { name: 'favicon-512x512.png', size: 512 }
+        ];
+        
+        const previews = document.getElementById('previews');
+        const status = document.getElementById('status');
+        const downloads = document.getElementById('downloads');
+        
+        // Load headshot
+        const headshot = new Image();
+        headshot.crossOrigin = 'anonymous';
+        headshot.onload = () => generateFavicons(headshot);
+        headshot.onerror = () => {
+            status.textContent = 'Error loading Headshot.jpeg. Make sure the file is in the same folder.';
+        };
+        headshot.src = 'Headshot.jpeg';
+        
+        function generateFavicons(photo) {
+            status.textContent = 'Generating favicons...';
+            
+            const blobs = [];
+            
+            sizes.forEach(({ name, size }) => {
+                // Create canvas
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                // Fill with brand color background
+                ctx.fillStyle = '#6366f1';
+                ctx.fillRect(0, 0, size, size);
+                
+                // Create circular clip
+                ctx.beginPath();
+                ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.clip();
+                
+                // Draw photo (centered and covering)
+                const scale = Math.max(size / photo.width, size / photo.height) * 1.2;
+                const scaledW = photo.width * scale;
+                const scaledH = photo.height * scale;
+                ctx.drawImage(
+                    photo,
+                    (size - scaledW) / 2,
+                    (size - scaledH) / 2,
+                    scaledW,
+                    scaledH
+                );
+                
+                // Add subtle border for small sizes
+                if (size <= 32) {
+                    ctx.strokeStyle = 'rgba(99, 102, 241, 0.5)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(size / 2, size / 2, size / 2 - 0.5, 0, Math.PI * 2);
+                    ctx.stroke();
+                }
+                
+                // Add to preview
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                
+                const previewCanvas = document.createElement('canvas');
+                previewCanvas.width = Math.max(size, 32);
+                previewCanvas.height = Math.max(size, 32);
+                const previewCtx = previewCanvas.getContext('2d');
+                previewCtx.fillStyle = '#1e293b';
+                previewCtx.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
+                previewCtx.drawImage(canvas, 
+                    (previewCanvas.width - size) / 2, 
+                    (previewCanvas.height - size) / 2
+                );
+                
+                previewItem.appendChild(previewCanvas);
+                previewItem.innerHTML += `<p>${name}<br>${size}x${size}</p>`;
+                previews.appendChild(previewItem);
+                
+                // Store blob for download
+                canvas.toBlob((blob) => {
+                    blobs.push({ name, blob, canvas });
+                    
+                    // Create download button
+                    const btn = document.createElement('button');
+                    btn.className = 'download-btn';
+                    btn.textContent = `Download ${name}`;
+                    btn.onclick = () => {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = name;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    };
+                    downloads.appendChild(btn);
+                    
+                    // Auto-download when all are ready
+                    if (blobs.length === sizes.length) {
+                        status.innerHTML = `
+                            <strong>✅ All favicons generated!</strong><br><br>
+                            Click buttons above to download each file, then add to your project root.<br><br>
+                            <strong>Add to your &lt;head&gt;:</strong>
+                            <pre style="background: #0f172a; padding: 12px; border-radius: 4px; margin-top: 8px; font-size: 12px; overflow-x: auto;">
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png"&gt;</pre>
+                        `;
+                        
+                        // Auto-download all
+                        blobs.forEach(({ name, blob }) => {
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = name;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        });
+                    }
+                }, 'image/png');
+            });
+        }
+    </script>
+</body>
+</html>
