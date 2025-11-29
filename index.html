@@ -941,11 +941,13 @@
                     <div style="flex: 1;">
                         <h1 style="font-family: 'Sora', sans-serif; font-size: 26pt; font-weight: 700; color: #0f172a; margin: 0; line-height: 1.1;">JASON HOLT</h1>
                         <p style="font-size: 12pt; color: #6366f1; font-weight: 600; margin: 2px 0 8px 0;">Front End Developer & Learning Product Specialist</p>
-                        <div style="font-size: 9pt; color: #64748b; display: flex; gap: 16px; flex-wrap: wrap;">
+                        <div style="font-size: 8.5pt; color: #64748b; display: flex; gap: 12px; flex-wrap: wrap;">
                             <span>📍 Frankfurt, Germany</span>
-                            <span>✉️ holt.jason@icloud.com</span>
-                            <span>🔗 linkedin.com/in/jholtx</span>
-                            <span>💻 github.com/kingdomseed</span>
+                            <a href="tel:+4915205983008" style="color: #64748b; text-decoration: none;">📞 +49 152 05983008</a>
+                            <a href="tel:+16823657175" style="color: #64748b; text-decoration: none;">📱 +1 (682) 365-7175</a>
+                            <a href="mailto:holt.jason@icloud.com" style="color: #64748b; text-decoration: none;">✉️ holt.jason@icloud.com</a>
+                            <a href="https://linkedin.com/in/jholtx" style="color: #64748b; text-decoration: none;">🔗 linkedin.com/in/jholtx</a>
+                            <a href="https://github.com/kingdomseed" style="color: #64748b; text-decoration: none;">💻 github.com/kingdomseed</a>
                         </div>
                     </div>
                 </div>
@@ -1084,7 +1086,7 @@
                 <!-- Page 2 Header -->
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 14px;">
                     <h2 style="font-family: 'Sora', sans-serif; font-size: 14pt; font-weight: 700; color: #0f172a; margin: 0;">JASON HOLT</h2>
-                    <span style="font-size: 9pt; color: #64748b;">holt.jason@icloud.com • linkedin.com/in/jholtx</span>
+                    <span style="font-size: 8.5pt; color: #64748b;"><a href="tel:+16823657175" style="color: #64748b; text-decoration: none;">+1 (682) 365-7175</a> • <a href="mailto:holt.jason@icloud.com" style="color: #64748b; text-decoration: none;">holt.jason@icloud.com</a> • <a href="https://linkedin.com/in/jholtx" style="color: #64748b; text-decoration: none;">linkedin.com/in/jholtx</a></span>
                 </div>
 
                 <!-- Two Column Layout Page 2 -->
@@ -1180,7 +1182,7 @@
                         <!-- Links -->
                         <div style="margin-top: 16px; padding: 10px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
                             <p style="font-size: 9pt; color: #64748b; margin: 0 0 4px 0; font-weight: 600;">View Interactive Version</p>
-                            <p style="font-size: 9pt; color: #6366f1; margin: 0;">binaryloom.io</p>
+                            <a href="https://binaryloom.io" style="font-size: 9pt; color: #6366f1; text-decoration: none; display: block;">binaryloom.io</a>
                         </div>
                     </div>
                 </div>
@@ -1646,7 +1648,8 @@
                 filename: 'Jason_Holt_Resume.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                enableLinks: true  // Preserve clickable links in PDF
             };
             
             // Show loading state
