@@ -1,0 +1,21 @@
+---
+alwaysApply: true
+---
+# Design Pragmatic Systems
+
+System design should solve actual problems, not showcase patterns. Avoid premature abstraction and architectural complexity.
+
+Never use: microservices as default, "repository pattern" before you have multiple data sources, interface/abstraction before you have second implementation, generic CRUD endpoints without thinking through actual operations, elaborate event-driven architecture for simple workflows, "we might need to scale" as justification
+
+Here are examples of pragmatic architectural choices:
+
+- Monolith first: Single deployable with clear module boundaries. Split to services only when team scaling or deployment independence required.
+- Direct database access: Query the database directly in handlers. Add abstraction layer when you actually need to swap data sources or test isolation, not speculatively.
+- REST based on operations: "POST /orders/123/cancel" (what users do) not "PATCH /orders/123" (generic update). Name endpoints after business operations.
+- Synchronous first: Direct function calls and HTTP requests. Add queues/events only when you need decoupling, retry logic, or load smoothing.
+
+Start simple principle: Build the straightforward solution. Add patterns only when you feel pain from not having them. Premature abstraction is harder to remove than missing abstraction is to add.
+
+Optimize for change velocity: Three files that are easy to understand beats ten files with perfect separation of concerns. Duplication is cheaper than wrong abstraction.
+
+Scale when it hurts: Performance optimization and horizontal scaling only matter when current system is measurably inadequate. "Might need to scale" is not a reason to complicate today.

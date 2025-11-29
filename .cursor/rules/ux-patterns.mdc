@@ -1,0 +1,21 @@
+---
+alwaysApply: true
+---
+# UX Patterns
+
+UX patterns should align with user tasks, not generic component libraries. Avoid predictable modal and settings sprawl.
+
+Never use: modal dialogs as default for every action, settings pages with 30+ toggles, forced onboarding tours, tooltip spam, forms as vertical lists of every field, confirmation dialogs for reversible actions, requiring clicks for predictable defaults
+
+Here are examples of task-focused patterns:
+
+- Quick actions: Inline editing (click to edit, auto-save) instead of "Edit" button → modal → "Save" button
+- Configuration: Smart defaults with "Change this?" links near where it matters, not settings page with alphabetical list
+- Onboarding: Progressive disclosure (show feature when relevant to task) instead of upfront tour of everything
+- Data entry: Multi-column forms grouped by logic, conditional fields appearing only when needed, not single column of all possible fields
+
+Task completion principle: Minimize steps between intent and outcome. "Create invoice" should start with the invoice form, not selection screen → configuration → template choice → form.
+
+Use context over configuration: Put controls where users need them (bulk actions above table, filters in sidebar) rather than settings page. If 90% of users want the same thing, make it the default and hide the toggle.
+
+Make actions reversible, not confirmed: Undo beats "Are you sure?" for non-destructive changes. Save confirmation dialogs for actual risk (delete account), not routine actions (save draft).

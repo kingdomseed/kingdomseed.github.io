@@ -1,0 +1,21 @@
+---
+alwaysApply: true
+---
+# Use Distrinctive Color
+
+Color palettes instantly communicate design intent. Avoid safe, middle-ground choices.
+
+Never use: Tailwind's purple/blue defaults (#6366f1, #3b82f6), pastel-everything palettes, equal-weight rainbow schemes, generic purple-to-blue gradients
+
+Here are some examples of distinctive, purposeful palettes:
+
+- Bold/energetic: Deep red dominant + electric yellow accent, or saturated orange + cyan
+- Professional/trust: Navy + gold, or forest green + cream
+- Creative/modern: Ochre + slate, or burgundy + sage
+- Technical/precise: Charcoal + neon green, or deep blue + orange
+
+Dominance principle: 70% one color, 20% supporting, 10% accent. One color should clearly own the palette.
+
+Use saturation extremes: Fully saturated primaries OR deeply muted tones, not safety middle-ground. Context drives choice: financial/serious = muted, creative/energetic = bold.
+
+Pick one dominant color, commit to it throughout. Use accent color sparingly for emphasis only.
