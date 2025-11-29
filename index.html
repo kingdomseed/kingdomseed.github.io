@@ -8,6 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Marked for Markdown parsing in chat -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -174,8 +176,8 @@
     <nav class="sticky top-0 z-50 glass-panel border-b border-slate-800/50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="font-bold text-xl tracking-tight text-white flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-brand-500 shadow-[0_0_10px_rgba(99,102,241,0.8)]"></span>
+                <div class="font-bold text-xl tracking-tight text-white flex items-center gap-3 font-display">
+                    <img src="Headshot.jpeg" alt="" class="w-8 h-8 rounded-full object-cover border-2 border-brand-500 shadow-[0_0_10px_rgba(99,102,241,0.5)]" onerror="this.style.display='none'">
                     JASON HOLT
                 </div>
                 
@@ -187,7 +189,7 @@
                     <a href="#portfolio" class="nav-link hover:text-brand-400 transition-colors">Portfolio</a>
                 </div>
                 
-                <!-- Right Side: Social + Connect -->
+                <!-- Right Side: Social + Connect + Download -->
                 <div class="flex items-center gap-4">
                     <!-- Social Icons -->
                     <div class="flex items-center gap-3">
@@ -197,6 +199,10 @@
                         <a href="https://linkedin.com/in/jholtx" target="_blank" class="text-slate-500 hover:text-[#0A66C2] transition-colors" title="LinkedIn">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         </a>
+                        <!-- Download Resume Button -->
+                        <button onclick="downloadResume()" class="text-slate-500 hover:text-green-400 transition-colors" title="Download Resume PDF">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </button>
                     </div>
                     <!-- Connect CTA -->
                     <a href="#connect" class="nav-link px-4 py-2 bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white rounded-full text-sm font-medium transition-all border border-brand-400/50 hover:border-brand-500">
@@ -461,11 +467,10 @@
                         <p class="text-slate-400 mb-4 font-medium">Uplift Education | Dallas, TX</p>
                         <div class="text-xs text-slate-500 mb-2 uppercase tracking-wider font-semibold group-hover:text-slate-300 transition-colors">Expand Details &#9662;</div>
                         <ul id="role2" class="hidden list-disc list-outside ml-4 space-y-3 text-slate-300 mt-5 border-t border-slate-700/50 pt-5 leading-relaxed">
-                            <li>Increased CS enrollment by <strong class="text-white">150%</strong> via gamified learning & creative habit formation.</li>
-                            <li>Secured $200k+ in grants for VR/XR lab; led students in building VR experiences.</li>
-                            <li>Trained 50+ faculty on technical implementation & emerging tech.</li>
-                            <li>Authored docs reducing support tickets by 65%.</li>
-                            <li>Highest IB Computer Science pass rates in network history.</li>
+                            <li>Led IB Computer Science program across multiple schools; achieved <strong class="text-white">highest pass rates</strong> in network history.</li>
+                            <li>Authored MYP Web Design curriculum; connected students with <strong class="text-white">real client projects</strong>.</li>
+                            <li>Secured <strong class="text-white">Unity × Meta VR grant</strong> (30 Quest 2 headsets); led students in building VR experiences.</li>
+                            <li>Trained 50+ faculty on emerging technologies; expanded CS enrollment <strong class="text-white">150%</strong> over 3 years.</li>
                         </ul>
                     </div>
                 </div>
@@ -819,9 +824,13 @@
                 
                 <div class="relative z-10 text-center space-y-6">
                     <!-- Headline + Availability -->
-                    <div class="space-y-3">
+                    <div class="space-y-4">
+                        <!-- Profile Picture -->
+                        <div class="flex justify-center">
+                            <img src="Headshot.jpeg" alt="Jason Holt" class="w-24 h-24 rounded-full object-cover border-3 border-brand-500 shadow-[0_0_20px_rgba(99,102,241,0.4)]" onerror="this.style.display='none'">
+                        </div>
                         <div class="flex items-center justify-center gap-3">
-                            <h2 class="text-2xl md:text-3xl font-bold text-white">Let's Work Together</h2>
+                            <h2 class="text-2xl md:text-3xl font-bold text-white font-display">Let's Work Together</h2>
                             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-medium">
                                 <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                                 Available
@@ -862,6 +871,16 @@
                             </a>
                             <div class="absolute -bottom-10 left-1/2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs text-slate-300 whitespace-nowrap tooltip-hover pointer-events-none">
                                 in/jholtx
+                            </div>
+                        </div>
+                        
+                        <!-- Download Resume -->
+                        <div class="relative group">
+                            <button onclick="downloadResume()" class="flex items-center justify-center w-14 h-14 bg-green-600/20 border border-green-400/50 rounded-xl hover:bg-green-600 hover:border-green-500 transition-all press-effect">
+                                <svg class="w-6 h-6 text-green-300 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </button>
+                            <div class="absolute -bottom-10 left-1/2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-lg text-xs text-slate-300 whitespace-nowrap tooltip-hover pointer-events-none">
+                                Download Resume
                             </div>
                         </div>
                     </div>
@@ -909,6 +928,270 @@
         </footer>
 
     </main>
+
+    <!-- Hidden Resume Template for PDF Generation (2 Pages) -->
+    <div id="resumeTemplate" style="position: absolute; left: -9999px; top: 0;">
+        <div style="font-family: 'Inter', Arial, sans-serif; font-size: 10pt; line-height: 1.4; color: #1e293b; background: white;">
+            
+            <!-- PAGE 1 -->
+            <div style="width: 8.5in; height: 11in; padding: 0.5in 0.6in; box-sizing: border-box; position: relative; overflow: hidden;">
+                <!-- Header -->
+                <div style="border-bottom: 3px solid #6366f1; padding-bottom: 12px; margin-bottom: 14px; display: flex; align-items: flex-start; gap: 16px;">
+                    <img src="Headshot.jpeg" alt="Jason Holt" style="width: 58px; height: 58px; border-radius: 50%; object-fit: cover; border: 2px solid #6366f1; flex-shrink: 0;">
+                    <div style="flex: 1;">
+                        <h1 style="font-family: 'Sora', sans-serif; font-size: 26pt; font-weight: 700; color: #0f172a; margin: 0; line-height: 1.1;">JASON HOLT</h1>
+                        <p style="font-size: 12pt; color: #6366f1; font-weight: 600; margin: 2px 0 8px 0;">Front End Developer & Learning Product Specialist</p>
+                        <div style="font-size: 9pt; color: #64748b; display: flex; gap: 16px; flex-wrap: wrap;">
+                            <span>📍 Frankfurt, Germany</span>
+                            <span>✉️ holt.jason@icloud.com</span>
+                            <span>🔗 linkedin.com/in/jholtx</span>
+                            <span>💻 github.com/kingdomseed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div style="margin-bottom: 14px;">
+                    <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Professional Summary</h2>
+                    <p style="margin: 0; color: #334155; font-size: 10pt;">Passionate Front End Developer blending production Next.js experience with 11 years of learning product design. Scaled active users 400%, achieved 85% retention, and consistently deliver intuitive, accessible interfaces. Microsoft Innovative Educator Expert with a unique perspective bridging engineering, design, and educational UX.</p>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div style="display: flex; gap: 20px;">
+                    <!-- Left Column -->
+                    <div style="flex: 1.7;">
+                        <!-- Experience -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Professional Experience</h2>
+                        
+                        <!-- Role 1 -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h3 style="font-size: 10.5pt; font-weight: 700; color: #0f172a; margin: 0;">Independent Software Developer</h3>
+                                <span style="font-size: 8.5pt; color: #64748b; white-space: nowrap;">Aug 2024 – Present</span>
+                            </div>
+                            <p style="font-size: 9pt; color: #6366f1; margin: 1px 0 4px 0; font-weight: 500;">Jason Holt Digital | Frankfurt, Germany</p>
+                            <ul style="margin: 0; padding-left: 16px; color: #334155; font-size: 9.5pt;">
+                                <li style="margin-bottom: 2px;">Scaled active monthly user base by <strong>400%</strong> (200 to ~1,000) via consistent updates & community engagement.</li>
+                                <li style="margin-bottom: 2px;">Shipped commercial Flutter app (Mythic GME 2e) achieving <strong>4.8/5 stars</strong> and <strong>85% retention</strong>.</li>
+                                <li style="margin-bottom: 2px;">Deployed production AI chat platform on Azure with 7 LLM integrations, MongoDB Atlas, and RAG pipeline.</li>
+                                <li>Architected Next.js portfolio site with custom gallery logic & booking API integrations.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 2 -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h3 style="font-size: 10.5pt; font-weight: 700; color: #0f172a; margin: 0;">CS Department Chair & Technology Coach</h3>
+                                <span style="font-size: 8.5pt; color: #64748b; white-space: nowrap;">July 2021 – June 2024</span>
+                            </div>
+                            <p style="font-size: 9pt; color: #6366f1; margin: 1px 0 4px 0; font-weight: 500;">Uplift Education | Dallas, TX</p>
+                            <ul style="margin: 0; padding-left: 16px; color: #334155; font-size: 9.5pt;">
+                                <li style="margin-bottom: 2px;">Led IB Computer Science program across multiple schools; achieved <strong>highest pass rates</strong> in network history.</li>
+                                <li style="margin-bottom: 2px;">Authored MYP Web Design curriculum; connected students with <strong>real client projects</strong>.</li>
+                                <li style="margin-bottom: 2px;">Secured <strong>Unity × Meta VR grant</strong> (30 Quest 2 headsets); led students in building VR experiences.</li>
+                                <li>Trained 50+ faculty on emerging technologies; expanded CS enrollment <strong>150%</strong> over 3 years.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 3 -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h3 style="font-size: 10.5pt; font-weight: 700; color: #0f172a; margin: 0;">Computer Science Teacher</h3>
+                                <span style="font-size: 8.5pt; color: #64748b; white-space: nowrap;">June 2017 – June 2019</span>
+                            </div>
+                            <p style="font-size: 9pt; color: #6366f1; margin: 1px 0 4px 0; font-weight: 500;">Crowley High School | Crowley, TX</p>
+                            <ul style="margin: 0; padding-left: 16px; color: #334155; font-size: 9.5pt;">
+                                <li style="margin-bottom: 2px;">Built CS program from ground up; designed Game Design curriculum using Unity and Game Maker.</li>
+                                <li>Taught full CS pathway: CS 1-3, AP Computer Science A, Mobile App Development.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Role 4 -->
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h3 style="font-size: 10.5pt; font-weight: 700; color: #0f172a; margin: 0;">Instructional Technology Specialist</h3>
+                                <span style="font-size: 8.5pt; color: #64748b; white-space: nowrap;">Aug 2013 – July 2017</span>
+                            </div>
+                            <p style="font-size: 9pt; color: #6366f1; margin: 1px 0 4px 0; font-weight: 500;">Newman International Academy | Arlington, TX</p>
+                            <ul style="margin: 0; padding-left: 16px; color: #334155; font-size: 9.5pt;">
+                                <li>Managed tech infrastructure for high-volume campus; deployed procedures for 50+ staff.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div style="flex: 1; border-left: 1px solid #e2e8f0; padding-left: 16px;">
+                        <!-- Technical Skills -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Technical Skills</h2>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">Frontend</h4>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">Next.js, React, TypeScript, Astro, Flutter/Dart, Tailwind CSS</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">Design & UI</h4>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">Figma, Miro, Adobe Suite, Prototyping, Responsive Design</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">Cloud & Backend</h4>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">Azure, MongoDB Atlas, Firebase, Docker, Nginx/SSL</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0 0 2px 0;">AI & Agentic Tools</h4>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">Claude Code, Cursor, Prompt Engineering, Context Engineering</p>
+                        </div>
+
+                        <!-- Education -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Education</h2>
+                        
+                        <div style="margin-bottom: 8px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0;">M.Sc. Computational Linguistics</h4>
+                            <p style="font-size: 8.5pt; color: #64748b; margin: 1px 0;">University of Stuttgart • In Progress</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 8px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0;">B.A. Linguistics (Cum Laude)</h4>
+                            <p style="font-size: 8.5pt; color: #64748b; margin: 1px 0;">UT Arlington • 2012</p>
+                        </div>
+
+                        <div style="margin-bottom: 8px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0;">UX Design Program</h4>
+                            <p style="font-size: 8.5pt; color: #64748b; margin: 1px 0;">DesignLab • 2021</p>
+                        </div>
+
+                        <div style="margin-bottom: 8px;">
+                            <h4 style="font-size: 9.5pt; font-weight: 700; color: #0f172a; margin: 0;">Android Dev Nanodegree</h4>
+                            <p style="font-size: 8.5pt; color: #64748b; margin: 1px 0;">Udacity (Google Scholar) • 2018</p>
+                        </div>
+
+                        <!-- Certifications -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 12px 0 8px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Certifications</h2>
+                        <p style="font-size: 9pt; color: #334155; margin: 0; line-height: 1.5;">AWS Cloud Practitioner • PSM I • Adobe Certified (Visual Design) • Unity Programmer • Apple Swift • Cisco CCST</p>
+                    </div>
+                </div>
+                
+                <!-- Page 1 Footer -->
+                <div style="position: absolute; bottom: 0.4in; left: 0.6in; right: 0.6in; text-align: center; font-size: 8pt; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 6px;">
+                    Page 1 of 2
+                </div>
+            </div>
+            
+            <!-- PAGE 2 -->
+            <div style="width: 8.5in; height: 11in; padding: 0.5in 0.6in; box-sizing: border-box; position: relative; overflow: hidden;">
+                <!-- Page 2 Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 14px;">
+                    <h2 style="font-family: 'Sora', sans-serif; font-size: 14pt; font-weight: 700; color: #0f172a; margin: 0;">JASON HOLT</h2>
+                    <span style="font-size: 9pt; color: #64748b;">holt.jason@icloud.com • linkedin.com/in/jholtx</span>
+                </div>
+
+                <!-- Two Column Layout Page 2 -->
+                <div style="display: flex; gap: 20px;">
+                    <!-- Left Column -->
+                    <div style="flex: 1.7;">
+                        <!-- Featured Projects -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Featured Projects</h2>
+                        
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <strong style="color: #0f172a; font-size: 10pt;">Mythic GME 2e</strong>
+                                <span style="font-size: 8.5pt; color: #64748b;">Flutter/Dart • iOS/Android</span>
+                            </div>
+                            <p style="margin: 3px 0; font-size: 9.5pt; color: #334155;">Commercial tabletop companion app with 4.8★ rating and 85% retention. Full design-to-deployment ownership with iterative UX improvements based on 200+ beta testers.</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <strong style="color: #0f172a; font-size: 10pt;">Private AI Chat Platform</strong>
+                                <span style="font-size: 8.5pt; color: #64748b;">Next.js • Azure • MongoDB</span>
+                            </div>
+                            <p style="margin: 3px 0; font-size: 9.5pt; color: #334155;">Production AI platform with 7 LLM integrations (GPT-5.1, Claude), RAG pipeline with semantic search, and 142-document knowledge base. Deployed on Azure with Docker.</p>
+                        </div>
+
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <strong style="color: #0f172a; font-size: 10pt;">Portfolio & Booking Site</strong>
+                                <span style="font-size: 8.5pt; color: #64748b;">Next.js • Vercel</span>
+                            </div>
+                            <p style="margin: 3px 0; font-size: 9.5pt; color: #334155;">Production photography portfolio with custom random gallery logic, image optimization, and booking integrations.</p>
+                        </div>
+
+                        <div style="margin-bottom: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <strong style="color: #0f172a; font-size: 10pt;">Interactive Resume (This Document)</strong>
+                                <span style="font-size: 8.5pt; color: #64748b;">HTML • Tailwind • Chart.js</span>
+                            </div>
+                            <p style="margin: 3px 0; font-size: 9.5pt; color: #334155;">Web version featuring AI-powered fit analysis, interactive skill visualizations, and animated dot matrix background with skill tooltips.</p>
+                        </div>
+
+                        <!-- Additional Training -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Additional Training</h2>
+                        
+                        <div style="margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h3 style="font-size: 10pt; font-weight: 700; color: #0f172a; margin: 0;">Leadership & Ministry Training</h3>
+                                <span style="font-size: 8.5pt; color: #64748b;">Aug 2019 – July 2021</span>
+                            </div>
+                            <p style="font-size: 9pt; color: #6366f1; margin: 1px 0 3px 0; font-weight: 500;">Full-Time Training in Anaheim (FTTA) | Anaheim, CA</p>
+                            <p style="font-size: 9pt; color: #334155; margin: 0;">Intensive two-year post-graduate program. Developed public speaking, group facilitation, and project coordination skills with diverse international cohort.</p>
+                        </div>
+
+                        <!-- Open Source -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Open Source Contributions</h2>
+                        <p style="font-size: 9.5pt; color: #334155; margin: 0;">Contributor to <strong>Shorebird</strong> (Code Push for Flutter), <strong>icloud_storage_plus</strong>, and other Flutter packages. Active in the Flutter and AI developer communities.</p>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div style="flex: 1; border-left: 1px solid #e2e8f0; padding-left: 16px;">
+                        <!-- Awards -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Awards & Recognition</h2>
+                        <ul style="margin: 0 0 14px 0; padding-left: 16px; font-size: 9.5pt; color: #334155;">
+                            <li style="margin-bottom: 4px;"><strong>Microsoft Innovative Educator Expert</strong></li>
+                            <li style="margin-bottom: 4px;"><strong>Top Hat Award</strong> for Inspiring Innovation</li>
+                            <li>Grow with Google Scholarship Recipient</li>
+                        </ul>
+
+                        <!-- Languages -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Languages</h2>
+                        <ul style="margin: 0 0 14px 0; padding-left: 16px; font-size: 9.5pt; color: #334155;">
+                            <li style="margin-bottom: 3px;">English (Native)</li>
+                            <li style="margin-bottom: 3px;">French (Professional B1)</li>
+                            <li>German (A1 - Learning)</li>
+                        </ul>
+
+                        <!-- Key Strengths -->
+                        <h2 style="font-family: 'Sora', sans-serif; font-size: 11pt; font-weight: 700; color: #6366f1; text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 10px 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">Key Strengths</h2>
+                        <ul style="margin: 0 0 14px 0; padding-left: 16px; font-size: 9.5pt; color: #334155;">
+                            <li style="margin-bottom: 3px;">Full product lifecycle ownership</li>
+                            <li style="margin-bottom: 3px;">User-centered design thinking</li>
+                            <li style="margin-bottom: 3px;">Educational UX expertise</li>
+                            <li style="margin-bottom: 3px;">Cross-functional communication</li>
+                            <li>Rapid prototyping & iteration</li>
+                        </ul>
+                        
+                        <!-- Status Box -->
+                        <div style="margin-top: 20px; padding: 12px; background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border-radius: 8px;">
+                            <p style="font-size: 10pt; color: white; margin: 0 0 4px 0; font-weight: 600;">Work Authorization</p>
+                            <p style="font-size: 9pt; color: #e0e7ff; margin: 0;">Authorized to work in the US and Germany.</p>
+                        </div>
+
+                        <!-- Links -->
+                        <div style="margin-top: 16px; padding: 10px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                            <p style="font-size: 9pt; color: #64748b; margin: 0 0 4px 0; font-weight: 600;">View Interactive Version</p>
+                            <p style="font-size: 9pt; color: #6366f1; margin: 0;">binaryloom.io</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Page 2 Footer -->
+                <div style="position: absolute; bottom: 0.4in; left: 0.6in; right: 0.6in; text-align: center; font-size: 8pt; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 6px;">
+                    Page 2 of 2
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Gemini Chat Widget -->
     <div id="chatWidget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
@@ -1015,10 +1298,10 @@
            - Methodology: Agile/Scrum (PSM I Certified). Uses AI tools (Cursor, Claude) for 10x productivity.
         
         2. CS Department Chair & Tech Coach (Uplift Education) - July 2021 to June 2024.
-           - Leadership: Trained 50+ faculty members on tech implementation.
-           - Innovation: Top Hat Award winner (CEO recognition) for VR lab implementation.
-           - Growth: Increased Computer Science enrollment by 150% by redesigning curriculum to be "gamified" and habit-forming.
-           - Tech Stack: Unity (C#) for student VR projects.
+           - Leadership: Led IB Computer Science program across multiple schools; achieved highest pass rates in network history.
+           - Curriculum: Authored MYP Web Design curriculum; connected students with real client projects.
+           - Innovation: Top Hat Award winner (CEO recognition). Secured Unity × Meta VR grant (30 Quest 2 headsets); led students in building VR experiences.
+           - Growth: Trained 50+ faculty on emerging technologies; expanded CS enrollment 150% over 3 years.
         
         3. Instructional Technology Specialist (Newman International Academy) - 2013 to 2017.
            - Managed tech infrastructure for high-volume campus.
@@ -1352,6 +1635,32 @@
                 } else {
                     item.style.display = 'none';
                 }
+            });
+        }
+
+        // Download Resume as PDF
+        function downloadResume() {
+            const element = document.getElementById('resumeTemplate').firstElementChild;
+            const opt = {
+                margin: 0,
+                filename: 'Jason_Holt_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            
+            // Show loading state
+            const buttons = document.querySelectorAll('button[onclick="downloadResume()"]');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+            });
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                buttons.forEach(btn => {
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                });
             });
         }
 
