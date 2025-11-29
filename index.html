@@ -8,11 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Marked for Markdown parsing in chat -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Inter', sans-serif; }
-        h1, h2, .font-display { font-family: 'Space Grotesk', sans-serif; }
+        h1, h2, .font-display { font-family: 'Sora', sans-serif; }
         
         .chart-container {
             position: relative;
@@ -281,7 +281,7 @@
                     <div class="chart-container">
                         <canvas id="skillsRadar"></canvas>
                     </div>
-                    <p class="text-center text-xs text-slate-500 mt-6 tracking-wide uppercase font-semibold">Cross-functional expertise visualization</p>
+                    <p class="text-center text-xs text-slate-500 mt-6 tracking-wide uppercase font-semibold">Hover points to explore skills</p>
                 </div>
             </div>
 
@@ -1203,20 +1203,69 @@
         const ctx = document.getElementById('skillsRadar').getContext('2d');
         // Set fonts globally for chart
         Chart.defaults.font.family = "'Inter', sans-serif";
+        
+        // Skills data for each axis
+        const skillsData = {
+            'UI Engineering': {
+                score: 95,
+                skills: ['React', 'Next.js', 'TypeScript', 'Component Architecture', 'State Management', 'Flutter/Dart']
+            },
+            'Visual Craft': {
+                score: 80,
+                skills: ['CSS/Tailwind', 'Animations', 'Responsive Design', 'Figma', 'Design Systems', 'Adobe Suite']
+            },
+            'Product Sense': {
+                score: 85,
+                skills: ['User Research', 'Analytics', 'Beta Testing', 'Iteration', 'Community Building', 'Shipping']
+            },
+            'Backend': {
+                score: 60,
+                skills: ['REST APIs', 'MongoDB', 'Azure Cloud', 'Docker', 'Nginx/SSL', 'Firebase']
+            },
+            'AI Tooling': {
+                score: 70,
+                skills: ['Claude Code', 'Cursor', 'Prompt Eng.', 'Context Eng.', 'Agentic Workflows', 'LLM Integration']
+            },
+            'Edu UX': {
+                score: 95,
+                skills: ['Learning Psychology', 'Instructional Design', 'Accessibility', 'Engagement Mechanics', 'Curriculum Dev']
+            }
+        };
+        
+        const labels = Object.keys(skillsData);
+        const dataValues = labels.map(l => skillsData[l].score);
+        
+        // Custom tooltip element
+        const customTooltip = document.createElement('div');
+        customTooltip.id = 'chartTooltip';
+        customTooltip.className = 'fixed z-50 pointer-events-none opacity-0 transition-opacity duration-200';
+        customTooltip.innerHTML = `
+            <div class="glass-panel rounded-xl p-4 border border-brand-500/30 shadow-xl shadow-brand-500/10 min-w-[180px]">
+                <div class="font-semibold text-brand-400 mb-2 flex items-center gap-2">
+                    <span id="tooltipTitle"></span>
+                    <span id="tooltipScore" class="ml-auto text-white bg-brand-600/30 px-2 py-0.5 rounded text-xs"></span>
+                </div>
+                <div id="tooltipSkills" class="flex flex-wrap gap-1.5"></div>
+            </div>
+        `;
+        document.body.appendChild(customTooltip);
+        
         new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: ['Frontend', 'Visual Design', 'Design Thinking', 'Edu UX', 'Agentic Workflows'],
+                labels: labels,
                 datasets: [{
                     label: 'Skill Proficiency',
-                    data: [85, 80, 90, 75, 80],
+                    data: dataValues,
                     fill: true,
                     backgroundColor: 'rgba(99, 102, 241, 0.2)',
                     borderColor: '#818cf8',
                     pointBackgroundColor: '#fff',
                     pointBorderColor: '#6366f1',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#6366f1'
+                    pointHoverBackgroundColor: '#6366f1',
+                    pointHoverBorderColor: '#fff',
+                    pointRadius: 5,
+                    pointHoverRadius: 8
                 }]
             },
             options: {
@@ -1225,12 +1274,51 @@
                     r: {
                         angleLines: { color: 'rgba(148, 163, 184, 0.1)' },
                         grid: { color: 'rgba(148, 163, 184, 0.1)' },
-                        pointLabels: { color: '#cbd5e1', font: { size: 12, weight: 500 } },
+                        pointLabels: { 
+                            color: '#cbd5e1', 
+                            font: { size: 11, weight: 500, family: "'Sora', sans-serif" }
+                        },
                         ticks: { display: false, backdropColor: 'transparent' },
                         suggestedMin: 0, suggestedMax: 100
                     }
                 },
-                plugins: { legend: { display: false } }
+                plugins: { 
+                    legend: { display: false },
+                    tooltip: {
+                        enabled: false,
+                        external: function(context) {
+                            const tooltip = document.getElementById('chartTooltip');
+                            
+                            if (context.tooltip.opacity === 0) {
+                                tooltip.style.opacity = '0';
+                                return;
+                            }
+                            
+                            const dataIndex = context.tooltip.dataPoints?.[0]?.dataIndex;
+                            if (dataIndex === undefined) return;
+                            
+                            const label = labels[dataIndex];
+                            const data = skillsData[label];
+                            
+                            document.getElementById('tooltipTitle').textContent = label;
+                            document.getElementById('tooltipScore').textContent = data.score + '%';
+                            
+                            const skillsContainer = document.getElementById('tooltipSkills');
+                            skillsContainer.innerHTML = data.skills.map(skill => 
+                                `<span class="px-2 py-0.5 bg-slate-800/80 rounded text-xs text-slate-200 border border-slate-700/50">${skill}</span>`
+                            ).join('');
+                            
+                            const position = context.chart.canvas.getBoundingClientRect();
+                            tooltip.style.opacity = '1';
+                            tooltip.style.left = position.left + context.tooltip.caretX + 'px';
+                            tooltip.style.top = position.top + context.tooltip.caretY - 10 + 'px';
+                            tooltip.style.transform = 'translate(-50%, -100%)';
+                        }
+                    }
+                },
+                onHover: (event, elements) => {
+                    event.native.target.style.cursor = elements.length ? 'pointer' : 'default';
+                }
             }
         });
 
