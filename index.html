@@ -2100,12 +2100,18 @@
             function initCanvas() {
                 const dpr = window.devicePixelRatio || 1;
                 const width = window.innerWidth;
-                // Use full document height so dots scroll with page
+                
+                // Temporarily collapse canvas to get true content height
+                // (prevents circular dependency where canvas height affects scrollHeight)
+                canvas.style.height = '0px';
+                
+                // Now measure actual content height
                 const height = Math.max(
                     document.body.scrollHeight,
                     document.documentElement.scrollHeight,
                     window.innerHeight
                 );
+                
                 canvas.style.width = width + 'px';
                 canvas.style.height = height + 'px';
                 canvas.width = width * dpr;
