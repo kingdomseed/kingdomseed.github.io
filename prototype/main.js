@@ -68,16 +68,17 @@ function initContactForm() {
     if (!form) return;
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Reset errors
-        document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden'));
+        // We do NOT want to prevent default immediately if we want standard submission.
+        // BUT we want to validate first.
         
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
         const messageInput = document.getElementById('message');
         
         let isValid = true;
+
+        // Reset errors
+        document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden'));
 
         // Name Validation
         if (!nameInput.value.trim()) {
@@ -98,27 +99,15 @@ function initContactForm() {
             isValid = false;
         }
 
-        if (isValid) {
-            // Simulate submission
-            console.log('Form Submitted:', {
-                name: nameInput.value,
-                email: emailInput.value,
-                message: messageInput.value
-            });
-            
-            // Show success feedback (visual)
+        if (!isValid) {
+            // If NOT valid, prevent submission
+            e.preventDefault();
+        } else {
+            // If valid, we let it submit to Formspark
+            // Optional: Add loading state visual
             const btn = form.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Message Sent!';
-            btn.classList.add('bg-green-500', 'hover:bg-green-600');
-            
-            form.reset();
-            
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.remove('bg-green-500', 'hover:bg-green-600');
-            }, 3000);
+            btn.innerText = 'Sending...';
+            // Don't disable or it might not submit depending on browser behavior with disabled buttons during submit
         }
     });
 }
