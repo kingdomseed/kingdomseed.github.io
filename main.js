@@ -388,10 +388,28 @@ new Chart(ctx, {
     }
 });
 
-// Timeline Interaction
+// Timeline Interaction with smooth animation
 function toggleDetails(id) {
     const el = document.getElementById(id);
-    el.classList.toggle('hidden');
+    const card = el.closest('.glass-panel');
+    const chevron = card.querySelector('.expand-chevron');
+    const expandText = card.querySelector('.expand-text');
+
+    if (el.classList.contains('expanded')) {
+        // Collapse
+        el.style.maxHeight = '0';
+        el.style.opacity = '0';
+        el.classList.remove('expanded');
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+        if (expandText) expandText.textContent = 'Expand Details';
+    } else {
+        // Expand
+        el.classList.add('expanded');
+        el.style.maxHeight = el.scrollHeight + 'px';
+        el.style.opacity = '1';
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+        if (expandText) expandText.textContent = 'Collapse';
+    }
 }
 
 // Portfolio Filter
