@@ -199,39 +199,99 @@
     <main id="main-content" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
 
         <!-- Hero Section -->
-        <section id="hero" class="text-center space-y-8 relative pt-8" aria-labelledby="hero-heading">
-            <h1 id="hero-heading" class="text-4xl md:text-7xl font-bold tracking-tight leading-tight reveal-up">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-purple-400 to-brand-400 animate-gradient-x">Fast. Beautiful. Accessible.</span>
-            </h1>
-            <p class="text-base md:text-xl text-slate-300 font-medium tracking-wide reveal-up reveal-delay-1">
-                Front End Lead <span class="text-slate-500">&</span> Learning Product Specialist
-            </p>
-            <p class="max-w-2xl mx-auto text-base md:text-lg text-slate-400 leading-relaxed reveal-up reveal-delay-2">
-                I build products users interact with daily. Blending <span class="text-white font-medium">production Next.js experience</span> with 11 years of <span class="text-white font-medium">learning product design</span>.
-            </p>
-            
-            <!-- Gemini Feature 1: Fit Analyzer -->
-            <div class="max-w-xl mx-auto glass-panel p-8 rounded-2xl shadow-2xl mt-10 transition-all hover:border-brand-500/30 hover-glow group reveal-up reveal-delay-2" role="region" aria-labelledby="fit-analyzer-heading">
-                <h2 id="fit-analyzer-heading" class="text-brand-400 font-semibold mb-3 flex items-center justify-center gap-2 text-base">
-                    <!-- Sparkles Icon -->
-                    <svg class="w-6 h-6 text-brand-400 filter drop-shadow-md" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                    AI Fit Analyzer
-                </h2>
-                <p id="fit-analyzer-desc" class="text-sm text-slate-400 mb-5">Type your company name or a short job description to see why I'm a match.</p>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <label for="companyInput" class="sr-only">Company name or job description</label>
-                    <input type="text" id="companyInput" placeholder="e.g. ArtWod - Gamified drawing learning..." aria-describedby="fit-analyzer-desc" class="flex-1 bg-slate-950/50 border border-slate-700/50 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 outline-none text-white placeholder-slate-600 transition-all">
-                    <button onclick="generateFitAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all shadow-lg hover:shadow-brand-500/25 whitespace-nowrap active:scale-95 flex items-center justify-center gap-2">
-                        <svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        Analyze
-                    </button>
-                </div>
-                <div id="fitResult" class="hidden mt-4 text-left bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 text-sm text-slate-200 leading-relaxed ai-response" role="region" aria-live="polite" aria-label="Analysis results"></div>
-            </div>
+        <section id="hero" class="relative pt-8 pb-12" aria-labelledby="hero-heading">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-            <div class="flex justify-center gap-4 pt-8 reveal-up reveal-delay-3">
-                <a href="#connect" class="nav-link px-8 py-3 bg-brand-600 hover:bg-brand-500 text-white rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-brand-500/20">Let's Connect</a>
-                <a href="#portfolio" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-full font-semibold transition-all border border-slate-700 hover:border-slate-500 nav-link">View Work</a>
+                <!-- Left Content (Text) -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Availability Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-brand-500/30 text-brand-400 text-xs font-semibold tracking-wide reveal-up">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        AVAILABLE FOR HIRE
+                    </div>
+
+                    <h1 id="hero-heading" class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight reveal-up reveal-delay-1">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-purple-400 to-brand-400 animate-gradient-x">Fast. Beautiful.</span>
+                        <br>
+                        <span class="text-white">Accessible.</span>
+                    </h1>
+
+                    <p class="text-base md:text-xl text-slate-300 font-medium tracking-wide reveal-up reveal-delay-2">
+                        Front End Lead <span class="text-slate-500">&</span> Learning Product Specialist
+                    </p>
+
+                    <p class="max-w-xl text-base md:text-lg text-slate-400 leading-relaxed reveal-up reveal-delay-3 mx-auto lg:mx-0">
+                        I build products users interact with daily. Blending <span class="text-white font-medium">production Next.js experience</span> with 11 years of <span class="text-white font-medium">learning product design</span>.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4 reveal-up reveal-delay-4">
+                        <a href="#connect" class="nav-link px-8 py-3 bg-brand-600 hover:bg-brand-500 text-white rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg shadow-brand-500/20">Let's Connect</a>
+                        <a href="#portfolio" class="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-full font-semibold transition-all border border-slate-700 hover:border-slate-500 nav-link">View Work</a>
+                    </div>
+                </div>
+
+                <!-- Right Visual (Code Window) -->
+                <div class="lg:col-span-5 relative reveal-up reveal-delay-3 hidden lg:block">
+                    <div class="relative rounded-xl glass-panel border-slate-700/50 shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <!-- Window Header -->
+                        <div class="bg-slate-800/50 px-4 py-3 flex items-center gap-2 border-b border-slate-700/50">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            <div class="ml-4 text-xs text-slate-500 font-mono">App.tsx</div>
+                        </div>
+                        <!-- Code Content -->
+                        <div class="p-6 font-mono text-sm leading-relaxed overflow-hidden">
+                            <div class="text-slate-500">// Building something great...</div>
+                            <div class="mt-3">
+                                <span class="text-purple-400">export default</span> <span class="text-blue-400">function</span> <span class="text-yellow-300">Portfolio</span>() {
+                            </div>
+                            <div class="pl-4 mt-1">
+                                <span class="text-purple-400">const</span> [<span class="text-blue-300">skills</span>] = <span class="text-blue-400">useState</span>([
+                            </div>
+                            <div class="pl-8">
+                                <span class="text-green-400">'Next.js'</span>, <span class="text-green-400">'React'</span>, <span class="text-green-400">'TypeScript'</span>
+                            </div>
+                            <div class="pl-4">
+                                ]);
+                            </div>
+                            <div class="pl-4 mt-2">
+                                <span class="text-purple-400">return</span> (
+                            </div>
+                            <div class="pl-8">
+                                &lt;<span class="text-red-400">Experience</span>
+                            </div>
+                            <div class="pl-12">
+                                <span class="text-blue-300">years</span>=<span class="text-orange-400">{11}</span>
+                            </div>
+                            <div class="pl-12">
+                                <span class="text-blue-300">focus</span>=<span class="text-green-400">"learning products"</span>
+                            </div>
+                            <div class="pl-12">
+                                <span class="text-blue-300">retention</span>=<span class="text-green-400">"<span id="typewriter" class="text-brand-400"></span><span class="animate-blink">|</span>"</span>
+                            </div>
+                            <div class="pl-8">
+                                /&gt;
+                            </div>
+                            <div class="pl-4">
+                                );
+                            </div>
+                            <div>}</div>
+                        </div>
+                    </div>
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-4 -left-4 glass-panel border-slate-700/50 p-4 rounded-lg shadow-xl animate-float">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-brand-500/20 p-2 rounded-lg">
+                                <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 uppercase font-semibold">Stack</div>
+                                <div class="text-white font-bold text-sm">Next.js + React</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -801,7 +861,29 @@
                 </div>
             </div>
         </section>
-        
+
+        <!-- AI Fit Analyzer Section -->
+        <section id="fit-analyzer" class="scroll-reveal" aria-labelledby="fit-analyzer-heading">
+            <div class="max-w-2xl mx-auto glass-panel p-8 md:p-10 rounded-2xl shadow-2xl transition-all hover:border-brand-500/30 hover-glow">
+                <div class="text-center space-y-4">
+                    <h2 id="fit-analyzer-heading" class="text-2xl font-bold text-white flex items-center justify-center gap-3">
+                        <svg class="w-6 h-6 text-brand-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        See If We're a Match
+                    </h2>
+                    <p id="fit-analyzer-desc" class="text-slate-400">Enter your company or role to get a personalized fit analysis.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                    <label for="companyInput" class="sr-only">Company name or job description</label>
+                    <input type="text" id="companyInput" placeholder="e.g. EdTech startup building a learning platform..." aria-describedby="fit-analyzer-desc" class="flex-1 bg-slate-950/50 border border-slate-700/50 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 outline-none text-white placeholder-slate-600 transition-all">
+                    <button onclick="generateFitAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white px-6 py-3 rounded-xl text-sm font-semibold transition-all shadow-lg hover:shadow-brand-500/25 whitespace-nowrap active:scale-95 flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Analyze Fit
+                    </button>
+                </div>
+                <div id="fitResult" class="hidden mt-6 text-left bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 text-sm text-slate-200 leading-relaxed ai-response" role="region" aria-live="polite" aria-label="Analysis results"></div>
+            </div>
+        </section>
+
         <!-- Connect Section -->
         <section id="connect" class="pt-16 scroll-reveal" aria-labelledby="connect-heading">
             <div class="glass-panel rounded-2xl p-8 md:p-10 border border-slate-700/50 relative overflow-hidden hover-glow transition-all duration-500">
