@@ -1144,3 +1144,55 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
         }
     });
 })();
+
+// =========================================
+// HERO TYPEWRITER EFFECT
+// =========================================
+(function() {
+    'use strict';
+
+    const typewriterEl = document.getElementById('typewriter');
+    if (!typewriterEl) return;
+
+    const phrases = ['85%', '4.8★', '400%↑'];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typeSpeed = 150;
+    const deleteSpeed = 100;
+    const pauseAfterType = 2000;
+    const pauseAfterDelete = 500;
+
+    function tick() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+            // Remove a character
+            typewriterEl.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+
+            if (charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(tick, pauseAfterDelete);
+            } else {
+                setTimeout(tick, deleteSpeed);
+            }
+        } else {
+            // Add a character
+            typewriterEl.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+
+            if (charIndex === currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(tick, pauseAfterType);
+            } else {
+                setTimeout(tick, typeSpeed);
+            }
+        }
+    }
+
+    // Start after page loads with a small delay
+    setTimeout(tick, 1000);
+})();

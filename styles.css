@@ -177,3 +177,21 @@ h1, h2, .font-display { font-family: 'Sora', sans-serif; }
 :focus:not(:focus-visible) {
     outline: none;
 }
+
+/* Floating animation for badges */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Blinking cursor for typewriter effect */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+.animate-blink {
+    animation: blink 1s step-end infinite;
+}
