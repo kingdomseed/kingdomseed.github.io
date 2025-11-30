@@ -195,3 +195,28 @@ h1, h2, .font-display { font-family: 'Sora', sans-serif; }
 .animate-blink {
     animation: blink 1s step-end infinite;
 }
+
+/* Expandable details animation */
+.expandable-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+}
+.expandable-details.expanded {
+    opacity: 1;
+}
+
+/* Chevron rotation */
+.expand-chevron {
+    transition: transform 0.3s ease-out;
+}
+
+/* Subtle pulse for expand buttons */
+@keyframes subtle-pulse {
+    0%, 100% { color: rgb(100 116 139); } /* slate-500 */
+    50% { color: rgb(129 140 248); } /* brand-400 */
+}
+.expand-hint {
+    animation: subtle-pulse 2.5s ease-in-out infinite;
+}
