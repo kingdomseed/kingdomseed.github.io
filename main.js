@@ -210,8 +210,8 @@ function addMessage(text, sender, isLoading = false) {
     const isUser = sender === 'user';
     
     div.className = `p-3 rounded-2xl max-w-[85%] shadow-sm ${
-        isUser 
-        ? 'bg-brand-600 text-white ml-auto rounded-tr-none border border-brand-500' 
+        isUser
+        ? 'bg-brand-400/20 text-brand-300 ml-auto rounded-tr-none border border-brand-500'
         : 'bg-slate-800 text-slate-200 mr-auto rounded-tl-none border border-slate-700'
     }`;
 
@@ -306,10 +306,10 @@ const customTooltip = document.createElement('div');
 customTooltip.id = 'chartTooltip';
 customTooltip.className = 'fixed z-50 pointer-events-none opacity-0 transition-opacity duration-200';
 customTooltip.innerHTML = `
-    <div class="glass-panel rounded-xl p-4 border border-brand-500/30 shadow-xl shadow-brand-500/10 min-w-[180px]">
+    <div class="glass-panel rounded-xl p-4 border border-brand-400/30 shadow-xl shadow-brand-400/10 min-w-[180px]">
         <div class="font-semibold text-brand-400 mb-2 flex items-center gap-2">
             <span id="tooltipTitle"></span>
-            <span id="tooltipScore" class="ml-auto text-white bg-brand-600/30 px-2 py-0.5 rounded text-xs"></span>
+            <span id="tooltipScore" class="ml-auto text-white bg-brand-400/30 px-2 py-0.5 rounded text-xs"></span>
         </div>
         <div id="tooltipSkills" class="flex flex-wrap gap-1.5"></div>
     </div>
@@ -324,11 +324,11 @@ new Chart(ctx, {
             label: 'Skill Proficiency',
             data: dataValues,
             fill: true,
-            backgroundColor: 'rgba(99, 102, 241, 0.2)',
-            borderColor: '#818cf8',
+            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+            borderColor: '#10b981',
             pointBackgroundColor: '#fff',
-            pointBorderColor: '#6366f1',
-            pointHoverBackgroundColor: '#6366f1',
+            pointBorderColor: '#059669',
+            pointHoverBackgroundColor: '#10b981',
             pointHoverBorderColor: '#fff',
             pointRadius: 5,
             pointHoverRadius: 8
@@ -419,12 +419,12 @@ function filterPortfolio(category) {
     buttons.forEach(btn => {
         const isActive = btn.textContent.toLowerCase().includes(category === 'all' ? 'all' : category);
         if(isActive) {
-           btn.classList.add('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-500/20');
-           btn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
+           btn.classList.add('bg-brand-400/10', 'border-brand-400', 'text-brand-400');
+           btn.classList.remove('bg-transparent', 'border-slate-600', 'text-slate-400');
            btn.setAttribute('aria-pressed', 'true');
         } else {
-           btn.classList.remove('bg-brand-600', 'text-white', 'shadow-lg', 'shadow-brand-500/20');
-           btn.classList.add('bg-slate-800', 'text-slate-300', 'border', 'border-slate-700');
+           btn.classList.remove('bg-brand-400/10', 'border-brand-400', 'text-brand-400');
+           btn.classList.add('bg-transparent', 'border-slate-600', 'text-slate-400');
            btn.setAttribute('aria-pressed', 'false');
         }
     });
