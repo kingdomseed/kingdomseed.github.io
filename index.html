@@ -103,8 +103,6 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Marked for Markdown parsing in chat -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- PDF Generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
@@ -880,28 +878,6 @@
             </div>
         </section>
 
-        <!-- AI Fit Analyzer Section -->
-        <section id="fit-analyzer" class="scroll-reveal" aria-labelledby="fit-analyzer-heading">
-            <div class="max-w-2xl mx-auto glass-panel p-8 md:p-10 rounded-2xl shadow-2xl transition-all hover:border-brand-500/30 hover-glow">
-                <div class="text-center space-y-4">
-                    <h2 id="fit-analyzer-heading" class="text-2xl font-bold text-white flex items-center justify-center gap-3">
-                        <svg class="w-6 h-6 text-brand-400" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-                        See If We're a Match
-                    </h2>
-                    <p id="fit-analyzer-desc" class="text-slate-400">Enter your company or role to get a personalized fit analysis.</p>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3 mt-6">
-                    <label for="companyInput" class="sr-only">Company name or job description</label>
-                    <input type="text" id="companyInput" placeholder="e.g. EdTech startup building a learning platform..." aria-describedby="fit-analyzer-desc" class="flex-1 bg-slate-950/50 border border-slate-700/50 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 outline-none text-white placeholder-slate-600 transition-all">
-                    <button onclick="generateFitAnalysis()" id="analyzeBtn" class="btn-ghost px-6 py-3 rounded-xl text-sm font-semibold whitespace-nowrap active:scale-95 flex items-center justify-center gap-2">
-                        <svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        Analyze Fit
-                    </button>
-                </div>
-                <div id="fitResult" class="hidden mt-6 text-left bg-slate-800/40 p-5 rounded-xl border border-slate-700/50 text-sm text-slate-200 leading-relaxed ai-response" role="region" aria-live="polite" aria-label="Analysis results"></div>
-            </div>
-        </section>
-
         <!-- Connect Section -->
         <section id="connect" class="pt-16 scroll-reveal" aria-labelledby="connect-heading">
             <div class="glass-panel rounded-2xl p-8 md:p-10 border border-slate-700/50 relative overflow-hidden hover-glow transition-all duration-500">
@@ -1281,48 +1257,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Gemini Chat Widget -->
-    <div id="chatWidget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end" role="region" aria-label="AI Chat Assistant">
-        <!-- Chat Window -->
-        <div id="chatWindow" class="hidden w-80 sm:w-96 glass-panel border border-slate-700/50 rounded-2xl shadow-2xl overflow-hidden mb-4 flex flex-col h-[500px]" role="dialog" aria-labelledby="chat-title" aria-modal="false">
-            <div class="bg-slate-900/80 p-4 border-b border-slate-700/50 flex justify-between items-center backdrop-blur-sm">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse" aria-hidden="true"></span>
-                    <h3 id="chat-title" class="font-semibold text-white">Ask AI Jason</h3>
-                </div>
-                <button onclick="toggleChat()" class="text-slate-400 hover:text-white" aria-label="Close chat">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            
-            <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm scrollbar-thin bg-slate-900/30" role="log" aria-live="polite" aria-label="Chat messages">
-                <div class="bg-slate-800 p-3 rounded-2xl rounded-tl-none max-w-[85%] border border-slate-700 shadow-sm">
-                    <p class="text-slate-200">Hi! I'm Jason's AI assistant. Ask me anything about his resume, experience, or skills.</p>
-                </div>
-            </div>
-
-            <div class="p-4 bg-slate-900/90 border-t border-slate-700/50 backdrop-blur-sm">
-                <div class="flex gap-2">
-                    <label for="chatInput" class="sr-only">Type your question</label>
-                    <input type="text" id="chatInput" placeholder="Ask a question..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-brand-500 outline-none text-white placeholder-slate-600 transition-all" onkeypress="handleChatKey(event)">
-                    <button onclick="sendChatMessage()" id="chatSendBtn" class="btn-ghost p-3 rounded-xl active:scale-95" aria-label="Send message">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" aria-hidden="true" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Toggle Button -->
-        <button onclick="toggleChat()" class="animate-soft-pulse btn-ghost p-4 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center gap-3 group" aria-label="Open AI chat assistant" aria-expanded="false" aria-controls="chatWindow">
-            <span class="h-6 w-6 flex items-center justify-center" aria-hidden="true">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-            </span>
-            <span class="font-semibold hidden sm:inline">Ask AI Jason</span>
-        </button>
     </div>
 
     <!-- Main Application JavaScript -->

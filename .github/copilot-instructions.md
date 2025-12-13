@@ -8,7 +8,7 @@ This is Jason Holt's interactive resume/portfolio site hosted on GitHub Pages at
 ### No Build Pipeline
 - **Tailwind CSS via CDN**: Configured inline with `tailwind.config` in `<script>` tags (see `index.html` lines 107-125)
 - **No npm/node**: Zero build step. Just open HTML files directly or use `python3 -m http.server 8000`
-- **Dependencies via CDN**: Chart.js, Marked.js, html2pdf.js, Google Fonts
+- **Dependencies via CDN**: Chart.js, html2pdf.js, Google Fonts
 
 ### File Structure
 | Path | Purpose |
@@ -17,9 +17,6 @@ This is Jason Holt's interactive resume/portfolio site hosted on GitHub Pages at
 | `chat/index.html` | BinaryLoom AI chat landing page |
 | `prototype/` | Alternate portfolio design with distinct styling |
 | `privacy/`, `terms/` | Legal pages |
-
-### Gemini AI Integration
-The AI "Fit Analyzer" in `main.js` uses a locked Gemini API key (domain-restricted). The `resumeContext` constant (lines 37-100) contains comprehensive resume data used for AI prompts.
 
 ## Design Conventions
 
