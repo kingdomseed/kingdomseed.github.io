@@ -311,7 +311,7 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
     });
 });
 
-// --- Hero Code Card Flip (Flutter/Dart ↔ Python/PyTorch) ---
+// --- Hero Code Card Flip ---
 (function() {
     'use strict';
 
