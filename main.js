@@ -245,6 +245,7 @@ const observerOptions = {
 function animateCountUp(element) {
     const target = parseInt(element.dataset.count);
     const suffix = element.dataset.suffix || '';
+    const numberFormatter = new Intl.NumberFormat('en-US');
     const duration = 2000;
     const startTime = performance.now();
     
@@ -254,12 +255,12 @@ function animateCountUp(element) {
         // Easing function (ease-out)
         const easeOut = 1 - Math.pow(1 - progress, 3);
         const current = Math.floor(easeOut * target);
-        element.textContent = current + suffix;
+        element.textContent = numberFormatter.format(current) + suffix;
         
         if (progress < 1) {
             requestAnimationFrame(update);
         } else {
-            element.textContent = target + suffix;
+            element.textContent = numberFormatter.format(target) + suffix;
         }
     }
     requestAnimationFrame(update);

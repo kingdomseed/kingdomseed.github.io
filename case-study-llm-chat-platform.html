@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study | LLM Chat Platform (LibreChat) — Jason Holt</title>
+  <meta name="description" content="Case study: deployed and operated a private, self-hosted LibreChat instance on Azure AI Foundry for coursework and RAG experimentation." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.jasonholt.dev/case-study-llm-chat-platform.html" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#27272a] via-[#18181b] to-[#09090b] text-zinc-100 antialiased selection:bg-brand-400 selection:text-zinc-900 min-h-screen">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <header class="space-y-4">
+      <a href="index.html#portfolio" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
+        <span aria-hidden="true">←</span>
+        Back to portfolio
+      </a>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Case Study: LLM Chat Platform (LibreChat)</h1>
+      <p class="text-slate-300 leading-relaxed">
+        Deployed and operated a private, self-hosted LibreChat instance on Azure AI Foundry for coursework and experimentation with document workflows and retrieval‑augmented generation (RAG).
+      </p>
+      <p class="text-xs text-slate-500">Last updated: January 2026</p>
+    </header>
+
+    <section class="glass-panel rounded-2xl p-6 md:p-8 border border-slate-700/50 space-y-6">
+      <h2 class="text-xl font-semibold text-white">Summary</h2>
+      <ul class="list-disc list-outside ml-5 text-slate-300 space-y-2">
+        <li><strong class="text-white">What it is:</strong> A private LLM chat workspace with file uploads and RAG-backed document search.</li>
+        <li><strong class="text-white">Who it’s for:</strong> A small group (classmates + personal use) for study and experimentation.</li>
+        <li><strong class="text-white">My role:</strong> Deployment, configuration, operations, and documenting the system end‑to‑end.</li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-white">Architecture (high level)</h2>
+      <div class="glass-panel rounded-2xl p-6 border border-slate-700/50">
+        <ul class="list-disc list-outside ml-5 text-slate-300 space-y-2">
+          <li><strong class="text-white">Compute:</strong> Azure VM running Docker Compose.</li>
+          <li><strong class="text-white">LLM access:</strong> Azure AI Foundry (model deployments/configuration).</li>
+          <li><strong class="text-white">Storage:</strong> Azure Blob Storage for file storage.</li>
+          <li><strong class="text-white">Database:</strong> MongoDB Atlas for application data.</li>
+          <li><strong class="text-white">RAG workflow:</strong> Document uploads + vector search (implementation details in progress).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-white">What I built / configured</h2>
+      <div class="glass-panel rounded-2xl p-6 border border-slate-700/50">
+        <ul class="list-disc list-outside ml-5 text-slate-300 space-y-2">
+          <li>Deployed the stack and established a repeatable deployment process.</li>
+          <li>Configured authentication, file storage, and document ingestion workflows.</li>
+          <li>Built/maintained runbooks and operational documentation for stability.</li>
+          <li>Set up usage/cost monitoring workflows to keep spending predictable.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-white">Key learnings</h2>
+      <div class="glass-panel rounded-2xl p-6 border border-slate-700/50">
+        <p class="text-slate-400 text-sm mb-3">Add your learnings here (5–8 bullets). Examples you can adapt:</p>
+        <ul class="list-disc list-outside ml-5 text-slate-300 space-y-2">
+          <li>Ops is product work: good runbooks reduce downtime and cognitive load.</li>
+          <li>RAG quality depends heavily on ingestion, chunking, and metadata, not just the model.</li>
+          <li>Small-group “production” still needs guardrails (auth, backups, cost limits).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-white">Appendix: configured models (as of Oct–Dec 2025)</h2>
+      <div class="glass-panel rounded-2xl p-6 border border-slate-700/50 space-y-3">
+        <p class="text-slate-400 text-sm">
+          This list is included for completeness, not as the main value proposition.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-300">
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">gpt-5.2-chat</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">gpt-5.2</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">gpt-5.2-codex</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">gpt-5-pro</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">gpt-5-mini</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">Mistral-Large-3</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">mistral-medium-2505</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">DeepSeek-R1-0528</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">MAI-DS-R1</div>
+          <div class="px-3 py-2 rounded-lg bg-slate-800/50 border border-slate-700">Kimi-K2-Thinking</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
