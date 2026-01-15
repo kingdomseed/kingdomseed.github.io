@@ -318,22 +318,17 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
     const card = document.getElementById('heroCodeCard');
     if (!card) return;
 
-    const flutterBlock = document.getElementById('heroCodeFlutter');
-    const pythonBlock = document.getElementById('heroCodePython');
-    const filenameEl = document.getElementById('heroCodeFilename');
     const stackEl = document.getElementById('heroCodeStack');
 
-    if (!flutterBlock || !pythonBlock || !filenameEl || !stackEl) return;
+    if (!stackEl) return;
 
     function showPython() {
-        filenameEl.textContent = 'model.py';
         stackEl.textContent = 'Python + PyTorch';
         card.dataset.codeSide = 'python';
         card.setAttribute('aria-pressed', 'true');
     }
 
     function showFlutter() {
-        filenameEl.textContent = 'main.dart';
         stackEl.textContent = 'Flutter + Dart';
         card.dataset.codeSide = 'flutter';
         card.setAttribute('aria-pressed', 'false');

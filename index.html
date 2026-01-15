@@ -235,71 +235,81 @@
                 <!-- Right Visual (Code Window) -->
                 <div class="lg:col-span-5 relative reveal-up reveal-delay-3 hidden lg:block">
                     <div id="heroCodeCard" class="relative rounded-xl glass-panel border-slate-700/50 shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-400/60" role="button" tabindex="0" aria-label="Flip code sample">
-                        <!-- Window Header -->
-                        <div class="bg-slate-800/50 px-4 py-3 flex items-center gap-2 border-b border-slate-700/50">
-                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                            <div id="heroCodeFilename" class="ml-4 text-xs text-slate-500 font-mono">main.dart</div>
-                        </div>
-                        <!-- Code Content -->
-                        <div class="p-6 font-mono text-sm leading-relaxed overflow-hidden">
-                            <div class="mt-3 hero-code-flip">
-                                <div class="hero-code-flip-inner">
-                                    <!-- Flutter/Dart -->
-                                    <div id="heroCodeFlutter" class="hero-code-face hero-code-front">
-                                <div>
-                                    <span class="text-purple-400">class</span> <span class="text-yellow-300">Portfolio</span> <span class="text-purple-400">extends</span> <span class="text-blue-400">StatelessWidget</span> {
-                                </div>
-                                <div class="pl-4">
-                                    <span class="text-purple-400">const</span> <span class="text-yellow-300">Portfolio</span>({<span class="text-purple-400">super</span>.<span class="text-blue-300">key</span>});
-                                </div>
-                                <div class="pl-4 mt-2">
-                                    <span class="text-purple-400">@override</span>
-                                </div>
-                                <div class="pl-4">
-                                    <span class="text-blue-400">Widget</span> <span class="text-yellow-300">build</span>(<span class="text-blue-400">BuildContext</span> <span class="text-blue-300">context</span>) {
-                                </div>
-                                <div class="pl-8">
-                                    <span class="text-purple-400">final</span> <span class="text-blue-300">tech</span> = [
-                                </div>
-                                <div class="pl-12">
-                                    <span class="text-green-400">'Flutter'</span>, <span class="text-green-400">'Dart'</span>, <span class="text-green-400">'Firebase'</span>
-                                </div>
-                                <div class="pl-8">
-                                    ];
-                                </div>
-                                <div class="pl-8 mt-2">
-                                    <span class="text-purple-400">return</span> <span class="text-blue-400">Scaffold</span>(
-                                </div>
-                                <div class="pl-12">
-                                    <span class="text-blue-300">body</span>: <span class="text-blue-400">Center</span>(
-                                </div>
-                                <div class="pl-16">
-                                    <span class="text-blue-300">child</span>: <span class="text-blue-400">Text</span>(
-                                </div>
-                                <div class="pl-20">
-                                    <span class="text-green-400">'Shipping cross-platform products'</span>,
-                                </div>
-                                <div class="pl-16">
-                                    ),
-                                </div>
-                                <div class="pl-12">
-                                    ),
-                                </div>
-                                <div class="pl-8">
-                                    );
-                                </div>
-                                <div class="pl-4">
-                                    }
-                                </div>
-                                <div>
-                                    }
-                                </div>
+                        <div class="hero-code-flip">
+                            <div class="hero-code-flip-inner">
+                                <!-- Flutter/Dart (Front) -->
+                                <div class="hero-code-face hero-code-front">
+                                    <!-- Window Header -->
+                                    <div class="bg-slate-800/50 px-4 py-3 flex items-center gap-2 border-b border-slate-700/50">
+                                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                        <div class="ml-4 text-xs text-slate-500 font-mono">main.dart</div>
                                     </div>
+                                    <!-- Code Content -->
+                                    <div class="p-6 font-mono text-sm leading-relaxed overflow-hidden">
+                                        <div>
+                                            <span class="text-purple-400">class</span> <span class="text-yellow-300">Portfolio</span> <span class="text-purple-400">extends</span> <span class="text-blue-400">StatelessWidget</span> {
+                                        </div>
+                                        <div class="pl-4">
+                                            <span class="text-purple-400">const</span> <span class="text-yellow-300">Portfolio</span>({<span class="text-purple-400">super</span>.<span class="text-blue-300">key</span>});
+                                        </div>
+                                        <div class="pl-4 mt-2">
+                                            <span class="text-purple-400">@override</span>
+                                        </div>
+                                        <div class="pl-4">
+                                            <span class="text-blue-400">Widget</span> <span class="text-yellow-300">build</span>(<span class="text-blue-400">BuildContext</span> <span class="text-blue-300">context</span>) {
+                                        </div>
+                                        <div class="pl-8">
+                                            <span class="text-purple-400">final</span> <span class="text-blue-300">tech</span> = [
+                                        </div>
+                                        <div class="pl-12">
+                                            <span class="text-green-400">'Flutter'</span>, <span class="text-green-400">'Dart'</span>, <span class="text-green-400">'Firebase'</span>
+                                        </div>
+                                        <div class="pl-8">
+                                            ];
+                                        </div>
+                                        <div class="pl-8 mt-2">
+                                            <span class="text-purple-400">return</span> <span class="text-blue-400">Scaffold</span>(
+                                        </div>
+                                        <div class="pl-12">
+                                            <span class="text-blue-300">body</span>: <span class="text-blue-400">Center</span>(
+                                        </div>
+                                        <div class="pl-16">
+                                            <span class="text-blue-300">child</span>: <span class="text-blue-400">Text</span>(
+                                        </div>
+                                        <div class="pl-20">
+                                            <span class="text-green-400">'Shipping cross-platform products'</span>,
+                                        </div>
+                                        <div class="pl-16">
+                                            ),
+                                        </div>
+                                        <div class="pl-12">
+                                            ),
+                                        </div>
+                                        <div class="pl-8">
+                                            );
+                                        </div>
+                                        <div class="pl-4">
+                                            }
+                                        </div>
+                                        <div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
 
-                                    <!-- Python / PyTorch -->
-                                    <div id="heroCodePython" class="hero-code-face hero-code-back">
+                                <!-- Python / PyTorch (Back) -->
+                                <div class="hero-code-face hero-code-back">
+                                    <!-- Window Header -->
+                                    <div class="bg-slate-800/50 px-4 py-3 flex items-center gap-2 border-b border-slate-700/50">
+                                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                                        <div class="ml-4 text-xs text-slate-500 font-mono">model.py</div>
+                                    </div>
+                                    <!-- Code Content -->
+                                    <div class="p-6 font-mono text-sm leading-relaxed overflow-hidden">
                                 <div>
                                     <span class="text-purple-400">import</span> <span class="text-blue-300">torch</span>
                                 </div>
