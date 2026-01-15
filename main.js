@@ -326,19 +326,17 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
     if (!flutterBlock || !pythonBlock || !filenameEl || !stackEl) return;
 
     function showPython() {
-        flutterBlock.hidden = true;
-        pythonBlock.hidden = false;
         filenameEl.textContent = 'model.py';
         stackEl.textContent = 'Python + PyTorch';
         card.dataset.codeSide = 'python';
+        card.setAttribute('aria-pressed', 'true');
     }
 
     function showFlutter() {
-        flutterBlock.hidden = false;
-        pythonBlock.hidden = true;
         filenameEl.textContent = 'main.dart';
         stackEl.textContent = 'Flutter + Dart';
         card.dataset.codeSide = 'flutter';
+        card.setAttribute('aria-pressed', 'false');
     }
 
     function toggle() {

@@ -246,8 +246,10 @@
                         <div class="p-6 font-mono text-sm leading-relaxed overflow-hidden">
                             <div class="text-slate-500">// Click to flip: Flutter/Dart ↔ Python/PyTorch</div>
 
-                            <!-- Flutter/Dart -->
-                            <div id="heroCodeFlutter" class="mt-3">
+                            <div class="mt-3 hero-code-flip">
+                                <div class="hero-code-flip-inner">
+                                    <!-- Flutter/Dart -->
+                                    <div id="heroCodeFlutter" class="hero-code-face hero-code-front">
                                 <div>
                                     <span class="text-purple-400">class</span> <span class="text-yellow-300">Portfolio</span> <span class="text-purple-400">extends</span> <span class="text-blue-400">StatelessWidget</span> {
                                 </div>
@@ -296,12 +298,11 @@
                                 <div>
                                     }
                                 </div>
-                            </div>
+                                    </div>
 
-                            <!-- Python / PyTorch -->
-                            <div id="heroCodePython" class="mt-3" hidden>
-                                <div><span class="text-slate-500"># Click to flip back: Python/PyTorch → Flutter/Dart</span></div>
-                                <div class="mt-3">
+                                    <!-- Python / PyTorch -->
+                                    <div id="heroCodePython" class="hero-code-face hero-code-back">
+                                <div>
                                     <span class="text-purple-400">import</span> <span class="text-blue-300">torch</span>
                                 </div>
                                 <div>
@@ -334,6 +335,8 @@
                                 </div>
                                 <div class="pl-8">
                                     <span class="text-purple-400">return</span> <span class="text-blue-300">self</span>.<span class="text-blue-300">net</span>(<span class="text-blue-300">x</span>)
+                                </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
