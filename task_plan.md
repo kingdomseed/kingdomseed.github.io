@@ -30,9 +30,9 @@ Phase 3
 - **Status:** complete
 
 ### Phase 4: Integrate Into Site + QA
-- [ ] Map drafted copy to `index.html` sections (minimal structural changes)
+- [x] Map drafted copy to `index.html` sections (minimal structural changes)
 - [ ] Verify consistency with resume/LinkedIn/public artifacts (no new claims)
-- [ ] Check for unsupported superlatives (“expert”, “world-class”, etc.)
+- [x] Check for unsupported superlatives (“expert”, “world-class”, etc.)
 - [ ] Run a final “truth + tone” review checklist
 - **Status:** in_progress
 

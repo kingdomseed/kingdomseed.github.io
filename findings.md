@@ -174,7 +174,7 @@ Replace retention with MAU and keep everything definition-safe.
 - If you want one crisp value statement: emphasize **ops + architecture** (“I can run it”), not model count (“I can list it”).
 
 ## AI Platform: Configured models (from `/Users/jholt/Documents/librechat-setup/configs/librechat.yaml`)
-> Note: The model list in that repo’s `README.md` appears to differ from `configs/librechat.yaml` (README mentions GPT-5.1 + Claude; config shows GPT-5.2 variants and no Claude). Confirm which is current before publishing exact names.
+Confirmed: `configs/librechat.yaml` is the source of truth; the repo `README.md` is out of date (Claude was tested previously but is not in the current config).
 
 Models seen in `configs/librechat.yaml`:
 - gpt-5.2-chat

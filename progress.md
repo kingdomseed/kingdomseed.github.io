@@ -32,16 +32,29 @@
   - `findings.md` (updated)
 
 ### Phase 3: Draft Copy (Truth-Checked)
-- **Status:** in_progress
+- **Status:** complete
 - Actions taken:
   - Captured final positioning and metric decisions (Avg MAU 90d; drop retention; AI platform as case study).
   - Added a case study outline template for the LibreChat/Azure deployment.
   - Updated `index.html` meta + hero positioning, replaced stats with Avg MAU (Oct–Dec 2025), and reframed the AI platform as a case study.
   - Added a new case study stub page for the LibreChat deployment.
+  - Confirmed LibreChat model source of truth is `configs/librechat.yaml` (README is out of date).
 - Files created/modified:
   - `task_plan.md` (updated)
   - `findings.md` (updated)
   - `docs/case_study_llm_chat_platform.md` (created)
+  - `index.html` (updated)
+  - `main.js` (updated)
+  - `case-study-llm-chat-platform.html` (created)
+
+### Phase 4: Integrate Into Site + QA
+- **Status:** in_progress
+- Actions taken:
+  - Integrated updated positioning/metrics into `index.html` and removed high-risk/unsupported claims (retention, growth %, “7 LLMs” framing).
+  - Sanity-checked that the case study page and updated strings render via a local static server.
+  - Updated hero “code window” to show Flutter/Dart and added a flip interaction to show Python/PyTorch.
+  - Restored `main` branch upstream tracking to `origin/main`.
+- Files created/modified:
   - `index.html` (updated)
   - `main.js` (updated)
   - `case-study-llm-chat-platform.html` (created)
@@ -66,8 +79,8 @@
 ## 5-Question Reboot Check
 | Question | Answer |
 |----------|--------|
-| Where am I? | Phase 3 |
-| Where am I going? | Phases 4–5 |
+| Where am I? | Phase 4 |
+| Where am I going? | Phase 5 |
 | What's the goal? | Plan and execute a truthful, professional content update. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Finalized positioning + metrics policy; created an AI platform case study outline; ready to draft final copy blocks. |
+| What have I done? | Updated live site copy (hero/meta, stats, portfolio, experience) and added a LibreChat case-study page stub. |

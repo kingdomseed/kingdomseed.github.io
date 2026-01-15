@@ -311,6 +311,56 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
     });
 });
 
+// --- Hero Code Card Flip (Flutter/Dart ↔ Python/PyTorch) ---
+(function() {
+    'use strict';
+
+    const card = document.getElementById('heroCodeCard');
+    if (!card) return;
+
+    const flutterBlock = document.getElementById('heroCodeFlutter');
+    const pythonBlock = document.getElementById('heroCodePython');
+    const filenameEl = document.getElementById('heroCodeFilename');
+    const stackEl = document.getElementById('heroCodeStack');
+
+    if (!flutterBlock || !pythonBlock || !filenameEl || !stackEl) return;
+
+    function showPython() {
+        flutterBlock.hidden = true;
+        pythonBlock.hidden = false;
+        filenameEl.textContent = 'model.py';
+        stackEl.textContent = 'Python + PyTorch';
+        card.dataset.codeSide = 'python';
+    }
+
+    function showFlutter() {
+        flutterBlock.hidden = false;
+        pythonBlock.hidden = true;
+        filenameEl.textContent = 'main.dart';
+        stackEl.textContent = 'Flutter + Dart';
+        card.dataset.codeSide = 'flutter';
+    }
+
+    function toggle() {
+        if (card.dataset.codeSide === 'python') {
+            showFlutter();
+        } else {
+            showPython();
+        }
+    }
+
+    // Default side
+    showFlutter();
+
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+        }
+    });
+})();
+
 // =========================================
 // INTERACTIVE DOT MATRIX BACKGROUND
 // =========================================

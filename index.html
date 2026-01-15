@@ -234,51 +234,108 @@
 
                 <!-- Right Visual (Code Window) -->
                 <div class="lg:col-span-5 relative reveal-up reveal-delay-3 hidden lg:block">
-                    <div class="relative rounded-xl glass-panel border-slate-700/50 shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                    <div id="heroCodeCard" class="relative rounded-xl glass-panel border-slate-700/50 shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 transition-transform duration-500 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-400/60" role="button" tabindex="0" aria-label="Flip code sample (Flutter/Dart ↔ Python/PyTorch)">
                         <!-- Window Header -->
                         <div class="bg-slate-800/50 px-4 py-3 flex items-center gap-2 border-b border-slate-700/50">
                             <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
                             <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                             <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                            <div class="ml-4 text-xs text-slate-500 font-mono">App.tsx</div>
+                            <div id="heroCodeFilename" class="ml-4 text-xs text-slate-500 font-mono">main.dart</div>
                         </div>
                         <!-- Code Content -->
                         <div class="p-6 font-mono text-sm leading-relaxed overflow-hidden">
-                            <div class="text-slate-500">// Building something great...</div>
-                            <div class="mt-3">
-                                <span class="text-purple-400">export default</span> <span class="text-blue-400">function</span> <span class="text-yellow-300">Portfolio</span>() {
+                            <div class="text-slate-500">// Click to flip: Flutter/Dart ↔ Python/PyTorch</div>
+
+                            <!-- Flutter/Dart -->
+                            <div id="heroCodeFlutter" class="mt-3">
+                                <div>
+                                    <span class="text-purple-400">class</span> <span class="text-yellow-300">Portfolio</span> <span class="text-purple-400">extends</span> <span class="text-blue-400">StatelessWidget</span> {
+                                </div>
+                                <div class="pl-4">
+                                    <span class="text-purple-400">const</span> <span class="text-yellow-300">Portfolio</span>({<span class="text-purple-400">super</span>.<span class="text-blue-300">key</span>});
+                                </div>
+                                <div class="pl-4 mt-2">
+                                    <span class="text-purple-400">@override</span>
+                                </div>
+                                <div class="pl-4">
+                                    <span class="text-blue-400">Widget</span> <span class="text-yellow-300">build</span>(<span class="text-blue-400">BuildContext</span> <span class="text-blue-300">context</span>) {
+                                </div>
+                                <div class="pl-8">
+                                    <span class="text-purple-400">final</span> <span class="text-blue-300">tech</span> = [
+                                </div>
+                                <div class="pl-12">
+                                    <span class="text-green-400">'Flutter'</span>, <span class="text-green-400">'Dart'</span>, <span class="text-green-400">'Firebase'</span>
+                                </div>
+                                <div class="pl-8">
+                                    ];
+                                </div>
+                                <div class="pl-8 mt-2">
+                                    <span class="text-purple-400">return</span> <span class="text-blue-400">Scaffold</span>(
+                                </div>
+                                <div class="pl-12">
+                                    <span class="text-blue-300">body</span>: <span class="text-blue-400">Center</span>(
+                                </div>
+                                <div class="pl-16">
+                                    <span class="text-blue-300">child</span>: <span class="text-blue-400">Text</span>(
+                                </div>
+                                <div class="pl-20">
+                                    <span class="text-green-400">'Shipping cross-platform products'</span>,
+                                </div>
+                                <div class="pl-16">
+                                    ),
+                                </div>
+                                <div class="pl-12">
+                                    ),
+                                </div>
+                                <div class="pl-8">
+                                    );
+                                </div>
+                                <div class="pl-4">
+                                    }
+                                </div>
+                                <div>
+                                    }
+                                </div>
                             </div>
-                            <div class="pl-4 mt-1">
-                                <span class="text-purple-400">const</span> [<span class="text-blue-300">skills</span>] = <span class="text-blue-400">useState</span>([
+
+                            <!-- Python / PyTorch -->
+                            <div id="heroCodePython" class="mt-3" hidden>
+                                <div><span class="text-slate-500"># Click to flip back: Python/PyTorch → Flutter/Dart</span></div>
+                                <div class="mt-3">
+                                    <span class="text-purple-400">import</span> <span class="text-blue-300">torch</span>
+                                </div>
+                                <div>
+                                    <span class="text-purple-400">import</span> <span class="text-blue-300">torch</span>.<span class="text-blue-300">nn</span> <span class="text-purple-400">as</span> <span class="text-blue-300">nn</span>
+                                </div>
+                                <div class="mt-3">
+                                    <span class="text-purple-400">class</span> <span class="text-yellow-300">TinyClassifier</span>(<span class="text-blue-300">nn</span>.<span class="text-yellow-300">Module</span>):
+                                </div>
+                                <div class="pl-4">
+                                    <span class="text-purple-400">def</span> <span class="text-yellow-300">__init__</span>(<span class="text-blue-300">self</span>, <span class="text-blue-300">in_dim</span>=<span class="text-orange-400">256</span>):
+                                </div>
+                                <div class="pl-8">
+                                    <span class="text-purple-400">super</span>().<span class="text-yellow-300">__init__</span>()
+                                </div>
+                                <div class="pl-8">
+                                    <span class="text-blue-300">self</span>.<span class="text-blue-300">net</span> = <span class="text-blue-300">nn</span>.<span class="text-yellow-300">Sequential</span>(
+                                </div>
+                                <div class="pl-12">
+                                    <span class="text-blue-300">nn</span>.<span class="text-yellow-300">Linear</span>(<span class="text-blue-300">in_dim</span>, <span class="text-orange-400">128</span>),
+                                </div>
+                                <div class="pl-12">
+                                    <span class="text-blue-300">nn</span>.<span class="text-yellow-300">ReLU</span>(),
+                                </div>
+                                <div class="pl-12">
+                                    <span class="text-blue-300">nn</span>.<span class="text-yellow-300">Linear</span>(<span class="text-orange-400">128</span>, <span class="text-orange-400">2</span>),
+                                </div>
+                                <div class="pl-8">)</div>
+                                <div class="pl-4 mt-2">
+                                    <span class="text-purple-400">def</span> <span class="text-yellow-300">forward</span>(<span class="text-blue-300">self</span>, <span class="text-blue-300">x</span>):
+                                </div>
+                                <div class="pl-8">
+                                    <span class="text-purple-400">return</span> <span class="text-blue-300">self</span>.<span class="text-blue-300">net</span>(<span class="text-blue-300">x</span>)
+                                </div>
                             </div>
-                            <div class="pl-8">
-                                <span class="text-green-400">'Next.js'</span>, <span class="text-green-400">'React'</span>, <span class="text-green-400">'TypeScript'</span>
-                            </div>
-                            <div class="pl-4">
-                                ]);
-                            </div>
-                            <div class="pl-4 mt-2">
-                                <span class="text-purple-400">return</span> (
-                            </div>
-                            <div class="pl-8">
-                                &lt;<span class="text-red-400">Experience</span>
-                            </div>
-                            <div class="pl-12">
-                                <span class="text-blue-300">years</span>=<span class="text-orange-400">{11}</span>
-                            </div>
-                            <div class="pl-12">
-                                <span class="text-blue-300">focus</span>=<span class="text-green-400">"learning products"</span>
-                            </div>
-                            <div class="pl-12">
-                                <span class="text-blue-300">retention</span>=<span class="text-green-400">"<span id="typewriter" class="text-brand-400"></span><span class="animate-blink">|</span>"</span>
-                            </div>
-                            <div class="pl-8">
-                                /&gt;
-                            </div>
-                            <div class="pl-4">
-                                );
-                            </div>
-                            <div>}</div>
                         </div>
                     </div>
                     <!-- Floating Badge -->
@@ -289,7 +346,7 @@
                             </div>
                             <div>
                                 <div class="text-xs text-slate-400 uppercase font-semibold">Stack</div>
-                                <div class="text-white font-bold text-sm">Next.js + React</div>
+                                <div id="heroCodeStack" class="text-white font-bold text-sm">Flutter + Dart</div>
                             </div>
                         </div>
                     </div>
@@ -718,14 +775,14 @@
                                 <h3 class="text-2xl font-bold text-white">University of Stuttgart</h3>
                             </div>
                             <p class="text-lg text-slate-300">M.Sc. in Computational Linguistics</p>
-                            <p class="text-slate-500 mt-2 text-sm leading-relaxed">Focus on Natural Language Processing and AI integration.</p>
+                            <p class="text-slate-500 mt-2 text-sm leading-relaxed">Started Oct 2025 • Focus on Natural Language Processing and AI integration.</p>
                         </div>
                         <div class="flex items-center gap-2 mt-6 text-sm font-medium uppercase tracking-wide text-brand-400">
                             <span class="relative flex h-2.5 w-2.5">
                               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
                               <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-500"></span>
                             </span>
-                            In Progress (Expected 2027)
+                            In Progress (Expected Summer 2027)
                         </div>
                     </div>
 
