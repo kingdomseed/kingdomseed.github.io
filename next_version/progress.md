@@ -3,7 +3,7 @@
 ## Session: 2026-01-16
 
 ### Current Status
-- **Phase:** 3 - Frontend Scaffold (React)
+- **Phase:** 5 - AI Features (end-to-end working)
 - **Started:** 2026-01-16
 
 ### Actions Taken
@@ -40,12 +40,19 @@
   - Locked LLM provider to Azure OpenAI.
   - Deployed Edge Functions in the Supabase project: `chat`, `analyze-jd` (Azure OpenAI `/openai/responses`).
 - Wired the Vite frontend chat + JD analyzer UI to call the deployed Supabase Edge Functions (via `supabase.functions.invoke`).
+- Switched client auth to spec-literal env vars: `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` (removed publishable-key pathway).
+- Implemented React Query DB reads via `useCandidateData` (profile/experience/skills) and wired Experience + Skills sections to live data.
+- Implemented Zustand chat state (drawer open/input/messages/session) and connected it to `useChat`.
+- Fixed Azure OpenAI Responses API payload shape (`messages` → `input` + `instructions`) and added a fallback when `reasoning.effort=low` is unsupported.
+- Added RLS public-read policies + minimal seed data (single candidate row + one experience + initial skills) via migration, and pushed to remote.
 
 ### Test Results
 | Test | Expected | Actual | Status |
 |------|----------|--------|--------|
 | `npm run build` (Vite app) | Successful build | Successful build | ✅ |
 | `npm run lint` (ESLint) | No errors | No errors | ✅ |
+| Supabase `/chat` edge function | 200 + assistant reply | 200 + assistant reply | ✅ |
+| Supabase `/analyze-jd` edge function | 200 + JSON assessment | 200 + JSON assessment | ✅ |
 
 ### Errors
 | Error | Resolution |

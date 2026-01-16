@@ -55,3 +55,7 @@ The spec hardcodes a palette. You want the spec palette as the default, but to s
 Decision:
 - Default theme = spec values (`next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:13`)
 - Additional themes = `next_version/color_test.html` variants
+
+## Implementation note: Supabase key choice
+To stay spec-literal and keep Edge Functions JWT verification enabled, the Vite app uses the legacy anon JWT key:
+- `VITE_SUPABASE_ANON_KEY`

@@ -75,12 +75,19 @@ Reference map: `next_version/spec_map.md:1`
 
 ## Supabase Project (Created)
 - Project ref: `geuehhdhyrssumatwufs`
-- Vite app expects:
-  - `VITE_SUPABASE_URL` (project URL)
-  - Either `VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY` or `VITE_SUPABASE_ANON_KEY` (Supabase dashboard labels vary)
+- Vite app expects (spec-literal):
+  - `VITE_SUPABASE_URL`
+  - `VITE_SUPABASE_ANON_KEY` (legacy JWT anon key)
 - Supabase CLI is installed and the new app repo is linked to the project (no secrets committed).
-- Database schema migration has been pushed (tables created; RLS enabled; policies still to be defined).
-- Edge Functions are deployed with `verify_jwt = false` to support `sb_publishable_...` keys. An allowlist secret (`ALLOWED_CLIENT_API_KEYS`) is used instead.
+- Database schema migration has been pushed (tables created; RLS enabled).
+- Public read policies were added for initial end-to-end testing (see Risks).
+- Edge Functions are deployed with JWT verification enabled (spec-literal) and authenticated via the anon JWT key.
+
+## Risks / Follow-ups
+- Current public read RLS policies allow anon `SELECT` on the full `experiences` rows, which includes private AI-context columns. This is acceptable for “make it work first”, but we should tighten it by:
+  - Splitting public/private fields into separate tables, or
+  - Creating “public” views + restricting base-table access, or
+  - Using column privileges to prevent anon from selecting private columns.
 
 ## Issues Encountered
 | Issue | Resolution |

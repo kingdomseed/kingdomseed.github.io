@@ -1,4 +1,4 @@
-# Task Plan: AI-Powered Portfolio (Vite + React + Supabase) — Spec-Literal (+ Theme Switching)
+# Task Plan: AI-Powered Portfolio (Vite + React + Supabase) — Spec-Literal
 
 ## Goal
 Implement the “AI-powered portfolio with honest fit assessment” spec **literally** using:
@@ -16,12 +16,12 @@ Planning + reference docs remain in:
 - `next_version/` (this folder)
 
 ## Current Phase
-Phase 4
+Phase 5
 
 ## Phases
 
 ### Phase 1: Requirements & Discovery
-- [x] Choose direction: **A3 (React/Next.js)**, no Lovable
+- [x] Choose direction: **Vite + React SPA**, no Lovable, no Next.js
 - [x] Capture initial audits (copy/hierarchy) in `next_version/`
 - [x] Record initial palette direction: **C1**
 - **Status:** complete
@@ -56,10 +56,12 @@ Phase 4
 - [x] Implement Supabase Edge Function `/analyze-jd` (Azure OpenAI via `/openai/responses`, JSON parse + 1 retry)
 - [x] Deploy Edge Functions to Supabase project
 - [x] Wire frontend hooks (`useChat`, `useJDAnalyzer`) to those edge functions
+- [x] Hook up React Query for Supabase data fetching (`useCandidateData`)
+- [x] Hook up Zustand for chat state
 - **Status:** complete
 
-### Note: Supabase publishable keys + Edge Functions
-If the frontend uses the new `sb_publishable_...` keys, Edge Functions must be deployed with `--no-verify-jwt` (Supabase only verifies JWTs for legacy `anon`/`service_role`). We enforce an allowlist in the function code via `ALLOWED_CLIENT_API_KEYS`.
+### Note: Supabase anon key + Edge Functions
+We are using the legacy `anon` JWT key in the Vite frontend (`VITE_SUPABASE_ANON_KEY`) so Edge Functions can run with JWT verification enabled (spec-literal).
 
 ### Phase 6: Admin / Content Editing (v1.1)
 - [ ] Implement Supabase auth for admin (“single candidate” model)
