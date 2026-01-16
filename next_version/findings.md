@@ -1,7 +1,7 @@
 # Findings & Decisions
 
 ## Requirements
-- Truthful, hiring-manager-readable positioning: `Product Engineer` + `Flutter/Dart cross-platform` + `M.Sc. Computational Linguistics (ML/DL/NLP)` as primary.
+- Truthful, hiring-manager-readable positioning: `Product Developer` + `Educator` + `M.Sc. Computational Linguistics` as primary (tools like Flutter/Dart live in skills/experience, not the title line).
 - Re-audit **all** copy on the current homepage (and linked pages) for emphasis/order and factual support; keep awards/certs where they strengthen credibility.
 - Re-organize the site to tell a clear story + provide an easy-to-skim resume, with clear CTAs: download CV, contact, links.
 - Design target: “Material 3 expressive” influence, subtle (not loudly “Material”), premium/simple.

@@ -4,7 +4,8 @@ Objective: a hiring manager can skim and understand you quickly, while deeper re
 
 ## Proposed homepage sections (in order)
 1. **Hero**
-   - H1: Product Engineer + Flutter/Dart (and optionally CompLing in the same line)
+   - H1: Your name (serif)
+   - Title line (teal): **Product Developer • Educator • M.Sc. Computational Linguistics**
    - 2-sentence summary + CTAs (Download CV, Contact, View Work)
 2. **Proof strip**
    - Avg MAU (Oct–Dec 2025) ≈ 1,600
@@ -41,7 +42,13 @@ Objective: a hiring manager can skim and understand you quickly, while deeper re
   - As case studies (deployment/story) rather than “primary identity”
   - With subdued visual treatment (secondary chips/labels)
 
+## Recommended hero copy (spec-aligned + punchy)
+- **Title line (teal):** Product Developer • Educator • M.Sc. Computational Linguistics
+- **One-line positioning statement (pick one):**
+  - Option A: I build real software and I’ll be honest when I’m not the right fit.
+  - Option B: I ship cross-platform apps and learning experiences—with a bias for clarity and truth.
+  - Option C: I build products, teach clearly, and study language technology.
+
 ## Design notes (to align with your constraints)
 - Use layout hierarchy (60/40), not lots of equal cards.
 - Keep copy dense but skimmable: short paragraphs, strong headings, bullets where appropriate.
-
