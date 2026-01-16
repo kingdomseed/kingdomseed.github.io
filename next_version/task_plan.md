@@ -58,6 +58,9 @@ Phase 4
 - [x] Wire frontend hooks (`useChat`, `useJDAnalyzer`) to those edge functions
 - **Status:** complete
 
+### Note: Supabase publishable keys + Edge Functions
+If the frontend uses the new `sb_publishable_...` keys, Edge Functions must be deployed with `--no-verify-jwt` (Supabase only verifies JWTs for legacy `anon`/`service_role`). We enforce an allowlist in the function code via `ALLOWED_CLIENT_API_KEYS`.
+
 ### Phase 6: Admin / Content Editing (v1.1)
 - [ ] Implement Supabase auth for admin (“single candidate” model)
 - [ ] Implement DB migrations + RLS policies + admin forms

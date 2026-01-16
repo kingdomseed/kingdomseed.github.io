@@ -80,6 +80,7 @@ Reference map: `next_version/spec_map.md:1`
   - Either `VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY` or `VITE_SUPABASE_ANON_KEY` (Supabase dashboard labels vary)
 - Supabase CLI is installed and the new app repo is linked to the project (no secrets committed).
 - Database schema migration has been pushed (tables created; RLS enabled; policies still to be defined).
+- Edge Functions are deployed with `verify_jwt = false` to support `sb_publishable_...` keys. An allowlist secret (`ALLOWED_CLIENT_API_KEYS`) is used instead.
 
 ## Issues Encountered
 | Issue | Resolution |
