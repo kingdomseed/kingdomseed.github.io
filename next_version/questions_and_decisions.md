@@ -2,6 +2,9 @@
 
 These are the decisions we need from you. I’m only asking where it’s either taste-based or requires your confirmation for truth/comfort.
 
+## Status
+Most decisions are now made (A3, dark-only, C1 palette, split portfolio, no radar chart). Remaining items are mostly: exact hero wording, licensing phrasing, and where the static fallback lives.
+
 ## A) Direction (lock early)
 1. **Build approach (pick one)**
    - **A1 — Keep static HTML/CSS/JS (recommended for speed):** we reorganize into `next_version/` with chunked CSS and “section blocks” you can reorder by moving HTML blocks.
@@ -71,3 +74,17 @@ These are the decisions we need from you. I’m only asking where it’s either 
 
 15. **Learning design vs education context**
    - You previously said learning design is separate from Flutter/Dart. Do you want to keep “Educational UX” as a *supporting* strength (communication/accessibility), but avoid “Instructional Design” language and detailed pedagogy terms on the homepage?
+
+## Your latest answers (captured)
+- Build: **A3 (React/Next), no Lovable**
+- Positioning preference: Product Engineer + Learning Experience Designer + CompLing M.Sc. student (Flutter is a tool, not the headline)
+- LinkedIn: keep as contact method (footer/contact)
+- Proof: officially licensed apps + 5 platforms + ~1,600 MAU
+- Portfolio: split Products vs Case Studies
+- Theme: dark-only (light mode optional later if easy)
+- Palette: C1 looks best from `next_version/color_test.html`
+- UI: Material-ish cards/chips/elevation; **no radar chart**
+- Certs: show curated top, expand to full + AI context
+- Story: lead with 9 years teaching → transition to product development
+- Learning design language: Educational UX + Instructional Design are both valid to include
+- Canonical domain intent: `jasonholt.dev` (not `binaryloom.io`)

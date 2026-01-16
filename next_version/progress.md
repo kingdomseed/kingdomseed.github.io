@@ -20,6 +20,7 @@
 - Wrote detailed copy review in `next_version/copy_audit_detailed.md`.
 - Proposed homepage IA in `next_version/story_structure.md`.
 - Proposed palette directions in `next_version/color_directions.md`.
+- Pivoted direction to A3 (React/Next.js) per user; updated `next_version/task_plan.md` and truth/copy docs accordingly.
 
 ### Test Results
 | Test | Expected | Actual | Status |

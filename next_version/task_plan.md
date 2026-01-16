@@ -1,7 +1,7 @@
-# Task Plan: Next version story-first Flutter-first site
+# Task Plan: AI-Powered Portfolio (React/Next.js) + Basic Static Fallback
 
 ## Goal
-Produce a `next_version/` rebuild plan + working homepage prototype that tells Jason’s story truthfully (Flutter/Dart + CompLing first), is easy to skim, and is easy to maintain and rearrange.
+Build a React/Next.js portfolio that acts as an “interface layer” over Jason’s real experience: resume + case studies + queryable AI context + honest JD fit assessment, while maintaining a simple one-page HTML/CSS fallback for GitHub Pages.
 
 ## Current Phase
 Phase 1
@@ -9,52 +9,55 @@ Phase 1
 ## Phases
 
 ### Phase 1: Requirements & Discovery
-- [x] Understand user intent
-- [x] Identify constraints
-- [x] Document initial findings in `next_version/findings.md`
+- [x] Choose direction: **A3 (React/Next.js)**, no Lovable
+- [x] Capture initial audits (copy/hierarchy) in `next_version/`
+- [x] Record initial palette direction: **C1**
 - **Status:** complete
 
-### Phase 2: Content Audit (Copy + Claims)
-- [x] Start inventory table (`next_version/content_inventory.md`)
-- [x] Mark key claims as: keep / rewrite / remove + “needs source?” (`next_version/content_inventory.md`, `next_version/copy_audit_detailed.md`)
-- [x] Extract “approved truth set” (`next_version/truth_set.md`)
-- **Status:** complete
-
-### Phase 3: Story & Information Architecture
-- [x] Propose a skimmable story flow (`next_version/story_structure.md`)
-- [x] Define primary/secondary emphasis (`next_version/hierarchy_audit.md`)
-- [x] Specify what goes on homepage vs case studies vs resume PDF (`next_version/story_structure.md`)
-- **Status:** complete
-
-### Phase 4: Design System (Subtle Material 3)
-- [ ] Define tokens (color, type scale, spacing, radius, elevation)
-- [ ] Pick a distinctive but professional palette (emerald-leaning option included)
-- [ ] Decide on layout patterns (hero dominance, grids, cards)
+### Phase 2: Product Definition (AI Interface)
+- [ ] Define MVP feature set (what ships first)
+- [ ] Define strict truth/safety guardrails for AI responses
+- [ ] Decide content architecture: public vs private AI context
 - **Status:** in_progress
 
-### Phase 5: Build `next_version/` Prototype
-- [ ] Scaffold HTML sections as movable “blocks”
-- [ ] Split CSS into small files (tokens/components/sections/utilities)
-- [ ] Ensure hero + case studies + CV download + contact are clear and fast
+### Phase 3: Next.js App Scaffold
+- [ ] Create Next.js app under `next_version/` (TypeScript, App Router)
+- [ ] Implement core pages/sections: Home, Experience, Case Studies, Credentials
+- [ ] Add “AI Context” expanders on experience items (server-provided only)
 - **Status:** pending
 
-### Phase 6: Verification & Cutover Plan
-- [ ] Validate content accuracy vs the “truth set”
-- [ ] Quick accessibility + responsive checks
-- [ ] Document a safe cutover from root → `next_version/` (no surprises)
+### Phase 4: Design System (Subtle Material 3)
+- [ ] Implement tokens + components (cards, chips, buttons, elevation, state layers)
+- [ ] Use palette C1 as default (dark-first)
+- [ ] Ensure UI reads “premium” and skimmable
 - **Status:** pending
 
-### Phase 7 (Optional): “AI Interface” Layer
-> Only if you explicitly want this direction (from `next_version/WHY_REACT.md` / Lovable guides).
-- [ ] Decide whether to build: chat drawer, JD fit analyzer, “AI context” expanders
-- [ ] Define strict truth/safety guardrails (what the AI can/can’t claim)
-- [ ] Choose tech + hosting pattern (static + serverless vs full app)
-- **Status:** blocked (needs decision)
+### Phase 5: AI Features (MVP → v1)
+- [ ] “Ask AI About Me” chat drawer (server route → model)
+- [ ] JD Analyzer (“Honest Fit Assessment”) with structured output
+- [ ] Guardrails: anti-sycophancy prompt, explicit “not a fit” allowed
+- **Status:** pending
+
+### Phase 6: Admin / Content Editing (v1.1)
+- [ ] Decide whether to use Supabase (DB + auth) or file-based content
+- [ ] Add an admin-only content surface (optional for MVP)
+- **Status:** pending
+
+### Phase 7: Basic Static Fallback (GitHub Pages)
+- [ ] Create a single-page HTML/CSS version (no JS-heavy app features)
+- [ ] Ensure copy stays aligned with the Next.js “truth set”
+- [ ] Decide where this lives (root `index.html` vs `/basic/`)
+- **Status:** pending
 
 ## Decisions Made
 | Decision | Rationale |
 |----------|-----------|
-| Work in `next_version/` first | Avoid destabilizing the currently deployed site while iterating. |
+| Build React/Next.js AI interface | Aligns with `next_version/WHY_REACT.md` direction; richer interaction than static. |
+| Don’t use Lovable | Build ourselves to control quality, truthfulness, and maintainability. |
+| LinkedIn de-emphasized | Keep as contact method in footer/contact, not primary CTA. |
+| Dark-first palette (C1) | Matches your preference and `next_version/color_test.html`. |
+| No radar chart | Hiring manager feedback: confusing and not useful. |
+| Portfolio split: Products vs Case Studies | Supports skimming and correct emphasis ordering. |
 
 ## Errors Encountered
 | Error | Resolution |

@@ -5,12 +5,16 @@ This is the working set of copy blocks we can paste into the next homepage and c
 ## Hero
 
 ### H1 options (pick one)
-1. Product Engineer building Flutter/Dart cross-platform apps.
-2. Product Engineer shipping Flutter/Dart products.
-3. Product Engineer & Learning Design with an M.Sc. focus in Computational Linguistics (NLP). Maybe this can be improved--further (NLP can move to 2-sentence summary). I don't want to emphasize Flutter/Dart first--I want to emphasize end to end product development experience--every step i had to learn and take care of and then mention Flutter. Consider a reward for this.
+1. Product Engineer & Learning Experience Designer.
+2. Product Engineer (end-to-end) with a background in learning design.
+3. Product Engineer & Learning Experience Designer with an M.Sc. focus in Computational Linguistics.
+4. Product Engineer & Learning Experience Designer (M.Sc. Computational Linguistics).
 
 ### 2-sentence summary (draft)
-I build and ship cross-platform products with Flutter/Dart. I’m completing an M.Sc. in Computational Linguistics (Oct 2025 → Summer 2027), with a focus on NLP and applied ML.
+I build and ship products end-to-end: design, implementation, deployment, iteration, and documentation. My primary build tool is Flutter/Dart, and I’m completing an M.Sc. in Computational Linguistics (Oct 2025 → Summer 2027) with a focus on NLP.
+
+Optional “reward” line (use only if you like the tone):
+If you want the short version: yes, I ship cross-platform apps—then I do the unglamorous parts so they stay shippable.
 
 ### CTA labels (draft)
 - Primary: Download CV
@@ -33,7 +37,7 @@ Footnote:
 - Shipped Work
 
 ### Product card (Mythic app(s)) – draft
-Official cross-platform companion app shipped with Flutter/Dart (mobile + desktop). Built end-to-end with a focus on UX, reliability, and iterative improvement.
+Officially licensed cross-platform companion app shipped with Flutter/Dart (mobile + desktop). Built end-to-end with a focus on UX, reliability, and iterative improvement.
 
 > TODO: confirm the exact “official/licensed” wording you want.
 
@@ -101,4 +105,3 @@ Candidates (from inventory):
 
 ### Body copy (draft)
 Open to full-time, contract, part-time, and internship opportunities. Based in Frankfurt (remote-friendly).
-

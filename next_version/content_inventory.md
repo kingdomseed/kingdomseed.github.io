@@ -13,7 +13,7 @@ Legend:
 | Section | Current copy (short) | Fit vs truth set | Action | Notes |
 |---|---|---:|---|---|
 | Hero headline | “Fast. Beautiful. Accessible.” | ⚠️ misaligned | Rewrite | Reads like a product tagline; should be *about you* (Product Engineer / Flutter / CompLing). |
-| Hero subheadline | “Product Engineer — Flutter/Dart Cross-Platform — M.Sc. Computational Linguistics” | ✅ aligned | Keep | Promote to `H1` (likely). |
+| Hero subheadline | “Product Engineer — Flutter/Dart Cross-Platform — M.Sc. Computational Linguistics” | ⚠️ | Rewrite | You now want *end-to-end product development* first, Flutter as the tool (secondary). |
 | Hero paragraph | “I build and ship cross-platform products… (Oct 2025 → Summer 2027)” | ✅ aligned | Keep (minor rewrite) | Tighten for skimmability. |
 | Nav labels | Impact / Skills / Experience / Portfolio / Connect | ✅ aligned | Keep | Optional: rename “Impact” → “Proof” or “Highlights”. |
 | Stats | “Avg MAU (Oct–Dec 2025) ~1600”, “Platforms shipped: 5”, “Teaching & EdTech: 9 years” | ✅ aligned | Keep | Ensure MAU definition is consistent sitewide. |

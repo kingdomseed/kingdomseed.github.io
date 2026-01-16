@@ -3,15 +3,17 @@
 Purpose: this is the “source of truth” for any copy on the next version of the site. If a statement isn’t here (or isn’t clearly supported), it should be rewritten, sourced, or removed.
 
 ## Positioning (primary)
-- Role: Product Engineer.
-- Primary stack: Flutter + Dart (cross-platform: mobile + desktop).
-- Academic focus: M.Sc. Computational Linguistics (ML/DL/NLP focus).
+- Primary identity: Product Engineer (end-to-end product development).
+- Also: Learning Experience Designer (rooted in 9 years teaching CS/digital design).
+- Academic focus: M.Sc. Computational Linguistics (focus: NLP and applied ML).
+- Flutter/Dart: primary implementation tool for cross-platform product work (not the headline).
 - Based in: Frankfurt, Germany.
 - Work interest: Open to full-time, contract, part-time, and internships.
 
 ## Products (primary proof)
 - Shipped a cross-platform product across 5 platforms: iOS, Android, Windows, macOS, Linux.
 - Metric: Avg MAU ≈ 1,600 (Oct–Dec 2025), stated as approximate and defined as “unique users active in a 30‑day window”.
+- Licensing language: “Officially licensed” is approved wording (exact punctuation/hyphenation to finalize).
 
 ## Experience (core narrative)
 - Independent Software Developer (Jason Holt Digital), Aug 2024 – Present.
