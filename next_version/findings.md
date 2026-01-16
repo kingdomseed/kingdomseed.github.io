@@ -79,6 +79,7 @@ Reference map: `next_version/spec_map.md:1`
   - `VITE_SUPABASE_URL` (project URL)
   - `VITE_SUPABASE_ANON_KEY` (anon/publishable key)
 - Supabase CLI is installed and the new app repo is linked to the project (no secrets committed).
+- Database schema migration has been pushed (tables created; RLS enabled; policies still to be defined).
 
 ## Issues Encountered
 | Issue | Resolution |

@@ -35,10 +35,10 @@
 - Supabase setup:
   - Confirmed Supabase CLI installed.
   - Initialized Supabase project in the new app repo and linked it to the hosted project.
-  - Added a migration that matches the spec’s database schema (RLS enabled; policies pending).
+  - Added and pushed a migration that matches the spec’s database schema (RLS enabled; policies pending).
 - Azure setup:
   - Locked LLM provider to Azure OpenAI.
-  - Added Edge Function stubs in the app repo for `/chat` and `/analyze-jd` calling Azure OpenAI `/openai/responses`.
+  - Deployed Edge Functions in the Supabase project: `chat`, `analyze-jd` (Azure OpenAI `/openai/responses`).
 
 ### Test Results
 | Test | Expected | Actual | Status |

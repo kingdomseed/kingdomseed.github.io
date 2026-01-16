@@ -54,6 +54,7 @@ Phase 4
 ### Phase 5: AI Features (MVP → v1)
 - [x] Implement Supabase Edge Function `/chat` (Azure OpenAI via `/openai/responses`)
 - [x] Implement Supabase Edge Function `/analyze-jd` (Azure OpenAI via `/openai/responses`, JSON parse + 1 retry)
+- [x] Deploy Edge Functions to Supabase project
 - [ ] Wire frontend hooks (`useChat`, `useJDAnalyzer`) to those edge functions
 - **Status:** pending
 
