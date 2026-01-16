@@ -28,6 +28,12 @@ Most decisions are now made (React SPA via Vite, spec-literal UI/architecture, d
    - **L2 — Use your Azure AI Foundry models instead**: deviates from the spec’s example code but aligns with how you actually host models.
    This affects the Edge Function implementation and what secrets you store.
 
+5. **Azure model deployment name (confirm)**
+   - In Azure OpenAI, the `model` field is typically your **deployment name**.
+   - Which deployment name should we use for:
+     - Chat (`/chat`): e.g. `gpt-5.2` or `gpt-5.2-chat`
+     - JD analyzer (`/analyze-jd`): e.g. `gpt-5-mini` (cheaper) or same as chat
+
 ## B) Story (what visitors should feel/learn)
 4. **Pick the “one sentence” identity statement** (this becomes the hero `H1`)
    - B1: “Product Engineer building Flutter/Dart cross-platform apps.”
@@ -93,3 +99,4 @@ Most decisions are now made (React SPA via Vite, spec-literal UI/architecture, d
 - Story: lead with 9 years teaching → transition to product development
 - Learning design language: Educational UX + Instructional Design are both valid to include
 - Canonical domain intent: `jasonholt.dev` (not `binaryloom.io`)
+- LLM provider: **Azure OpenAI (your Azure AI Foundry setup)**
