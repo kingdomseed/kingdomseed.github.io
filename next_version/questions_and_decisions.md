@@ -3,13 +3,13 @@
 These are the decisions we need from you. I’m only asking where it’s either taste-based or requires your confirmation for truth/comfort.
 
 ## Status
-Most decisions are now made (A3, dark-only, C1 palette, split portfolio, no radar chart). Remaining items are mostly: exact hero wording, licensing phrasing, and where the static fallback lives.
+Most decisions are now made (React SPA via Vite, spec-literal UI/architecture, dark-only, theme switching, split portfolio, no radar chart). Remaining items are mostly: LLM provider choice, Supabase project setup details, and final hero wording.
 
 ## A) Direction (lock early)
 1. **Build approach (pick one)**
-   - **A1 — Keep static HTML/CSS/JS (recommended for speed):** we reorganize into `next_version/` with chunked CSS and “section blocks” you can reorder by moving HTML blocks.
+   - **A1 — Keep static HTML/CSS/JS:** we reorganize into `next_version/` with chunked CSS and “section blocks” you can reorder by moving HTML blocks.
    - **A2 — Migrate to Astro:** more composable sections/components and easier reuse for case studies, but adds a build pipeline + project structure.
-   - **A3 — React/Next.js:** most complex; only worth it if you want richer app-like interactions.
+   - **A3 — React SPA (Vite):** aligns with the imported spec (`VITE_*` env vars, Supabase Edge Functions).
 
 2. **Homepage emphasis (confirm)**
    - Primary: **Flutter/Dart + Product Engineering**  
@@ -22,6 +22,11 @@ Most decisions are now made (A3, dark-only, C1 palette, split portfolio, no rada
    - Keep LinkedIn link but de-emphasize (footer only)
    - Remove LinkedIn entirely (GitHub + email only)
    Your `next_version/WHY_REACT.md` argues LinkedIn is “dead”; I’ll follow your preference here.
+
+4. **LLM provider (high impact; pick one)**
+   - **L1 — Follow spec literally (Anthropic via Supabase Edge Functions)**: uses `ANTHROPIC_API_KEY` stored in Supabase secrets (no frontend key exposure).
+   - **L2 — Use your Azure AI Foundry models instead**: deviates from the spec’s example code but aligns with how you actually host models.
+   This affects the Edge Function implementation and what secrets you store.
 
 ## B) Story (what visitors should feel/learn)
 4. **Pick the “one sentence” identity statement** (this becomes the hero `H1`)
@@ -76,7 +81,7 @@ Most decisions are now made (A3, dark-only, C1 palette, split portfolio, no rada
    - You previously said learning design is separate from Flutter/Dart. Do you want to keep “Educational UX” as a *supporting* strength (communication/accessibility), but avoid “Instructional Design” language and detailed pedagogy terms on the homepage?
 
 ## Your latest answers (captured)
-- Build: **A3 (React/Next), no Lovable**
+- Build: **A3 (React SPA via Vite), no Lovable, no Next.js**
 - Positioning preference: Product Engineer + Learning Experience Designer + CompLing M.Sc. student (Flutter is a tool, not the headline)
 - LinkedIn: keep as contact method (footer/contact)
 - Proof: officially licensed apps + 5 platforms + ~1,600 MAU

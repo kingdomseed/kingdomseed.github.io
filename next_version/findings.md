@@ -55,6 +55,13 @@ Reference map: `next_version/spec_map.md:1`
 | Keep `next_version/` as the working area | Avoid breaking the currently deployed site while iterating on narrative/design. |
 | Prefer “tokens + components” CSS split | Improves composability and makes edits easier (human + LLM). |
 
+## Implementation Notes (Tailwind v4 + Vite)
+- Tailwind is being integrated using the Tailwind v4 Vite plugin (`@tailwindcss/vite`), not the older `tailwindcss init` flow.
+- This means:
+  - `vite.config.ts` includes the Tailwind plugin.
+  - `src/index.css` should switch to Tailwind v4’s recommended import style (`@import "tailwindcss";`) and then layer in our CSS variables/tokens.
+- We’ll keep Tailwind usage **minimal and structural** (spacing/layout/typography utilities) and implement the spec’s design tokens via CSS variables so theme switching stays trivial.
+
 ## Issues Encountered
 | Issue | Resolution |
 |-------|------------|

@@ -16,7 +16,7 @@ Planning + reference docs remain in:
 - `next_version/` (this folder)
 
 ## Current Phase
-Phase 1
+Phase 3
 
 ## Phases
 
@@ -30,14 +30,18 @@ Phase 1
 - [ ] Translate spec into an explicit MVP checklist (no invention beyond spec)
 - [ ] Define strict truth/safety guardrails for AI responses (must allow “probably not”)
 - [ ] Decide content architecture: public vs private AI context (admin panel fields)
-- **Status:** in_progress
+- **Status:** in_progress (active, but blocked on Phase 3 scaffold)
 
 ### Phase 3: Frontend Scaffold (React)
 - [x] Decide framework: **Vite + React SPA** (spec uses VITE env vars; no Next.js)
-- [ ] Create Vite app under `next_version/jh-resume/` (TypeScript)
-- [ ] Match spec component/folder structure as closely as possible (`src/components/...`, `src/pages/...`) per `next_version/spec_map.md:1`
-- [ ] Implement public page sections: Hero, Experience, Skills Matrix, Fit Check, Footer
-- [ ] Implement `/admin/*` routes and forms (Profile/Experience/Skills/Gaps/FAQ/Settings)
+- [x] Create Vite app under `next_version/jh-resume/` (TypeScript)
+- [x] Finish Tailwind v4 integration (Vite plugin + CSS entrypoint)
+- [x] Match spec component/folder structure as closely as possible (`src/components/...`, `src/pages/...`) per `next_version/spec_map.md:1`
+- [x] Add routing skeleton for:
+  - Public: `/`
+  - Admin: `/admin`, `/admin/profile`, `/admin/experience`, `/admin/skills`, `/admin/settings`
+- [x] Implement public page sections (initial skeletons): Hero, Experience, Skills Matrix, Fit Check, Footer
+- [x] Implement admin pages (initial skeletons + forms): Profile/Experience/Skills/Gaps/FAQ/Settings
 - **Status:** in_progress
 
 ### Phase 4: Design System (Subtle Material 3)
@@ -61,7 +65,7 @@ Phase 1
 ## Decisions Made
 | Decision | Rationale |
 |----------|-----------|
-| Build React/Next.js AI interface | Aligns with `next_version/WHY_REACT.md` direction; richer interaction than static. |
+| Build React AI interface | Aligns with `next_version/WHY_REACT.md` direction; richer interaction than static. |
 | Don’t use Lovable | Build ourselves to control quality, truthfulness, and maintainability. |
 | LinkedIn de-emphasized | Keep as contact method in footer/contact, not primary CTA. |
 | Dark-first palette (C1) | Matches your preference and `next_version/color_test.html`. |
@@ -73,4 +77,4 @@ Phase 1
 ## Errors Encountered
 | Error | Resolution |
 |-------|------------|
-| `frontend/content_strategy.md` missing | Re-derive strategy from inventory docs + current pages. |
+| `npx tailwindcss init -p` failed (Tailwind v4 toolchain) | Use `@tailwindcss/vite` + CSS `@import "tailwindcss";` approach instead. |

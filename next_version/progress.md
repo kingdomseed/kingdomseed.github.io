@@ -3,7 +3,7 @@
 ## Session: 2026-01-16
 
 ### Current Status
-- **Phase:** 1 - Requirements & Discovery
+- **Phase:** 3 - Frontend Scaffold (React)
 - **Started:** 2026-01-16
 
 ### Actions Taken
@@ -23,10 +23,21 @@
 - Pivoted direction to A3 (React/Next.js) per user; updated `next_version/task_plan.md` and truth/copy docs accordingly.
 - Locked the framework choice to **Vite + React + Supabase edge functions** (no Next.js) and created a spec navigation map in `next_version/spec_map.md`.
 - Updated plan to place the app root at `next_version/jh-resume/` and to require theme switching (default spec palette + C1/C2/C3 toggles).
+- Scaffolded the Vite + React + TypeScript app at `next_version/jh-resume/`.
+- Installed initial dependencies: React Query, Zustand, React Router, Supabase JS.
+- Began Tailwind v4 setup:
+  - Added `@tailwindcss/vite` plugin in `next_version/jh-resume/vite.config.ts`.
+  - Noted that `npx tailwindcss init -p` does not work the same way in Tailwind v4.
+- Implemented theme switching (spec palette + C1/C2/C3) via CSS tokens and `data-theme` on `html`.
+- Restructured the app to match the spec’s folder layout (`components/layout|sections|chat|admin`, `hooks`, `lib`, `pages`).
+- Added basic router skeleton for public + admin routes and a stub Chat Drawer.
+- Verified builds and lints pass.
 
 ### Test Results
 | Test | Expected | Actual | Status |
 |------|----------|--------|--------|
+| `npm run build` (Vite app) | Successful build | Successful build | ✅ |
+| `npm run lint` (ESLint) | No errors | No errors | ✅ |
 
 ### Errors
 | Error | Resolution |

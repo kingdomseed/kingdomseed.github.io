@@ -37,6 +37,7 @@ Spec source: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio 
 - Required component + folder structure: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:630`
 - State management: React Query + Zustand/Context: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:672`
 - Env vars (Vite): `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:678`
+- Cross-check (same intent, earlier doc): `next_version/Beginners Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:1` (see “PART 4: FRONTEND IMPLEMENTATION NOTES”)
 
 ## Part 5 — Deployment checklist (translate “Lovable setup” → “our Vite React app”)
 - Supabase setup + RLS + Edge Functions + secrets: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:688`
