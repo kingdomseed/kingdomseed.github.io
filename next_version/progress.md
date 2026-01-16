@@ -39,6 +39,7 @@
 - Azure setup:
   - Locked LLM provider to Azure OpenAI.
   - Deployed Edge Functions in the Supabase project: `chat`, `analyze-jd` (Azure OpenAI `/openai/responses`).
+- Wired the Vite frontend chat + JD analyzer UI to call the deployed Supabase Edge Functions (via `supabase.functions.invoke`).
 
 ### Test Results
 | Test | Expected | Actual | Status |

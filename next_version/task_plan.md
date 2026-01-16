@@ -55,8 +55,8 @@ Phase 4
 - [x] Implement Supabase Edge Function `/chat` (Azure OpenAI via `/openai/responses`)
 - [x] Implement Supabase Edge Function `/analyze-jd` (Azure OpenAI via `/openai/responses`, JSON parse + 1 retry)
 - [x] Deploy Edge Functions to Supabase project
-- [ ] Wire frontend hooks (`useChat`, `useJDAnalyzer`) to those edge functions
-- **Status:** pending
+- [x] Wire frontend hooks (`useChat`, `useJDAnalyzer`) to those edge functions
+- **Status:** in_progress
 
 ### Phase 6: Admin / Content Editing (v1.1)
 - [ ] Implement Supabase auth for admin (“single candidate” model)
