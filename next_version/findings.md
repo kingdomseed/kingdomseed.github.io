@@ -77,7 +77,7 @@ Reference map: `next_version/spec_map.md:1`
 - Project ref: `geuehhdhyrssumatwufs`
 - Vite app expects:
   - `VITE_SUPABASE_URL` (project URL)
-  - `VITE_SUPABASE_ANON_KEY` (anon/publishable key)
+  - Either `VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY` or `VITE_SUPABASE_ANON_KEY` (Supabase dashboard labels vary)
 - Supabase CLI is installed and the new app repo is linked to the project (no secrets committed).
 - Database schema migration has been pushed (tables created; RLS enabled; policies still to be defined).
 
