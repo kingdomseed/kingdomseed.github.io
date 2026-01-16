@@ -31,10 +31,14 @@ Purpose: this is the “source of truth” for any copy on the next version of t
 - UT Arlington: B.A. Linguistics (Cum Laude) and B.A. French (2012).
 
 ## Awards & recognition (keep; credibility boosters)
-- Microsoft Innovative Educator Expert.
-- Top Hat Award for Inspiring Innovation.
-- Grow with Google Scholarship Recipient.
+- Top Hat Award for Inspiring Innovation (Oct 2023).
+- Core Value of the Month Winner (3×, 2021–2024).
+- Microsoft Innovative Educator Expert (2016–2017).
+- Grow with Google Scholarship Recipient (Jan 2018).
+- Unity × Meta Create with VR Grant Recipient (2022; 30 Quest 2 headsets).
 
 ## Claims that require confirmation/source before use
 - “Official” / “licensed” phrasing around the Mythic app(s): confirm exact wording you want publicly.
 - Any app store ratings, download counts, retention %, revenue, or “X% growth” claims: include only if you have a source you’re comfortable linking/citing (or omit).
+- “200+ beta testers” (and any analytics tooling used): confirm the number + whether/how you want to mention tracking (Firebase/PostHog/etc.).
+- Open-source contribution claims (e.g., Shorebird / `icloud_storage_plus`): confirm accuracy and preferred specificity (generic vs link to PRs).

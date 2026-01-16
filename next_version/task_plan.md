@@ -16,21 +16,21 @@ Phase 1
 
 ### Phase 2: Content Audit (Copy + Claims)
 - [x] Start inventory table (`next_version/content_inventory.md`)
-- [ ] Mark each claim as: keep / rewrite / remove + “needs source?”
-- [ ] Extract “approved truth set” from inventory docs (incl. awards/certs)
-- **Status:** in_progress
+- [x] Mark key claims as: keep / rewrite / remove + “needs source?” (`next_version/content_inventory.md`, `next_version/copy_audit_detailed.md`)
+- [x] Extract “approved truth set” (`next_version/truth_set.md`)
+- **Status:** complete
 
 ### Phase 3: Story & Information Architecture
-- [ ] Propose a skimmable story flow (sections + order + CTA placement)
-- [ ] Define primary/secondary emphasis (Flutter vs web) via hierarchy, not deletion
-- [ ] Specify what goes on homepage vs case studies vs resume PDF
-- **Status:** pending
+- [x] Propose a skimmable story flow (`next_version/story_structure.md`)
+- [x] Define primary/secondary emphasis (`next_version/hierarchy_audit.md`)
+- [x] Specify what goes on homepage vs case studies vs resume PDF (`next_version/story_structure.md`)
+- **Status:** complete
 
 ### Phase 4: Design System (Subtle Material 3)
 - [ ] Define tokens (color, type scale, spacing, radius, elevation)
 - [ ] Pick a distinctive but professional palette (emerald-leaning option included)
 - [ ] Decide on layout patterns (hero dominance, grids, cards)
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 5: Build `next_version/` Prototype
 - [ ] Scaffold HTML sections as movable “blocks”
@@ -43,6 +43,13 @@ Phase 1
 - [ ] Quick accessibility + responsive checks
 - [ ] Document a safe cutover from root → `next_version/` (no surprises)
 - **Status:** pending
+
+### Phase 7 (Optional): “AI Interface” Layer
+> Only if you explicitly want this direction (from `next_version/WHY_REACT.md` / Lovable guides).
+- [ ] Decide whether to build: chat drawer, JD fit analyzer, “AI context” expanders
+- [ ] Define strict truth/safety guardrails (what the AI can/can’t claim)
+- [ ] Choose tech + hosting pattern (static + serverless vs full app)
+- **Status:** blocked (needs decision)
 
 ## Decisions Made
 | Decision | Rationale |

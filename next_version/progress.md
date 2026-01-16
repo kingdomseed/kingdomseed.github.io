@@ -15,6 +15,11 @@
   - `next_version/content_inventory.md`
   - `next_version/hierarchy_audit.md`
   - `next_version/questions_and_decisions.md`
+- Drafted initial copy blocks in `next_version/copy_deck.md`.
+- Wrote decision brief in `next_version/tech_options.md`.
+- Wrote detailed copy review in `next_version/copy_audit_detailed.md`.
+- Proposed homepage IA in `next_version/story_structure.md`.
+- Proposed palette directions in `next_version/color_directions.md`.
 
 ### Test Results
 | Test | Expected | Actual | Status |

@@ -21,6 +21,11 @@
   - Chat/coding models include `gpt-5.2`, `gpt-5.2-chat`, `gpt-5-pro`, `gpt-5.2-codex`, and `gpt-5-mini`.
   - Serverless models include `Mistral-Large-3`, `mistral-medium-2505`, `DeepSeek-R1-0528`, `MAI-DS-R1`, `Kimi-K2-Thinking`.
   - Config contains Azure resource identifiers; case studies should avoid publishing those.
+- Repo includes `privacy/index.html` and `terms/index.html` for **BinaryLoom Chat** (a different product) with dates “Nov 26, 2025”.
+  - These pages are likely not part of the hiring-manager story and may be confusing if discovered on `jasonholt.dev`.
+  - `terms/index.html` also appears out-of-sync with the current LibreChat config (mentions “GPT-5.1, Claude” etc), so treating it as “needs verification/update” before it’s publicly emphasized anywhere.
+- New `next_version/WHY_REACT.md` + Lovable guides exist as a possible future direction (React + AI interface/JD fit checker). This is not adopted yet; it changes scope and truth/safety requirements, so it needs an explicit decision before we pivot.
+- The current homepage includes a radar chart with **self-assigned numeric scores** (e.g., “UI Engineering: 95”) and tooltip skill lists that start with Next.js/React. This is both a positioning mismatch (Flutter-first) and could be interpreted as “marketing/self-rating” rather than verifiable proof.
 
 ## Technical Decisions
 | Decision | Rationale |
