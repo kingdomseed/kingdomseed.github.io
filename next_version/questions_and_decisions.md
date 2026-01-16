@@ -106,3 +106,5 @@ Most decisions are now made (React SPA via Vite, spec-literal UI/architecture, d
 - Canonical domain intent: `jasonholt.dev` (not `binaryloom.io`)
 - LLM provider: **Azure OpenAI (your Azure AI Foundry setup)**
 - Azure model: **`gpt-5.2-chat`** (starting point)
+- Company pills: **Jason Holt Digital**, **Uplift Education**, **Crowley ISD** (optional: Newman International Academy)
+- Employer clarification: Word Mill Games is a licensed IP relationship; University of Stuttgart is enrollment; FTTA is a program enrollment (not employment).
