@@ -66,11 +66,19 @@ Reference map: `next_version/spec_map.md:1`
 - We will use **Azure OpenAI (Responses API)** instead of Anthropic.
 - Frontend remains spec-literal (Vite + React + Supabase). The only change is the Edge Function implementation that calls the LLM provider.
 - We should treat the **Azure “model” field as a deployment name** (per Microsoft docs) and keep Azure keys out of the browser.
+- We will start with model deployment name: `gpt-5.2-chat`.
 
 ## Online Docs References (since Context7 is unavailable)
 - Azure OpenAI Responses API (how-to + REST example): `https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/responses?view=foundry-classic`
 - Supabase Edge Function secrets: `https://supabase.com/docs/guides/functions/secrets`
 - Note: OpenAI’s API reference for `/responses` returned 403 from this environment, so we’re using the Microsoft Azure docs as the canonical schema reference.
+
+## Supabase Project (Created)
+- Project ref: `geuehhdhyrssumatwufs`
+- Vite app expects:
+  - `VITE_SUPABASE_URL` (project URL)
+  - `VITE_SUPABASE_ANON_KEY` (anon/publishable key)
+- Supabase CLI is installed and the new app repo is linked to the project (no secrets committed).
 
 ## Issues Encountered
 | Issue | Resolution |

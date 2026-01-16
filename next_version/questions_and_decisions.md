@@ -34,6 +34,11 @@ Most decisions are now made (React SPA via Vite, spec-literal UI/architecture, d
      - Chat (`/chat`): e.g. `gpt-5.2` or `gpt-5.2-chat`
      - JD analyzer (`/analyze-jd`): e.g. `gpt-5-mini` (cheaper) or same as chat
 
+6. **Azure auth header style (confirm)**
+   - Some Azure docs use `api-key: ...`
+   - Some portal snippets show `Authorization: Bearer ...`
+   We can support either via `AZURE_OPENAI_AUTH_STYLE` in Supabase secrets.
+
 ## B) Story (what visitors should feel/learn)
 4. **Pick the “one sentence” identity statement** (this becomes the hero `H1`)
    - B1: “Product Engineer building Flutter/Dart cross-platform apps.”
@@ -100,3 +105,4 @@ Most decisions are now made (React SPA via Vite, spec-literal UI/architecture, d
 - Learning design language: Educational UX + Instructional Design are both valid to include
 - Canonical domain intent: `jasonholt.dev` (not `binaryloom.io`)
 - LLM provider: **Azure OpenAI (your Azure AI Foundry setup)**
+- Azure model: **`gpt-5.2-chat`** (starting point)

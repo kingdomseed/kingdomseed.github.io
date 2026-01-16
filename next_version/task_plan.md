@@ -16,7 +16,7 @@ Planning + reference docs remain in:
 - `next_version/` (this folder)
 
 ## Current Phase
-Phase 3
+Phase 4
 
 ## Phases
 
@@ -42,18 +42,18 @@ Phase 3
   - Admin: `/admin`, `/admin/profile`, `/admin/experience`, `/admin/skills`, `/admin/settings`
 - [x] Implement public page sections (initial skeletons): Hero, Experience, Skills Matrix, Fit Check, Footer
 - [x] Implement admin pages (initial skeletons + forms): Profile/Experience/Skills/Gaps/FAQ/Settings
-- **Status:** in_progress
+- **Status:** complete
 
 ### Phase 4: Design System (Subtle Material 3)
 - [ ] Follow spec design literally (Playfair + Inter, #0a0a0a bg, #4ade80 accent, #d4a574 amber)
 - [ ] Implement cards / buttons / “glass” surfaces as spec describes
 - [ ] Ensure skimmability + accessibility (keyboard, focus, reduced motion)
 - [ ] Add theme switching from day 1 (default = spec colors; alternates = `next_version/color_test.html`)
-- **Status:** pending
+- **Status:** in_progress
 
 ### Phase 5: AI Features (MVP → v1)
-- [ ] Implement Supabase Edge Function `/chat` per spec (Deno + Anthropic + buildSystemPrompt)
-- [ ] Implement Supabase Edge Function `/analyze-jd` per spec (JSON output format)
+- [x] Implement Supabase Edge Function `/chat` (Azure OpenAI via `/openai/responses`)
+- [x] Implement Supabase Edge Function `/analyze-jd` (Azure OpenAI via `/openai/responses`, JSON parse + 1 retry)
 - [ ] Wire frontend hooks (`useChat`, `useJDAnalyzer`) to those edge functions
 - **Status:** pending
 

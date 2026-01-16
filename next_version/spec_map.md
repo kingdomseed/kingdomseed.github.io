@@ -33,6 +33,11 @@ Spec source: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio 
   - “BRUTALLY HONEST” system prompt skeleton and sections: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:474`
 - Edge Function: `/analyze-jd` handler + required JSON output format: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:538`
 
+## Provider adaptation (approved): Azure OpenAI
+- We are using Azure OpenAI instead of Anthropic, implemented via Supabase Edge Functions.
+- REST reference used (official): `https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/responses?view=foundry-classic`
+- Supabase secrets reference (official): `https://supabase.com/docs/guides/functions/secrets`
+
 ## Part 4 — Frontend implementation notes (we implement, no Lovable)
 - Required component + folder structure: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:630`
 - State management: React Query + Zustand/Context: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:672`

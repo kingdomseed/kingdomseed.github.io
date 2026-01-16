@@ -32,6 +32,13 @@
 - Restructured the app to match the spec’s folder layout (`components/layout|sections|chat|admin`, `hooks`, `lib`, `pages`).
 - Added basic router skeleton for public + admin routes and a stub Chat Drawer.
 - Verified builds and lints pass.
+- Supabase setup:
+  - Confirmed Supabase CLI installed.
+  - Initialized Supabase project in the new app repo and linked it to the hosted project.
+  - Added a migration that matches the spec’s database schema (RLS enabled; policies pending).
+- Azure setup:
+  - Locked LLM provider to Azure OpenAI.
+  - Added Edge Function stubs in the app repo for `/chat` and `/analyze-jd` calling Azure OpenAI `/openai/responses`.
 
 ### Test Results
 | Test | Expected | Actual | Status |
