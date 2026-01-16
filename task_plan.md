@@ -1,40 +1,42 @@
-# Task Plan: Professional website content update (truthful, non-embellished)
+# Task Plan: Site re-organization + Flutter-first positioning + case studies
 
 ## Goal
-Produce a fair, balanced, professional content update plan (and, if approved later, the actual edits) for this website that clearly communicates who Jason Holt is professionally, grounded in verifiable facts and avoiding embellishment.
+Re-organize the site so it clearly reads “Flutter/Dart cross-platform product engineer + CompLing M.Sc.” first, reduces inconsistencies, and supports a small set of high-signal case studies (LibreChat on Azure AI Foundry, and Jason Holt Photography on Next.js + Azure Container Apps).
 
 ## Current Phase
 Phase 3
 
 ## Phases
 
-### Phase 1: Requirements & Discovery
-- [x] Read `docs/professional_inventory_update.md` and extract candidate claims
-- [x] Review current website copy (`index.html`) and identify deltas/gaps
-- [x] Identify constraints: tone, target roles, privacy/NDAs, evidence standards
-- [x] Document findings in `findings.md`
+### Phase 1: Inventory & Recovery
+- [x] Inventory existing homepage variants in this repo
+- [x] Identify “lighter/simpler” design candidate(s) to reuse
+- [x] Determine what was removed (and whether recoverable via git)
 - **Status:** complete
 
-### Phase 2: Content Strategy & Structure
-- [x] Define target positioning (primary + secondary role titles)
-- [x] Choose page structure changes (headline, summary, skills, work highlights)
-- [x] Define “evidence rules” (how we phrase claims without proof)
-- [x] Decide what to omit or soften (risk of overstatement)
+### Phase 2: Case Studies Content Extraction
+- [x] Summarize LibreChat case study scope + boundaries
+- [x] Extract Jason Holt Photography case study facts from `/Users/jholt/development/jhp-next`
+- [x] Decide what details must stay private (IDs, secrets, infra specifics)
 - **Status:** complete
 
-### Phase 3: Draft Copy (Truth-Checked)
-- [ ] Draft updated headline + professional summary
-- [ ] Draft “What I do / How I work / What I’ve shipped” sections
-- [ ] Convert inventory items into concise, public-safe bullets
-- [ ] Add optional “proof points” (links, projects, measurable outcomes) where available
-- **Status:** complete
-
-### Phase 4: Integrate Into Site + QA
-- [x] Map drafted copy to `index.html` sections (minimal structural changes)
-- [ ] Verify consistency with resume/LinkedIn/public artifacts (no new claims)
-- [x] Check for unsupported superlatives (“expert”, “world-class”, etc.)
-- [ ] Run a final “truth + tone” review checklist
+### Phase 3: Flutter-First Information Architecture
+- [ ] Define homepage sections and ordering
+- [ ] Define what is “secondary” (Next.js/Astro/web) vs primary (Flutter)
+- [ ] Decide how many projects to feature (goal: fewer, higher signal)
 - **Status:** in_progress
+
+### Phase 4: Implementation
+- [ ] Update homepage layout + navigation for new IA
+- [ ] Add/refresh case study pages and link them from homepage
+- [ ] Remove or archive outdated prototype pages if needed
+- **Status:** pending
+
+### Phase 5: QA & Delivery
+- [ ] Consistency pass (copy, dates, metrics, labels, links)
+- [ ] Mobile/desktop smoke test
+- [ ] Deploy checklist (cache busting, broken links)
+- **Status:** pending
 
 ### Phase 5: Delivery
 - [ ] Present an edit list (what to change, where, and why)
@@ -43,19 +45,17 @@ Phase 3
 - **Status:** pending
 
 ## Key Questions
-1. What exact role title(s) should the homepage optimize for (e.g., “Senior Software Engineer”, “Staff Engineer”, “Engineering Manager”, “Product Engineer”)?
-2. Who is the primary audience for the site (recruiters, hiring managers, founders, peers, clients)?
-3. Are there any employers/clients/projects that must not be mentioned publicly (NDA/privacy)?
-4. Do you want outcomes framed as metrics only when you can substantiate them, or are qualitative outcomes acceptable if phrased cautiously?
-5. Should the voice be first-person (“I build…”) or third-person (“Jason builds…”)?
+1. Which existing design variant should become the new base? (`flutter/index.html`, `frontend/index.html`, or current root `index.html`)
+2. Should homepage showcase “Products” (Mythic apps) separately from “Case Studies” (LibreChat, Photography)?
+3. Which web projects should remain on the homepage (if any), given Flutter-first emphasis?
+4. What level of infrastructure detail is acceptable in public case studies?
 
 ## Decisions Made
 | Decision | Rationale |
 |----------|-----------|
-| “Evidence-first” phrasing | Prevents accidental embellishment; keeps claims defensible. |
-| Prefer specific scope over big adjectives | “Built X on Y” reads stronger and more truthful than “expert”. |
-| Preserve existing site structure unless needed | Minimizes scope creep and keeps update focused on content. |
-| Treat analytics metrics as “opt-in” | MAU/retention claims are strong but need definitions + your comfort publishing them. |
+| Flutter-first positioning | Aligns homepage with your primary shipping work. |
+| Case studies over “visit platform” links | Avoids dead ends and lets you explain scope + learnings honestly. |
+| Photography site as case study | Highlights both “vibe coding” process and Azure container deployment. |
 
 ## Errors Encountered
 | Error | Attempt | Resolution |

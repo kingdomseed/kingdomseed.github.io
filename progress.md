@@ -54,6 +54,24 @@
   - Sanity-checked that the case study page and updated strings render via a local static server.
   - Updated hero “code window” to show Flutter/Dart and added a flip interaction to show Python/PyTorch.
   - Restored `main` branch upstream tracking to `origin/main`.
+
+### Phase 1 (Re-org): Inventory & Recovery
+- **Status:** in_progress
+- Actions taken:
+  - Located two alternate homepage variants in-repo: `flutter/index.html` (Flutter-first) and `frontend/index.html` (web-first).
+  - Read `/Users/jholt/development/jhp-next/docs/AZURE-DEPLOYMENT-GUIDE.md` and `/Users/jholt/development/jhp-next/README.md` to prepare a Photography + Azure case study.
+- Files created/modified:
+  - `task_plan.md` (updated)
+  - `findings.md` (updated)
+
+### Phase 2 (Re-org): Case Studies
+- **Status:** in_progress
+- Actions taken:
+  - Added a second case study page for the photography project and updated the homepage portfolio card to point to it.
+- Files created/modified:
+  - `case-study-photography-azure.html` (created)
+  - `docs/case_study_photography_azure.md` (created)
+  - `index.html` (updated)
 - Files created/modified:
   - `index.html` (updated)
   - `main.js` (updated)

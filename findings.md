@@ -13,6 +13,7 @@
 - `professional-inventory.md` (your “master inventory” doc; last updated June 2025)
 - Local project notes for the AI chat platform: `/Users/jholt/Documents/librechat-setup` (private ops/config repo for a LibreChat deployment)
 - Public product site: `jasonholtdigital.com` (official Mythic GME 2e apps)
+- Local repo for photography site: `/Users/jholt/development/jhp-next` (Next.js + Azure Container Apps)
 
 ## Current Site: Notable Positioning / Claims (from `index.html` header + hero)
 - Title/meta positioning: “Front End Developer & Learning Product Specialist”; emphasizes React/Next.js/TypeScript; “11 years of learning product experience”; “Based in Frankfurt, Germany”; “Available for hire”.
@@ -72,6 +73,30 @@
    - `/Users/jholt/Documents/librechat-setup/README.md` mentions GPT‑5.1 + Claude
    - `/Users/jholt/Documents/librechat-setup/configs/librechat.yaml` includes GPT‑5.2 variants and does not appear to include Claude models
    Which is current?
+
+## “Lighter / simpler” homepage candidates found in this repo
+- `flutter/index.html` appears to be a Flutter-first, simpler design variant (neon accent, minimal sections).
+- `frontend/index.html` appears to be a web/Next.js-first variant, with a separate `frontend/content_strategy.md` that explicitly prioritizes web.
+- I did not find any other alternate homepages in this repo beyond those (and `test-system` does not appear in git history here).
+
+## Photography site case study facts (from `/Users/jholt/development/jhp-next`)
+- Stack: Next.js 14 App Router + TypeScript + Tailwind + shadcn/ui.
+- Integrations: TidyCal API, Formspark, Cloudflare Turnstile.
+- Deployment: Docker image built from `Dockerfile.prod`, pushed to Azure Container Registry, deployed to Azure Container Apps via GitHub Actions.
+- Azure notes worth capturing as “lessons learned” (without publishing IDs): linux/amd64 builds on Apple Silicon; ACR + Container App + managed identity with AcrPull; env var handling via GitHub secrets/vars.
+
+## Case studies now in this repo
+- LibreChat / Azure AI Foundry: `case-study-llm-chat-platform.html`
+- Jason Holt Photography / Next.js + Azure Container Apps: `case-study-photography-azure.html`
+
+## Proposed homepage re-org (Flutter-first, fewer items)
+Suggested top-level order:
+1. Hero (Flutter/Dart + CompLing M.Sc.)
+2. Products (Mythic apps) — primary
+3. Case Studies (LibreChat, Photography) — secondary but high-signal
+4. Skills/Stack (Flutter/Dart first; Python/NLP + Azure next; web last)
+5. Education + credentials
+6. Connect
 
 ## Proposed Positioning (draft options — pick one)
 ### Option A (Product + Flutter first)
