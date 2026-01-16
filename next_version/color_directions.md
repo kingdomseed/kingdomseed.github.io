@@ -1,6 +1,27 @@
 # Color Directions (Distinctive, Emerald-Leaning)
 
-Goal: premium + calm + technical, with a subtle Material-3-ish feel. These are **directional** palettes; we’ll tune after you pick one.
+Goal: premium + calm + technical. These are **directional** palettes; we’ll tune after you pick one.
+
+## Spec-Literal Palette (must follow for the AI interface build)
+The imported spec defines these exact values:
+- Background: `#0a0a0a`
+- Primary accent (CTAs): `#4ade80`
+- Secondary / warnings: `#d4a574`
+- Typography: Playfair Display (headings) + Inter (body)
+
+Reference: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:13`
+
+The options below are still useful for future iterations or for non-spec pages, but the AI-interface build will follow the spec values above “to the letter.”
+
+## Theme Switching (required from day 1)
+You want the spec colors as the default, but to be able to switch themes easily (per `next_version/color_test.html`).
+
+Implementation intent (when we build):
+- Use CSS variables for tokens (`--bg`, `--surface`, `--text`, `--muted`, `--accent`, `--warning`, `--border`).
+- Provide theme presets:
+  - `theme-spec` (default): uses the spec values above.
+  - `theme-c1`, `theme-c2`, `theme-c3`: match `next_version/color_test.html` theme classes.
+- Provide a simple theme switcher UI (dev-facing first; can be hidden/removed later).
 
 Rule of thumb (from `use-distinctive-color.mdc`): 70% dominant, 20% supporting, 10% accent.
 
@@ -45,4 +66,3 @@ Notes:
 - Links/CTAs use accent.
 - “State layer” overlays (hover/focus) use accent at ~8–14% opacity.
 - Charts/graphs (if any) should follow the same accent rules.
-

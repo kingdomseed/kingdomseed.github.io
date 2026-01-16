@@ -27,6 +27,28 @@
 - New `next_version/WHY_REACT.md` + Lovable guides exist as a possible future direction (React + AI interface/JD fit checker). This is not adopted yet; it changes scope and truth/safety requirements, so it needs an explicit decision before we pivot.
 - The current homepage includes a radar chart with **self-assigned numeric scores** (e.g., “UI Engineering: 95”) and tooltip skill lists that start with Next.js/React. This is both a positioning mismatch (Flutter-first) and could be interpreted as “marketing/self-rating” rather than verifiable proof.
 
+## Notes on “Next.js vs React” (from the imported guides)
+- The Lovable “technical spec” repeatedly describes the frontend as a **“Lovable React App”** and includes `VITE_*` env var examples, which strongly implies a **Vite-built React SPA**, not Next.js.
+- The backend in the spec is **Supabase (Postgres + RLS) + Supabase Edge Functions** for `/chat` and `/analyze-jd`. In that architecture, Next.js is optional (the server work is already in Supabase).
+- Conclusion: choosing Next.js is a *separate* decision (SSR/server routes convenience), not something explicitly prescribed by `next_version/WHY_REACT.md`.
+
+## Decision (locked)
+- We will follow the spec **literally**:
+  - UI requirements: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:11`
+  - Admin panel requirements: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:129`
+  - Architecture: React frontend → Supabase DB + Edge Functions → LLM: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:248`
+  - Component + folder structure: `next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:630`
+
+Reference map: `next_version/spec_map.md:1`
+
+## New constraints (planning)
+- Theme switching is required from day 1:
+  - Default palette must match spec (`next_version/Advanced Guide_ How to Build an AI-Powered Portfolio Site with Lovable.md:13`)
+  - Alternate palettes should match `next_version/color_test.html` (C1/C2/C3)
+- Project layout:
+  - App root: `next_version/jh-resume/`
+  - Planning/reference docs remain in `next_version/`
+
 ## Technical Decisions
 | Decision | Rationale |
 |----------|-----------|

@@ -1,7 +1,19 @@
-# Task Plan: AI-Powered Portfolio (React/Next.js) + Basic Static Fallback
+# Task Plan: AI-Powered Portfolio (Vite + React + Supabase) — Spec-Literal (+ Theme Switching)
 
 ## Goal
-Build a React/Next.js portfolio that acts as an “interface layer” over Jason’s real experience: resume + case studies + queryable AI context + honest JD fit assessment, while maintaining a simple one-page HTML/CSS fallback for GitHub Pages.
+Implement the “AI-powered portfolio with honest fit assessment” spec **literally** using:
+- Vite + React (SPA) frontend
+- Supabase Postgres + RLS + Edge Functions backend
+- No Lovable, no Next.js
+
+Spec map: `next_version/spec_map.md:1`
+
+## Project Root (important)
+The codebase root for the React app is:
+- `next_version/jh-resume/`
+
+Planning + reference docs remain in:
+- `next_version/` (this folder)
 
 ## Current Phase
 Phase 1
@@ -15,38 +27,35 @@ Phase 1
 - **Status:** complete
 
 ### Phase 2: Product Definition (AI Interface)
-- [ ] Define MVP feature set (what ships first)
-- [ ] Define strict truth/safety guardrails for AI responses
-- [ ] Decide content architecture: public vs private AI context
+- [ ] Translate spec into an explicit MVP checklist (no invention beyond spec)
+- [ ] Define strict truth/safety guardrails for AI responses (must allow “probably not”)
+- [ ] Decide content architecture: public vs private AI context (admin panel fields)
 - **Status:** in_progress
 
-### Phase 3: Next.js App Scaffold
-- [ ] Create Next.js app under `next_version/` (TypeScript, App Router)
-- [ ] Implement core pages/sections: Home, Experience, Case Studies, Credentials
-- [ ] Add “AI Context” expanders on experience items (server-provided only)
-- **Status:** pending
+### Phase 3: Frontend Scaffold (React)
+- [x] Decide framework: **Vite + React SPA** (spec uses VITE env vars; no Next.js)
+- [ ] Create Vite app under `next_version/jh-resume/` (TypeScript)
+- [ ] Match spec component/folder structure as closely as possible (`src/components/...`, `src/pages/...`) per `next_version/spec_map.md:1`
+- [ ] Implement public page sections: Hero, Experience, Skills Matrix, Fit Check, Footer
+- [ ] Implement `/admin/*` routes and forms (Profile/Experience/Skills/Gaps/FAQ/Settings)
+- **Status:** in_progress
 
 ### Phase 4: Design System (Subtle Material 3)
-- [ ] Implement tokens + components (cards, chips, buttons, elevation, state layers)
-- [ ] Use palette C1 as default (dark-first)
-- [ ] Ensure UI reads “premium” and skimmable
+- [ ] Follow spec design literally (Playfair + Inter, #0a0a0a bg, #4ade80 accent, #d4a574 amber)
+- [ ] Implement cards / buttons / “glass” surfaces as spec describes
+- [ ] Ensure skimmability + accessibility (keyboard, focus, reduced motion)
+- [ ] Add theme switching from day 1 (default = spec colors; alternates = `next_version/color_test.html`)
 - **Status:** pending
 
 ### Phase 5: AI Features (MVP → v1)
-- [ ] “Ask AI About Me” chat drawer (server route → model)
-- [ ] JD Analyzer (“Honest Fit Assessment”) with structured output
-- [ ] Guardrails: anti-sycophancy prompt, explicit “not a fit” allowed
+- [ ] Implement Supabase Edge Function `/chat` per spec (Deno + Anthropic + buildSystemPrompt)
+- [ ] Implement Supabase Edge Function `/analyze-jd` per spec (JSON output format)
+- [ ] Wire frontend hooks (`useChat`, `useJDAnalyzer`) to those edge functions
 - **Status:** pending
 
 ### Phase 6: Admin / Content Editing (v1.1)
-- [ ] Decide whether to use Supabase (DB + auth) or file-based content
-- [ ] Add an admin-only content surface (optional for MVP)
-- **Status:** pending
-
-### Phase 7: Basic Static Fallback (GitHub Pages)
-- [ ] Create a single-page HTML/CSS version (no JS-heavy app features)
-- [ ] Ensure copy stays aligned with the Next.js “truth set”
-- [ ] Decide where this lives (root `index.html` vs `/basic/`)
+- [ ] Implement Supabase auth for admin (“single candidate” model)
+- [ ] Implement DB migrations + RLS policies + admin forms
 - **Status:** pending
 
 ## Decisions Made
@@ -58,6 +67,8 @@ Phase 1
 | Dark-first palette (C1) | Matches your preference and `next_version/color_test.html`. |
 | No radar chart | Hiring manager feedback: confusing and not useful. |
 | Portfolio split: Products vs Case Studies | Supports skimming and correct emphasis ordering. |
+| App root is `next_version/jh-resume/` | Keeps the application separate from planning/reference docs. |
+| Theme switching supported from day 1 | Lets you compare spec colors vs alternates quickly without refactors. |
 
 ## Errors Encountered
 | Error | Resolution |
