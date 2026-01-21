@@ -104,7 +104,7 @@ Suggested top-level order:
 - Use when you want the site to read primarily as a product-focused engineer who ships apps.
 
 ### Option B (Educator-to-builder story)
-**“Product Developer — Former CS Educator — Flutter/Dart + Learning Design”**
+**“Product Engineer — Former CS Educator — Flutter/Dart + Learning Design”**
 - Use when you want hiring managers to immediately “get” the teaching → product advantage.
 
 ### Option C (NLP/Computational linguistics forward)

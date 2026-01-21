@@ -5,7 +5,7 @@ This document outlines suggested updates to your kingdomseed.github.io resume si
 
 Hero Section
 
-Change the headline: Replace the current headline “Front End Developer & Learning Product Specialist” with a title that better captures your role, such as “Cross‑Platform Product Developer & Learning Specialist.” This highlights your work in building official Mythic GME apps with Flutter and your background in learning products.
+Change the headline: Replace the current headline “Front End Developer & Learning Product Specialist” with a title that better captures your role, such as “Cross‑Platform Product Engineer & Learning Specialist.” This highlights your work in building official Mythic GME apps with Flutter and your background in learning products.
 
 Update the subtext: Mention that you build and maintain official Mythic Game Master Emulator apps under licence from Word Mill Games and have scaled the active user base from 350 monthly users in March 2025 to about 1,600 in 2026. Also note that your apps maintain an average rating around 4.8/5 across Android and iOS stores.
 
@@ -29,7 +29,7 @@ Remove unused or minor tools: If you no longer actively work with frameworks lik
 
 Experience Timeline
 
-Current role: For the “CTO, Front End Lead & Learning Product Specialist” entry, rename it to “Founder & Lead Product Developer at Jason Holt Digital”. Update the timeframe to “2024–present.” Adjust bullet points to:
+Current role: For the “CTO, Front End Lead & Learning Product Specialist” entry, rename it to “Founder & Lead Product Engineer at Jason Holt Digital”. Update the timeframe to “2024–present.” Adjust bullet points to:
 
 Reflect scaling the MAU from 350 to 1 600 and maintaining 85 % retention.
 
