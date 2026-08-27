@@ -11,6 +11,7 @@
 - Replaced the December 2025 MAU snapshot with the supplied August 27, 2026 Shorebird value of 3,265 monthly active users.
 - Removed visible percentage-based skill ratings and renamed UI Engineering to Frontend Development.
 - Restored meaningful radar-chart values using Jason's relative 1–5 self-assessment and kept Backend Development separate from Cloud & Infrastructure.
+- Versioned the `main.js` URL so the published page loads the corrected radar instead of a previously cached script.
 - Qualified React and TypeScript as AI-assisted experience.
 - Aligned selected experience, credential, language, open-source, contact, metadata, and embedded PDF copy with the current site.
 - Verified JavaScript syntax, structured-data JSON, whitespace, desktop copy, and mobile layout locally.
