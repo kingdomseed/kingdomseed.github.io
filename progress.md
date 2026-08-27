@@ -1,5 +1,20 @@
 # Progress Log — Professional Website Update
 
+## Session: 2026-08-27
+
+### Copy maintenance pass
+
+- **Status:** complete; published from `main` on August 27, 2026
+- Kept the existing Binary Loom design and page structure.
+- Added a direct pointer to `jasonholt.dev` in the existing hero badge position.
+- Updated the public role from Product Engineer to Product Developer.
+- Replaced the December 2025 MAU snapshot with the supplied August 27, 2026 Shorebird value of 3,265 monthly active users.
+- Removed visible percentage-based skill ratings and renamed UI Engineering to Frontend Development.
+- Restored meaningful radar-chart values using Jason's relative 1–5 self-assessment and kept Backend Development separate from Cloud & Infrastructure.
+- Qualified React and TypeScript as AI-assisted experience.
+- Aligned selected experience, credential, language, open-source, contact, metadata, and embedded PDF copy with the current site.
+- Verified JavaScript syntax, structured-data JSON, whitespace, desktop copy, and mobile layout locally.
+
 ## Session: 2026-01-15
 
 ### Phase 1: Requirements & Discovery

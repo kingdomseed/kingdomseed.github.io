@@ -34,36 +34,40 @@ const ctx = document.getElementById('skillsRadar').getContext('2d');
 // Set fonts globally for chart
 Chart.defaults.font.family = "'Inter', sans-serif";
 
-// Skills data for each axis
+// User-supplied self-assessment on a relative 1-5 scale.
 const skillsData = {
-    'UI Engineering': {
-        score: 95,
-        skills: ['React', 'Next.js', 'TypeScript', 'Component Architecture', 'State Management', 'Flutter/Dart']
+    'Frontend Development': {
+        score: 3.5,
+        skills: ['Flutter/Dart', 'Cross-platform apps', 'React/TypeScript (AI-assisted)', 'Next.js', 'Astro', 'Responsive UI']
     },
-    'Visual Craft': {
-        score: 80,
+    'Visual Design': {
+        score: 4,
         skills: ['CSS/Tailwind', 'Animations', 'Responsive Design', 'Figma', 'Design Systems', 'Adobe Suite']
     },
-    'Product Sense': {
-        score: 85,
+    'Product Work': {
+        score: 4,
         skills: ['User Research', 'Analytics', 'Beta Testing', 'Iteration', 'Community Building', 'Shipping']
     },
-    'Backend': {
-        score: 60,
-        skills: ['REST APIs', 'MongoDB', 'Azure Cloud', 'Docker', 'Nginx/SSL', 'Firebase']
+    'Cloud & Infrastructure': {
+        score: 3,
+        skills: ['Azure Cloud', 'Docker', 'Nginx/SSL', 'CI/CD', 'Shorebird']
     },
-    'AI Tooling': {
-        score: 70,
+    'Backend Development': {
+        score: 3,
+        skills: ['REST APIs', 'Firebase', 'MongoDB Atlas']
+    },
+    'Agent Workflows': {
+        score: 4,
         skills: ['Claude Code', 'Cursor', 'Prompt Eng.', 'Context Eng.', 'Agentic Workflows', 'LLM Integration']
     },
-    'Edu UX': {
-        score: 95,
-        skills: ['Learning Psychology', 'Instructional Design', 'Accessibility', 'Engagement Mechanics', 'Curriculum Dev']
+    'Education Design': {
+        score: 5,
+        skills: ['Instructional Design', 'Accessibility', 'Engagement Mechanics', 'Curriculum Dev', 'Learning Psychology']
     }
 };
 
 const labels = Object.keys(skillsData);
-const dataValues = labels.map(l => skillsData[l].score);
+const dataValues = labels.map(label => skillsData[label].score);
 
 // Custom tooltip element
 const customTooltip = document.createElement('div');
@@ -85,7 +89,7 @@ new Chart(ctx, {
     data: {
         labels: labels,
         datasets: [{
-            label: 'Skill Proficiency',
+            label: 'Self-assessed relative strength',
             data: dataValues,
             fill: true,
             backgroundColor: 'rgba(16, 185, 129, 0.2)',
@@ -109,7 +113,7 @@ new Chart(ctx, {
                     font: { size: 11, weight: 500, family: "'Sora', sans-serif" }
                 },
                 ticks: { display: false, backdropColor: 'transparent' },
-                suggestedMin: 0, suggestedMax: 100
+                min: 0, max: 5
             }
         },
         plugins: { 
@@ -131,8 +135,7 @@ new Chart(ctx, {
                     const data = skillsData[label];
                     
                     document.getElementById('tooltipTitle').textContent = label;
-                    document.getElementById('tooltipScore').textContent = data.score + '%';
-                    
+                    document.getElementById('tooltipScore').textContent = `${data.score}/5`;
                     const skillsContainer = document.getElementById('tooltipSkills');
                     skillsContainer.innerHTML = data.skills.map(skill => 
                         `<span class="px-2 py-0.5 bg-slate-800/80 rounded text-xs text-slate-200 border border-slate-700/50">${skill}</span>`
@@ -398,7 +401,7 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
         { 
             name: 'Frontend', 
             color: { r: 96, g: 165, b: 250 },  // blue-400
-            skills: ['React', 'Next.js', 'TypeScript', 'Astro', 'Flutter'],
+            skills: ['Flutter', 'React/TypeScript (AI-assisted)', 'Next.js', 'Astro'],
             topWeight: 3,    // More common at top
             bottomWeight: 1
         },
@@ -431,7 +434,7 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
             bottomWeight: 2.5
         },
         { 
-            name: 'Edu UX', 
+            name: 'Education Design',
             color: { r: 244, g: 114, b: 182 }, // pink-400
             skills: ['Learning Psychology', 'Instructional Design', 'Accessibility'],
             topWeight: 1,
@@ -969,56 +972,4 @@ document.querySelectorAll('.portfolio-item').forEach(card => {
             animationId = requestAnimationFrame(animate);
         }
     });
-})();
-
-// =========================================
-// HERO TYPEWRITER EFFECT
-// =========================================
-(function() {
-    'use strict';
-
-    const typewriterEl = document.getElementById('typewriter');
-    if (!typewriterEl) return;
-
-    const phrases = ['85%', '4.8★', '400%↑'];
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    const typeSpeed = 150;
-    const deleteSpeed = 100;
-    const pauseAfterType = 2000;
-    const pauseAfterDelete = 500;
-
-    function tick() {
-        const currentPhrase = phrases[phraseIndex];
-
-        if (isDeleting) {
-            // Remove a character
-            typewriterEl.textContent = currentPhrase.substring(0, charIndex - 1);
-            charIndex--;
-
-            if (charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(tick, pauseAfterDelete);
-            } else {
-                setTimeout(tick, deleteSpeed);
-            }
-        } else {
-            // Add a character
-            typewriterEl.textContent = currentPhrase.substring(0, charIndex + 1);
-            charIndex++;
-
-            if (charIndex === currentPhrase.length) {
-                isDeleting = true;
-                setTimeout(tick, pauseAfterType);
-            } else {
-                setTimeout(tick, typeSpeed);
-            }
-        }
-    }
-
-    // Start after page loads with a small delay
-    setTimeout(tick, 1000);
 })();

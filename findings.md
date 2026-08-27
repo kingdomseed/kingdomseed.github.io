@@ -1,5 +1,16 @@
 # Findings & Decisions — Professional Website Update
 
+## 2026-08-27 copy refresh
+
+- Binary Loom remains an older secondary portfolio. `jasonholt.dev` is the current main site.
+- This pass updates copy only. The visual design, section order, interactions, and case-study layout stay unchanged.
+- Current public role wording is **Product Developer**, not Product Engineer.
+- The supplied Shorebird snapshot shows **3,265 monthly active users** in the trailing 28-day window on August 27, 2026.
+- Percentage-based self-ratings should not appear. The radar chart uses Jason's relative 1–5 self-assessment: Frontend Development 3.5, Visual Design 4, Product Work 4, Cloud & Infrastructure 3, Backend Development 3, Agent Workflows 4, and Education Design 5.
+- **UI Engineering** was removed. The plain replacement is **Frontend Development**, with React and TypeScript explicitly described as AI-assisted experience rather than a primary expert stack.
+- Current public contact is `hello@jasonholt.dev`; German study is A2.1.
+- Older experience and credential copy should follow the current `jasonholt.dev` evidence when the two sites disagree.
+
 ## Requirements (from user)
 - Plan a fair, balanced, professional content update to the website.
 - Focus on who you are professionally.
